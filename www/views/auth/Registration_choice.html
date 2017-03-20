@@ -1,0 +1,40 @@
+<ion-view class="walkthrough-view multi-bg-outer" style="background-image: url('img/background.jpg')" cache-view="false">
+  <ion-content scroll="false">
+    <div class="top-content row">
+      
+      
+<div class="col col-center">
+    <img ng-src="img/logo.png" class="app_logo">
+    <h3 class="pl_for">ARE YOU?</h3>
+    <div class="row">
+        <div class="col col-50">
+            <button ng-click="iAmClicked(1)" class="button individual" ng-class="{'active':selectedTab === 'users'}" on-touch="selectedTab = 'users'"  ><span><img ng-src="img/individual_icon.png" class="indi_logo"></span><h5>Individual</h5></button>
+        </div>
+        <div class="col col-50">
+            <button ng-click="iAmClicked(2)"class="button business" ng-class="{'active':selectedTab === 'items'}" on-touch="selectedTab = 'items'" ><span><img ng-src="img/business_icon.png" class="busi_logo"></span><h5>Business</h5></button>
+        </div>    
+    </div>        
+</div>
+
+    
+      
+      
+    </div>    
+    
+      
+ 
+
+ 
+      
+    <div class="bottom-content row button_bottom_top">
+      <div class="col col-center"><a class="sign-up button button-block button-stable" ui-sref="common.login">Already have an acount?<span>Sign In</span></a></div>
+    </div>  
+      
+    <ion-footer-bar class="tabs tabs-stable">
+    	<a ng-click="next()" class="tab-item tab-item-active next_stape" > <i class="material-icons">done</i>Next</a>
+    </ion-footer-bar>
+      
+ 
+      
+  </ion-content>
+</ion-view>

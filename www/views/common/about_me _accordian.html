@@ -1,0 +1,1267 @@
+<ion-view class="walkthrough-view multi-bg-outer" style="background-image: url('img/background.jpg')" cache-view="false" >
+
+<ion-header-bar align-title="left" class="bar-creoyou">
+
+<div class="row" ng-controller="Headercontroler">
+	<div class="col-45" ui-sref="common.search_on_keystock"><label class="item-input-wrapper header_search">    
+    <i class="material-icons">search</i><input type="search" placeholder="People,Business,Jobs.....">
+  </label></div>
+    	<!--<div class="col-50" ui-sref="common.search_on_keystock"><label class="item-input-wrapper header_search">    
+    <i class="material-icons" ui-sref="common.chat_">search</i><input type="search" placeholder="People,Business,Jobs.....">
+  </label></div>-->
+    <div class="col header_right_creoyou" ng-controller="refresh_control" >
+    	<a ui-sref="common.creo_loop" class="creoyou_loop"></a>
+        <a class="add_invite" ui-sref="common.request"><span class="info">{{pendingrequest}}</span></a>
+        <a class="notification" ui-sref="common.notification"><span class="info">{{notificationscount}}</span></a>
+        <a class="message" ui-sref="common.chat_message" ng-click="msg"><span class="info">{{count}}</span></a>
+       
+         <a class="top_settings" ng-click="popover1.show($event)">
+        </a>
+         <script id="templates/popover1.html"  type="text/ng-template">
+      <ion-popover-view>
+        <ion-content class="list1">
+          <div class="list">
+            <a class="item" ng-click="postjob()">
+               Job post
+            </a>
+            <a class="item" ng-click="alljob()" >
+              Jobs
+            </a>
+               <a class="item" ng-click="myjob()">
+               My Job 
+            </a>
+            <a class="item" ng-click="changepassword()">
+              Change Password
+            </a>
+            <a class="item" 
+             <i class="material-icons">settings</i>
+           
+            </a>
+            <a class="item" ng-click="logout()">
+              Logout
+            </a>
+          </div>
+        </ion-content>
+      </ion-popover-view>
+    </script>
+    </div>
+</div>
+
+</ion-header-bar>
+  
+  <ion-content scroll="true" class="about-edit">
+  
+  
+  
+  
+          <md-content>
+   	                 
+           
+          
+          
+             <div >
+     
+     <ion-list class="edit-privacy">
+       <div style="width:100%">
+            <ion-item class="item-stable"
+                    ng-click="toggleGroup(group)"
+                    ng-class="{active: isGroupShown(group)}">
+           
+                    <div class="prev-info"> 
+                        <div class="edit-del">
+                            <button class="set_privacy"><i class="material-icons">lock</i> Set privacy</button>
+                        </div>          
+                        <i class="icon" ng-class="isGroupShown(group) ? 'ion-chevron-up' : 'ion-chevron-down'"></i>
+            </div>
+            </ion-item>
+         
+          <ion-item class="item-accordion" ng-show="isGroupShown(group)">
+              
+      
+<ion-scroll zooming="true" direction="x" style="width: 100%; height: auto">
+        <div style="width:100%; height: auto">             
+             <ul>
+                <li>
+                    <input type="radio" id="f-option" name="privacy"  ng-model="privacy" ng-value="'1'" ng-change='newValue(privacy)'>
+                    <label for="f-option">Public</label>    
+                    <div class="check"></div>
+                </li>  
+                <li>
+                    <input type="radio" id="s-option" name="privacy" ng-model="privacy" ng-value="'2'" ng-change='newValue(privacy)'>
+                    <label for="s-option">Connections Only</label>    
+                    <div class="check"><div class="inside"></div></div>
+                 </li>
+                <li>
+                    <input type="radio" id="t-option" name="privacy" ng-model="privacy" ng-value="'3'" ng-change='newValue(privacy)'>
+                    <label for="t-option">Connections & Followers</label>    
+                    <div class="check"><div class="inside"></div></div>
+                </li>
+                <li>
+                    <input type="radio" id="g-option" name="privacy" ng-model="privacy" ng-value="'4'" ng-change='newValue(privacy)'>
+                    <label for="g-option">Private</label>    
+                    <div class="check"><div class="inside"></div></div>
+                </li> 
+             </ul>
+        </div>
+</ion-scroll>    
+            
+          </ion-item>
+          
+        </div>
+       
+      </ion-list>
+     
+       
+    <md-content>
+
+      <ion-list>
+        <div style="width:100%" >
+          <ion-item class="item-stable"
+                    ng-click="toggleGroup(group)"
+                   >
+           
+          <div class="prev-info"> 
+          <div class="edit-del">
+           <h3>Location</h3>
+            <a href="#"><i class="material-icons" ng-click="toggleGroup(group,'location')" ng-class="isGroupShown2(group) ">border_color</i></a>
+           <!-- <a href="#" class="delete"><i class="material-icons">delete_sweep</i></a>-->
+           </div>
+          <p ng-repeat="location in locations">
+                         {{location.country}},
+                         {{location.state}},
+                         {{location.city}},
+                         {{location.zip_code}}
+                     
+                     </p> 
+            <!--<i class="icon"ng-click="toggleGroup(group,'location')" ng-class="isGroupShown2(group) ? 'ion-minus' : 'ion-plus'"></i>-->
+            </div>
+          </ion-item>
+          <ion-item class="item-accordion" ng-show="isGroupShown2(group)">
+            <form>
+                  <div ng-repeat="location in locations">
+              <div class="row" >
+                    <div class="col col-50">
+                        <label class="item item-input item-floating-label select">
+                            <span class="input-label">Country</span>
+                              <select name="cfield" ng-model="cfield"   class="reg_select"ng-change="showSelectValue(cfield)" >
+                              <option value="" disabled="disabled" selected="selected"> {{location.country}}</option>
+                     <option  ng-repeat="group in listOfOptions" value="{{group.id}}"
+             ng-disabled="group.disabled" >{{group.name}}</option>
+                  
+                   
+                          
+                    </select>
+                        </label>
+                    </div>   
+                   <div class="col col-50" >
+                        <label class="item item-input item-floating-label select">
+                            <span class="input-label">State</span>
+                              <select name="cfield1" ng-model="cfield1"   class="reg_select1"ng-change="showSelectValue1(cfield1)" required>
+                      <option value="" disabled="disabled" selected="selected"> {{location.state}}</option>
+                     <option  ng-repeat="group in listOfOptions1" value="{{group.id}}"
+             ng-disabled="group.disabled" >{{group.name}}</option>
+                               
+                                 </select>
+                        </label>  
+                    </div>              
+                  </div>
+              
+              <div class="row" >
+                  
+                    <div class="col col-50">
+                        <label class="item item-input item-floating-label select">
+                            <span class="input-label">City</span>
+                         <input type="text" placeholder="City"
+                                    ng-model="location.city">
+                        </label>
+                    </div>   
+                   <div class="col col-50">
+                         <label class="item item-input item-floating-label">
+                            <span class="input-label">Zipcode</span>
+                            <input type="number" placeholder="Zipcode"ng-model="location.zip_code"  >
+                        </label>  
+                       
+                    </div> 
+                     
+                      </div>
+                   <button class="AboutSave" ng-click="savelocation(cfield,cfield1,location.city,location.zip_code,privacy)">Save</button>
+                  </div>      
+         
+                <!--  <div ng-if="langu==='show'">
+              <div class="row" >
+                    <div class="col col-50">
+                        <label class="item item-input item-floating-label select">
+                            <span class="input-label">Country</span>
+                              <select name="cfield" ng-model="cfield"   class="reg_select"ng-change="showSelectValue(cfield)" >
+                   <option value="" disabled="disabled" selected="selected"> {{location.country}}</option>
+                     <option  ng-repeat="group in listOfOptions" value="{{group.id}}"
+             ng-disabled="group.disabled" >{{group.name}}</option>
+                  
+                   
+                          
+                    </select>
+                        </label>
+                    </div>   
+                   <div class="col col-50" >
+                        <label class="item item-input item-floating-label select">
+                            <span class="input-label">State</span>
+                              <select name="cfield1" ng-model="cfield1"   class="reg_select1"ng-change="showSelectValue1(cfield1)" required>
+                      <option value="" disabled="disabled" selected="selected"> {{location.state}}</option>
+                     <option  ng-repeat="group in listOfOptions1" value="{{group.id}}"
+             ng-disabled="group.disabled" >{{group.name}}</option>
+                               
+                                 </select>
+                        </label>  
+                    </div>              
+                  </div>
+              
+              <div class="row" >
+                  
+                    <div class="col col-50">
+                        <label class="item item-input item-floating-label select">
+                            <span class="input-label">City</span>
+                         <input type="text" placeholder="City"
+                                    ng-model="location.city">
+                        </label>
+                    </div>   
+                   <div class="col col-50">
+                         <label class="item item-input item-floating-label">
+                            <span class="input-label">Zipcode</span>
+                            <input type="number" placeholder="Zipcode"ng-model="location.zip_code"  >
+                        </label>  
+                       
+                    </div> 
+                     
+                      </div>
+                   <button ng-click="savelocation1(cfield,cfield1,location.city,location.zip_code,privacy)">Save</button>
+                  </div> -->
+         
+              </form>
+          </ion-item>
+        </div>        
+        
+        <div style="width:100%" >
+          <ion-item class="item-stable"
+                    
+                    >
+            <div class="prev-info">
+          
+           <div class="prev-info">            
+            <div class="edit-del">
+           <h3>Specialization / Skill</h3>
+            <a ng-if="skillvalue!=='show4'"><i class="material-icons" ng-click="toggleGroup(group,'skill')" ng-class="isGroupShown3(group)">border_color</i></a>
+            <a ng-if="skillvalue!=='show4'" class="delete" ng-click="deleteskill()"><i class="material-icons">delete_sweep</i></a>
+           </div>
+          
+            </div>
+            <p ng-repeat="skil in skilss">
+                         {{skil.skillS}}
+                     
+                     </p>  
+            <i class="icon" ng-if="skillvalue==='show4'" ng-click="toggleGroup(group,'skill')" ng-class="isGroupShown3(group) ? 'ion-minus' : 'ion-plus'"></i>
+            </div>
+          </ion-item>
+          <ion-item class="item-accordion" ng-show="isGroupShown3(group)">
+           <form>
+              
+              <div class="row">
+                       
+                   <div class="col col-100" ng-repeat="skil in skilss">
+                        
+                         <label class="item item-input item-floating-label">
+                            <span class="input-label">Specialization / Skill</span>
+                            <input type="text" placeholder="Specialization / Skill"
+                                   ng-model="skil.skillS">
+                        </label> 
+                       <button class="AboutSave" ng-click="skillsave(skil.skillS)">Save</button>
+                    </div>
+                  
+                  </div>   
+               <div class="row" ng-if="skillvalue==='show4'">
+                       
+                   <div class="col col-100" >
+                        
+                         <label class="item item-input item-floating-label">
+                            <span class="input-label">Specialization / Skill</span>
+                            <input type="text" placeholder="Specialization / Skill"
+                                   ng-model="skillS">
+                        </label> 
+                       <button class="AboutSave" ng-click="skillsave(skillS)">Save</button>
+                    </div>
+                  
+                  </div> 
+            </form>
+          </ion-item>
+        </div>
+        <div style="width:100%" >
+          <ion-item class="item-stable"
+                    ng-click="toggleGroup(group)"
+                   >
+            <div class="prev-info">
+         
+           <div class="prev-info">            
+            <div class="edit-del">
+           <h3>Occupation</h3>
+            <a ng-repeat="occupation in locations"><i class="material-icons" ng-click="toggleGroup(group,'ocupation')" ng-class="isGroupShown4(group)">border_color</i></a>
+            <!--<a ng-repeat="occupation in locations" class="delete"><i class="material-icons">delete_sweep</i></a>-->
+           </div>
+           <p ng-repeat="occupation in locations">
+            {{occupation.occupation}} at {{occupation.company_name}} {{occupation.designation}}
+           </p>     
+           <!-- <i class="icon" ng-click="toggleGroup(group,'ocupation')" ng-class="isGroupShown4(group) ? 'ion-minus' : 'ion-plus'"></i>-->
+            </div>
+          
+            </div>
+          </ion-item>
+          <ion-item class="item-accordion" ng-show="isGroupShown4(group)">
+            <form>
+              
+             
+           <div ng-repeat="occupation in locations">           
+                  
+              <div class="row">
+                    <div class="col col-50">
+                         <label class="item item-input item-floating-label">
+                            <span class="input-label">occupation</span>
+                            <input type="text" placeholder="occupation" ng-model="occupation.occupation">
+                        </label> 
+                    </div> 
+                  <div class="col col-50">
+                         <label class="item item-input item-floating-label">
+                            <span class="input-label">Url</span>
+                            <input type="text" placeholder="url" ng-model="occupation.url">
+                        </label> 
+                    </div>
+                                
+                  </div>
+              <div class="row">
+                    <div class="col col-50">
+                       <label class="item item-input item-floating-label">
+                            <span class="input-label">designation</span>
+                            <input type="text" placeholder="designation" ng-model="occupation.company_name">
+                        </label> 
+                    </div>   
+                   <div class="col col-50">
+                         <label class="item item-input item-floating-label">
+                            <span class="input-label">company_name</span>
+                            <input type="text" placeholder="company_name" ng-model="occupation.designation">
+                        </label>  
+                    </div>              
+                  </div>  
+               <button class="AboutSave" ng-click="ocupationsave(occupation.occupation,occupation.url,occupation.company_name,occupation.designation)">Save</button>
+            </div>       
+                    
+            </form>
+          </ion-item>
+        </div>
+        <div style="width:100%" >
+          <ion-item class="item-stable"
+                   
+                    >
+            <div class="prev-info">
+         
+           <div class="prev-info">            
+            <div class="edit-del">
+           <h3>Experience/Work</h3>
+           <!-- <a href="#"><i class="material-icons" ng-click="toggleGroup(group,'experience')" ng-class="isGroupShown5(group)">border_color</i></a>
+            <a href="#" class="delete"><i class="material-icons">delete_sweep</i></a-->
+           </div>
+          <p ng-repeat="experience in experiences">
+               <span class="AboutEditDelete">
+                   <i class="material-icons" ng-click="toggleGroup(group,'experience',experience.id)" ng-class="isGroupShown5(group) Edit">border_color</i> 
+                   
+                   <i class="material-icons" ng-click="deleteexper(experience.id)" class="delete">delete_sweep</i>
+               </span>
+              <!--<a href="#" class="delete"  ></a>-->
+                         {{experience.position}}&nbsp;{{experience.company_name}}&nbsp;
+                         in {{experience.city}} on
+                         {{experience.starting_month}} to
+                         {{experience.ending_month}}  &nbsp;{{experience.details}} &nbsp; {{experience.website}}
+                       
+                     
+                     </p>  
+            <i class="icon" ng-click="toggleGroup(group,'experience')" ng-class="isGroupShown5(group) ? 'ion-minus' : 'ion-plus'"></i>
+            </div>
+          
+            </div>
+          </ion-item>
+          <ion-item class="item-accordion" ng-show="isGroupShown5(group)">
+            <form>
+             
+                
+              
+              <div ng-repeat="experience in experiences" ng-if="experience.id===exp">
+                    <div class="row">
+                       
+                   <div class="col col-100">
+                         <label class="item item-input item-floating-label">
+                            <span class="input-label">Experience/Work</span>
+                            <input type="text" placeholder="Company Name" ng-model="  experience.position">
+                        </label>  
+                    </div>  
+                   
+                  </div> 
+                 <div class="row">
+                       
+                   <div class="col col-50">
+                         <label class="item item-input item-floating-label">
+                           
+                            <input type="text" placeholder="Position" ng-model="experience.company_name">
+                        </label>  
+                    </div>  
+                   <div class="col col-50">
+                         <label class="item item-input item-floating-label">
+                            
+                            <input type="text" placeholder="Website" ng-model="experience.website">
+                        </label>  
+                    </div>  
+                  </div> 
+                 <div class="row">
+                       
+                   <div class="col col-50">
+                         <label class="item item-input item-floating-label">
+                          
+                            <select name="country" ng-model="country"class="reg_select" >
+                   <option value="" disabled="disabled" selected="selected"> {{location.country}}</option>
+                     <option  ng-repeat="group in listOfOptions" value="{{group.id}}"
+             ng-disabled="group.disabled" >{{group.name}}</option>
+                  
+                   
+                          
+                    </select>
+                        </label>  
+                    </div>  
+                   <div class="col col-50">
+                         <label class="item item-input item-floating-label">
+                            
+                            <input type="text" placeholder="City" ng-model="experience.city">
+                        </label>  
+                    </div>  
+                  </div>
+                 <div class="row">
+                       
+                   <div class="col col-50">
+                         <label class="item item-input item-floating-label">
+                          <span class="input-label">Starting Month</span>
+                       <select name="smoth" ng-model="smonth"   class="reg_select" >
+                   <option value="" disabled="disabled" selected="selected"> {{experience.starting_month}}</option>
+                     <option  ng-repeat="group in months" value="{{group.name}}"
+             ng-disabled="group.disabled" >{{group.name}}</option>
+                  
+                   
+                          
+                    </select>
+                        </label>  
+                      
+                    </div>  
+                     <div class="col col-50">
+                         <label class="item item-input item-floating-label">
+                          <span class="input-label">Starting Year</span>
+                             <input type="number" min="1900" max="2099" step="1" ng-model="experience.starting_year" />
+                        </label>  
+                    </div> 
+                  </div>
+                  <div class="row">
+                       
+                   <div class="col col-50">
+                         <label class="item item-input item-floating-label">
+                          <span class="input-label">Ending Month</span>
+                       <select name="emoth" ng-model="emonth"   class="reg_select" >
+                   <option value="" disabled="disabled" selected="selected"> {{experience.starting_month}}</option>
+                     <option  ng-repeat="group in months" value="{{group.name}}"
+             ng-disabled="group.disabled" >{{group.name}}</option>
+                  
+                   
+                          
+                    </select>
+                        </label>  
+                      
+                    </div>  
+                     <div class="col col-50">
+                         <label class="item item-input item-floating-label">
+                          <span class="input-label">Ending Year</span>
+                             <input type="number" min="1900" max="2099" step="1" ng-model="experience.ending_year" />
+                        </label>  
+                    </div> 
+                  </div>
+                   <div class="col col-100">
+                         <label class="item item-input item-floating-label">
+                          <span class="input-label">Details</span>
+                             <input type="text" ng-model="experience.details" placeholder="Details" />
+                        </label>  
+                    </div> 
+                  <button class="AboutSave" ng-click="worksave(experience.position,experience.company_name,experience.website,country,experience.city,smonth,experience.starting_year,emonth,experience.ending_year,experience.details)">Save</button>
+                </div>
+                <div  ng-if="exp===undefined">
+                    <div class="row">
+                       
+                   <div class="col col-100">
+                         <label class="item item-input item-floating-label">
+                            <span class="input-label">Experience/Work</span>
+                            <input type="text" placeholder="Company Name" ng-model="  position">
+                        </label>  
+                    </div>  
+                   
+                  </div> 
+                 <div class="row">
+                       
+                   <div class="col col-50">
+                         <label class="item item-input item-floating-label">
+                           
+                            <input type="text" placeholder="Position" ng-model="company_name">
+                        </label>  
+                    </div>  
+                   <div class="col col-50">
+                         <label class="item item-input item-floating-label">
+                            
+                            <input type="text" placeholder="Website" ng-model="website">
+                        </label>  
+                    </div>  
+                  </div> 
+                 <div class="row">
+                       
+                   <div class="col col-50">
+                         <label class="item item-input item-floating-label">
+                          
+                            <select name="country" ng-model="country"class="reg_select" >
+                   <option value="" disabled="disabled" selected="selected"> {{location.country}}</option>
+                     <option  ng-repeat="group in listOfOptions" value="{{group.id}}"
+             ng-disabled="group.disabled" >{{group.name}}</option>
+                  
+                   
+                          
+                    </select>
+                        </label>  
+                    </div>  
+                   <div class="col col-50">
+                         <label class="item item-input item-floating-label">
+                            
+                            <input type="text" placeholder="City" ng-model="city">
+                        </label>  
+                    </div>  
+                  </div>
+                 <div class="row">
+                       
+                   <div class="col col-50">
+                         <label class="item item-input item-floating-label">
+                          <span class="input-label">Starting Month</span>
+                       <select name="smoth" ng-model="smonth"   class="reg_select" >
+                   <option value="" disabled="disabled" selected="selected"> {{experience.starting_month}}</option>
+                     <option  ng-repeat="group in months" value="{{group.name}}"
+             ng-disabled="group.disabled" >{{group.name}}</option>
+                  
+                   
+                          
+                    </select>
+                        </label>  
+                      
+                    </div>  
+                     <div class="col col-50">
+                         <label class="item item-input item-floating-label">
+                          <span class="input-label">Starting Year</span>
+                             <input type="number" min="1900" max="2099" step="1" ng-model="starting_year" />
+                        </label>  
+                    </div> 
+                  </div>
+                  <div class="row">
+                       
+                   <div class="col col-50">
+                         <label class="item item-input item-floating-label">
+                          <span class="input-label">Ending Month</span>
+                       <select name="emoth" ng-model="emonth"   class="reg_select" >
+                   <option value="" disabled="disabled" selected="selected"> {{experience.starting_month}}</option>
+                     <option  ng-repeat="group in months" value="{{group.name}}"
+             ng-disabled="group.disabled" >{{group.name}}</option>
+                  
+                   
+                          
+                    </select>
+                        </label>  
+                      
+                    </div>  
+                     <div class="col col-50">
+                         <label class="item item-input item-floating-label">
+                          <span class="input-label">Ending Year</span>
+                             <input type="number" min="1900" max="2099" step="1" ng-model="ending_year" />
+                        </label>  
+                    </div> 
+                  </div>
+                     <div class="row">
+                       
+                    
+                     <div class="col col-100">
+                         <label class="item item-input item-floating-label">
+                          <span class="input-label">Details</span>
+                             <input type="text" ng-model="details" placeholder="Details" />
+                        </label>  
+                    </div> 
+                  </div>
+                  <button  class="AboutSave" ng-click="worksave1(position,company_name,website,country,city,smonth,starting_year,emonth,ending_year,details)">Save</button>
+                </div>
+            </form>
+          </ion-item>
+        </div>
+        <div style="width:100%" >
+          <ion-item class="item-stable"
+                   
+                    >
+            <div class="prev-info">
+         
+           <div class="prev-info">            
+            <div class="edit-del">
+           <h3>Education</h3>
+               
+           </div>
+            <p ng-repeat="education in educations"  >
+                <span class="AboutEditDelete">
+                   <i class="material-icons" ng-click="toggleGroup(group,'education',education.id)" ng-class="isGroupShown6(group) Edit">border_color</i> 
+                   
+                   <i class="material-icons"  ng-click="deleteedu(education.id)" class="delete">delete_sweep</i>
+               </span>
+<!--         <span ><i class="material-icons" ng-click="toggleGroup(group,'education',education.id)" ng-class="isGroupShown6(group) Edit">border_color</i><i class="material-icons " ng-click="deleteedu(education.id)" class="delete">delete_sweep</i></span>       -->
+ <span class="listing_head">{{education.degree}},{{education.school_name}}  </span><br>
+                     {{education.starting_month}} 
+                     {{education.starting_year}} to
+                        {{education.ending_month}} 
+                     {{education.ending_year}} 
+                    {{education.details}}
+                     {{education.school_website}}
+                       </p> 
+            <i class="icon" ng-click="toggleGroup(group,'education')" ng-class="isGroupShown6(group) ? 'ion-minus' : 'ion-plus'"></i>
+            </div>
+          
+            </div>
+          </ion-item>
+          <ion-item class="item-accordion" ng-show="isGroupShown6(group)">
+            <form>
+              <div ng-repeat="education in educations">
+                  
+                  <div class="row" ng-if="education.id===value" >
+                       
+                   <div class="col col-50">
+                         <label class="item item-input item-floating-label">
+                            <span class="input-label">School/University</span>
+                            <input type="text" placeholder="School/University" ng-model="education.school_name">
+                        </label>  
+                    </div>
+                   <div class="col col-50">
+                         <label class="item item-input item-floating-label">
+                            <span class="input-label">Website</span>
+                            <input type="text" placeholder="Website" ng-model="education.school_website">
+                        </label>  
+                    </div> 
+                  </div>  
+                 <div class="row" ng-if="education.id===value">
+                       
+                   <div class="col col-50">
+                         <label class="item item-input item-floating-label">
+                            <span class="input-label">Location</span>
+                            <!--<input type="text" placeholder="Location" ng-model="school_location">-->
+                              <select name="education.country" ng-model="education.country"   class="reg_select" >
+                   <option value="" disabled="disabled" selected="selected"> {{location.country}}</option>
+                     <option  ng-repeat="group in listOfOptions" value="{{group.id}}"
+             ng-disabled="group.disabled" >{{group.name}}</option>
+                  
+                   
+                          
+                    </select>
+                        </label>  
+                    </div>
+                   <div class="col col-50">
+                         <label class="item item-input item-floating-label">
+                            <span class="input-label">City</span>
+                            <input type="text" placeholder="city" ng-model="education.city">
+                        </label>  
+                    </div> 
+                  </div>  
+                 <div class="row" ng-if="education.id===value">
+                       
+                   <div class="col col-100">
+                         <label class="item item-input item-floating-label">
+                            <span class="input-label">Degree</span>
+                            <input type="text" placeholder="Degree" ng-model="education.degree">
+                        </label>  
+                    </div>
+                  
+                  </div>  
+                 <div class="row" ng-if="education.id===value">
+                       
+                   <div class="col col-50">
+                         <label class="item item-input item-floating-label">
+                            <span class="input-label">Starting Months</span>
+<!--                            <input type="text" placeholder="Starting Months" ng-model="starting_month">-->
+                              <select name="starting_month" ng-model="education.starting_month"   class="reg_select" >
+                   <option value="" disabled="disabled" selected="selected"> {{experience.starting_month}}</option>
+                     <option  ng-repeat="group in months" value="{{group.name}}"
+             ng-disabled="group.disabled" >{{group.name}}</option>
+                  
+                   
+                          
+                    </select>
+                        </label>  
+                    </div>
+                   <div class="col col-50">
+                         <label class="item item-input item-floating-label">
+                            <span class="input-label">Starting Year</span>
+                           
+                              <input type="number" min="1900" max="2099" step="1" ng-model="education.starting_year" />
+                        </label>  
+                    </div> 
+                  </div>  
+                 <div class="row" ng-if="education.id===value">
+                       
+                   <div class="col col-50">
+                         <label class="item item-input item-floating-label">
+                            <span class="input-label">Ending Months</span>
+                            
+                              <select name="ending_month" ng-model="education.ending_month"   class="reg_select" >
+                   <option value="" disabled="disabled" selected="selected"> {{experience.starting_month}}</option>
+                     <option  ng-repeat="group in months" value="{{group.name}}"
+             ng-disabled="group.disabled" >{{group.name}}</option>
+                  
+                   
+                          
+                    </select>
+                        </label>  
+                    </div>
+                   <div class="col col-50">
+                         <label class="item item-input item-floating-label">
+                            <span class="input-label">Ending Year</span>
+                            
+                             <input type="number" min="1900" max="2099" step="1" ng-model="education.ending_year" />
+                        </label>  
+                    </div> 
+                  </div> 
+                <div class="row" ng-if="education.id===value">
+                       
+                   <div class="col col-100">
+                         <label class="item item-input item-floating-label">
+                            <span class="input-label">Details</span>
+                            <input type="text" placeholder="Details" ng-model="education.details">
+                        </label>  
+                    </div>
+                 
+                  </div> 
+                   <button class="AboutSave" class="AboutSave" ng-click="coursesave(education.school_name,education.school_website,education.country,education.city,education.degree,education.starting_month,education.starting_year,education.ending_month,education.ending_year,education.details,education.id)" ng-if="education.id===value">Save</button>
+                  </div>
+                <div ng-if="value===undefined" >
+                  <div class="row" >
+                       
+                   <div class="col col-50">
+                         <label class="item item-input item-floating-label">
+                            <span class="input-label">School/University</span>
+                            <input type="text" placeholder="School/University" ng-model="school_name">
+                        </label>  
+                    </div>
+                   <div class="col col-50">
+                         <label class="item item-input item-floating-label">
+                            <span class="input-label">Website</span>
+                            <input type="text" placeholder="Website" ng-model="school_website">
+                        </label>  
+                    </div> 
+                  </div>  
+                 <div class="row" >
+                       
+                   <div class="col col-50">
+                         <label class="item item-input item-floating-label">
+                            <span class="input-label">Location</span>
+                         <!--   <input type="text" placeholder="Location" ng-model="school_location">-->
+                               <select name="school_location" ng-model="school_location"   class="reg_select" >
+                   <option value="" disabled="disabled" selected="selected"> Select Location</option>
+                     <option  ng-repeat="group in listOfOptions" value="{{group.id}}"
+             ng-disabled="group.disabled" >{{group.name}}</option>
+                  
+                   
+                          
+                    </select>
+                        </label>  
+                    </div>
+                   <div class="col col-50">
+                         <label class="item item-input item-floating-label">
+                            <span class="input-label">City</span>
+                            <input type="text" placeholder="city" ng-model="city">
+                        </label>  
+                    </div> 
+                  </div>  
+                 <div class="row" >
+                       
+                   <div class="col col-100">
+                         <label class="item item-input item-floating-label">
+                            <span class="input-label">Degree</span>
+                            <input type="text" placeholder="Degree" ng-model="degree">
+                        </label>  
+                    </div>
+                  
+                  </div>  
+                 <div class="row" >
+                       
+                   <div class="col col-50">
+                         <label class="item item-input item-floating-label">
+                            <span class="input-label">Starting Months</span>
+<!--                            <input type="text" placeholder="Starting Months" ng-model="starting_month">-->
+                              <select name="starting_month" ng-model="starting_month"   class="reg_select" >
+                   <option value="" disabled="disabled" selected="selected"> {{experience.starting_month}}</option>
+                     <option  ng-repeat="group in months" value="{{group.name}}"
+             ng-disabled="group.disabled" >{{group.name}}</option>
+                  
+                   
+                          
+                    </select>
+                        </label>  
+                    </div>
+                   <div class="col col-50">
+                         <label class="item item-input item-floating-label">
+                            <span class="input-label">Starting Year</span>
+                           
+                              <input type="number" min="1900" max="2099" step="1" ng-model="starting_year" />
+                        </label>  
+                    </div> 
+                  </div>  
+                 <div class="row" >
+                       
+                   <div class="col col-50">
+                         <label class="item item-input item-floating-label">
+                            <span class="input-label">Ending Months</span>
+                            
+                              <select name="ending_month" ng-model="ending_month"   class="reg_select" >
+                   <option value="" disabled="disabled" selected="selected"> {{experience.starting_month}}</option>
+                     <option  ng-repeat="group in months" value="{{group.name}}"
+             ng-disabled="group.disabled" >{{group.name}}</option>
+                  
+                   
+                          
+                    </select>
+                        </label>  
+                    </div>
+                   <div class="col col-50">
+                         <label class="item item-input item-floating-label">
+                            <span class="input-label">Ending Year</span>
+                            
+                             <input type="number" min="1900" max="2099" step="1" ng-model="ending_year" />
+                        </label>  
+                    </div> 
+                  </div> 
+                <div class="row" >
+                       
+                   <div class="col col-100">
+                         <label class="item item-input item-floating-label">
+                            <span class="input-label">Details</span>
+                            <input type="text" placeholder="Details" ng-model="details">
+                        </label>  
+                    </div>
+                 
+                  </div> 
+                 
+                 <button class="AboutSave" class="AboutSave" ng-click="coursesave1(school_name,school_website,school_location,city,degree,starting_month,starting_year,ending_month,ending_year,details)">Save</button>
+                </div>
+
+            </form>
+          </ion-item>
+        </div>
+        <div style="width:100%" >
+          <ion-item class="item-stable" >
+            <div class="prev-info">
+         
+           <div class="prev-info">            
+            <div class="edit-del">
+           <h3>Courses</h3>
+           <!-- <a href="#"><i class="material-icons"  ng-click="toggleGroup(group,'course',course.id)" ng-class="isGroupShown7(group)">border_color</i></a>-->
+           
+           </div>
+          <p ng-repeat="course in courses">
+              <!--<a ><i class="material-icons"  ng-click="toggleGroup(group,'course',course.id)" ng-class="isGroupShown7(group)">border_color</i> <i class="material-icons">delete_sweep</i></a>-->
+              <span class="AboutEditDelete">
+                   <i class="material-icons" ng-click="toggleGroup(group,'course',course.id)" ng-class="isGroupShown7(group) Edit">border_color</i> 
+                   
+                   <i class="material-icons"   class="delete">delete_sweep</i>
+               </span>
+                   
+                         {{course.course_name}}&nbsp;({{course.course_organisation}})&nbsp;
+                          {{course.year}}  
+                     
+                     </p>
+            <i class="icon" ng-click="toggleGroup(group,'course')" ng-class="isGroupShown7(group) ? 'ion-minus' : 'ion-plus'"></i>
+            </div>
+          
+            </div>
+          </ion-item>
+          <ion-item class="item-accordion" ng-show="isGroupShown7(group)">
+           <form>
+              <div ng-repeat="course in courses" ng-if="course.id===cvalue">
+              <div class="row" >
+                       
+                   <div class="col col-100">
+                         <label class="item item-input item-floating-label">
+                            <span class="input-label">Courses</span>
+                            <input type="text" placeholder="course name" ng-model="course.course_name">
+                        </label>  
+                    </div>     
+                    <div class="col col-100">
+                         <label class="item item-input item-floating-label">
+                           
+                            <input type="text" placeholder="course organization" ng-model="course.course_organisation">
+                        </label>  
+                    </div> 
+                    <div class="col col-100">
+                         <label class="item item-input item-floating-label">
+                           
+                           <!-- <input type="text" placeholder="course year" ng-value="course.year">-->
+                              <input type="number" min="1900" max="2099" step="1" ng-model="course.year" />
+                        </label>  
+                    </div>
+                  
+                  </div> 
+                  <button class="AboutSave" ng-click="coursesave2(course.course_name,course.course_organisation,course.year)">Save</button>
+                  </div>
+               <div ng-if="cvalue===undefined">
+              <div class="row" >
+                       
+                   <div class="col col-100">
+                         <label class="item item-input item-floating-label">
+                            <span class="input-label">Courses</span>
+                            <input type="text" placeholder="course name" ng-model="course_name">
+                        </label>  
+                    </div>     
+                    <div class="col col-100">
+                         <label class="item item-input item-floating-label">
+                           
+                            <input type="text" placeholder="course organization" ng-model="course_organisation">
+                        </label>  
+                    </div> 
+                    <div class="col col-100">
+                         <label class="item item-input item-floating-label">
+                           
+                           <!-- <input type="text" placeholder="course year" ng-value="course.year">-->
+                              <input type="number" min="1900" max="2099" step="1" ng-model="year" />
+                        </label>  
+                    </div>
+                  
+                  </div> 
+                  <button class="AboutSave" ng-click="coursesave3(course_name,course_organisation,year)">Save</button>
+                  </div>
+            </form>
+          </ion-item>
+        </div>
+          
+      
+        <div style="width:100%" >
+          <ion-item class="item-stable"
+                   
+                    >
+            <div class="prev-info">
+         
+           <div class="prev-info">            
+            <div class="edit-del">
+           <h3>Personal Statements</h3>
+            <a ng-repeat="course in statements"><i class="material-icons"  ng-click="toggleGroup(group,'statement')" ng-class="isGroupShown8(group)">border_color</i></a>
+            <a  ng-repeat="course in statements" ng-click="personalstatementdel()" class="delete"><i class="material-icons">delete_sweep</i></a>
+           </div>
+          <p ng-repeat="course in statements">
+                         {{course.personal_statement}}
+             
+                         
+                     </p>
+            <i class="icon" ng-if="statement==='show1'" ng-click="toggleGroup(group,'statement')" ng-class="isGroupShown8(group) ? 'ion-minus' : 'ion-plus'"></i>
+            </div>
+          
+            </div>
+          </ion-item>
+          <ion-item class="item-accordion" ng-show="isGroupShown8(group)">
+           <form>
+              <div ng-repeat="statement in statements" ng-if="statement!=='show1'">
+              <div class="row" >
+                       
+                   <div class="col col-100">
+                         <label class="item item-input item-floating-label">
+                            <span class="input-label">Personal Statements</span>
+                             <textarea placeholder="course name" ng-model="statement.personal_statement"></textarea>
+                        </label>  
+                    </div>     
+                  
+                  
+                  </div> 
+                  <button class="AboutSave" ng-click="personalstatement(statement.personal_statement)">Save</button>
+                  </div>
+               <div ng-if="statement==='show1'">
+              <div class="row" >
+                       
+                   <div class="col col-100">
+                         <label class="item item-input item-floating-label">
+                            <span class="input-label">Personal Statements</span>
+                             <textarea placeholder="Personal Statements" ng-model="personal_statement"></textarea>
+                        </label>  
+                    </div>     
+                  
+                  
+                  </div> 
+                  <button class="AboutSave" class="AboutSave" ng-click="personalstatement(personal_statement)">Save</button>
+                  </div>
+            </form>
+          </ion-item>
+        </div>
+          
+        <div style="width:100%" > 
+          <ion-item class="item-stable"
+                   
+                    >
+            <div class="prev-info">
+         
+           <div class="prev-info">            
+            <div class="edit-del">
+           <h3>Interests</h3>
+            <a ng-if="value!=='show3'" ><i class="material-icons"  ng-click="toggleGroup(group,'interest')" ng-class="isGroupShown9(group)">border_color</i></a>
+            <a ng-if="value!=='show3'"  class="delete"><i class="material-icons">delete_sweep</i></a>
+           </div>
+          <p ng-repeat="course in interests">
+                         {{course.interests}}
+             
+                         
+                     </p>
+            <i class="icon" ng-if="value==='show3'" ng-click="toggleGroup(group,'interest')" ng-class="isGroupShown9(group) ? 'ion-minus' : 'ion-plus'"></i>
+            </div>
+          
+            </div>
+          </ion-item>
+          <ion-item class="item-accordion" ng-show="isGroupShown9(group)">
+           <form>
+              <div ng-repeat="interest in interests">
+              <div class="row" >
+                       
+                   <div class="col col-100">
+                         <label class="item item-input item-floating-label">
+                            <span class="input-label">Interests</span>
+                             <textarea placeholder="course name" ng-model="interest.interests"></textarea>
+                        </label>  
+                    </div>     
+                  
+                  
+                  </div> 
+                  <button class="AboutSave" ng-click="Interests(interest.interests)">Save</button>
+                  </div>
+               <div ng-if="value==='show3'">
+              <div class="row" >
+                       
+                   <div class="col col-100">
+                         <label class="item item-input item-floating-label">
+                            <span class="input-label">Interests</span>
+                             <textarea placeholder="course name" ng-model="interests"></textarea>
+                        </label>  
+                    </div>     
+                  
+                  
+                  </div> 
+                  <button class="AboutSave"  ng-click="Interests(interests)">Save</button>
+                  </div>
+            </form>
+          </ion-item>
+        </div>
+          
+          <div style="width:100%" >
+          <ion-item class="item-stable" >
+            <div class="prev-info">
+         
+           <div class="prev-info">            
+            <div class="edit-del">
+           <h3>Certificate</h3>
+           <!-- <a href="#"><i class="material-icons"  ng-click="toggleGroup(group,'course',course.id)" ng-class="isGroupShown7(group)">border_color</i></a>-->
+           
+           </div>
+               
+          <p ng-repeat="course in certifications">
+<!--              <a ><i class="material-icons"  ng-click="toggleGroup(group,'certificat',course.id)" ng-class="isGroupShown10(group)">border_color</i> <i ng-click="deletecourse(course.id)" class="material-icons">delete_sweep</i></a>-->
+              
+               <span class="AboutEditDelete">
+                   <i class="material-icons Edit" ng-click="toggleGroup(group,'certificat',course.id)" ng-class="isGroupShown10(group) ">border_color</i> 
+                   
+                   <i class="material-icons delete"  ng-click="deletecourse(course.id)">delete_sweep</i>
+               </span>
+                <!--   <a ng-click="deletecourse(course.id)" class="delete"></a>-->
+                         {{course.certification_name}}&nbsp;({{course.certification_organisation}})&nbsp;
+                          {{course.year}}  
+                     
+                     </p>
+            <i class="icon" ng-click="toggleGroup(group,'certificat')" ng-class="isGroupShown10(group) ? 'ion-minus' : 'ion-plus'"></i>
+            </div>
+          
+            </div>
+          </ion-item>
+          <ion-item class="item-accordion" ng-show="isGroupShown10(group)">
+           <form>
+              <div ng-repeat="course in certifications" ng-if="course.id===cervalue">
+              <div class="row" >
+                       
+                   <div class="col col-100">
+                         <label class="item item-input item-floating-label">
+                            <span class="input-label">Certificate</span>
+                            <input type="text" placeholder="Certificate name" ng-model="course.certification_name">
+                        </label>  
+                    </div>     
+                    <div class="col col-100">
+                         <label class="item item-input item-floating-label">
+                            <span class="input-label">&nbsp;</span>
+                            <input type="text" placeholder="course organization" ng-model="course.certification_organisation">
+                        </label>  
+                    </div> 
+                    <div class="col col-100">
+                         <label class="item item-input item-floating-label">
+                            <span class="input-label">&nbsp;</span>
+                           <!-- <input type="text" placeholder="course year" ng-value="course.year">-->
+                              <input type="number" min="1900" max="2099" step="1" ng-model="course.year" />
+                        </label>  
+                    </div>
+                  
+                  </div> 
+                  <button class="AboutSave" ng-click="certification(course.certification_name,course.certification_organisation,course.year,course.id)">Save</button>
+                  </div>
+               <div ng-if="cervalue===undefined">
+              <div class="row" >
+                       
+                   <div class="col col-100">
+                         <label class="item item-input item-floating-label">
+                            <span class="input-label">Certification</span>
+                            <input type="text" placeholder="course name" ng-model="course_name">
+                        </label>  
+                    </div>     
+                    <div class="col col-100">
+                         <label class="item item-input item-floating-label">
+                           
+                            <input type="text" placeholder="course organization" ng-model="course_organisation">
+                        </label>  
+                    </div> 
+                    <div class="col col-100">
+                         <label class="item item-input item-floating-label">
+                           
+                           <!-- <input type="text" placeholder="course year" ng-value="course.year">-->
+                              <input type="number" min="1900" max="2099" step="1" ng-model="year" />
+                        </label>  
+                    </div>
+                  
+                  </div> 
+                  <button class="AboutSave" ng-click="certification1(course_name,course_organisation,year)">Save</button>
+                  </div>
+            </form>
+          </ion-item>
+        </div>
+          
+          
+          <div style="width:100%" >
+          <ion-item class="item-stable" >
+            <div class="prev-info">
+         
+           <div class="prev-info">            
+            <div class="edit-del">
+           <h3>Language</h3>
+           <!-- <a href="#"><i class="material-icons"  ng-click="toggleGroup(group,'course',course.id)" ng-class="isGroupShown7(group)">border_color</i></a>-->
+           
+           </div>
+          <p ng-repeat="course in languages">
+            <!--   <a ><i class="material-icons"  ng-click="toggleGroup(group,'langua',course.id)" ng-class="isGroupShown11(group)">border_color</i> <i ng-click="deletelanguage(course.id)" class="material-icons">delete_sweep</i></a>-->
+              
+              <span class="AboutEditDelete">
+                   <i class="material-icons border_color" ng-click="toggleGroup(group,'langua',course.id)" ng-class="isGroupShown11(group) ">border_color</i> 
+                   
+                   <i class="material-icons"   class="delete" ng-click="deletelanguage(course.id)">delete_sweep</i>
+               </span>
+                  <!-- <a  class="delete"><i class="material-icons">delete_sweep</i></a>-->
+                         {{course.language}} - {{course.proficiency_level}}
+                         
+                     
+                     </p>
+            <i class="icon" ng-click="toggleGroup(group,'langua')" ng-class="isGroupShown11(group) ? 'ion-minus' : 'ion-plus'"></i>
+            </div>
+          
+            </div>
+          </ion-item>
+          <ion-item class="item-accordion" ng-show="isGroupShown11(group)">
+           <form>
+              <div ng-repeat="course in languages" ng-if="course.id===language">
+              <div class="row" >
+                       
+                   <div class="col col-100">
+                         <label class="item item-input item-floating-label">
+                            <span class="input-label">Language</span>
+                            <input type="text" placeholder="Languagename name" ng-model="course.language">
+                        </label>  
+                    </div>     
+                    <div class="col col-100">
+                         <label class="item item-input item-floating-label">
+                           
+                           <!-- <input type="text" placeholder="course organization" ng-model="course.proficiency_level">-->
+                              <select name="course.proficiency_level" ng-model="course.proficiency_level"   class="reg_select" >
+                   <option value="" disabled="disabled" selected="selected"> Select Profiency Level</option>
+                     <option  ng-repeat="group in prolevel" value="{{group.name}}"
+             ng-disabled="group.disabled" >{{group.name}}</option>
+                  
+                   
+                          
+                    </select>
+                        </label>  
+                    </div> 
+                   
+                  
+                  </div> 
+                  <button class="AboutSave" ng-click="languageadd(course.language,course.id,course.proficiency_level)">Save</button>
+                  </div>
+               <div ng-if="language===undefined">
+              <div class="row" >
+                       
+                   <div class="col col-100">
+                         <label class="item item-input item-floating-label">
+                            <span class="input-label">Language</span>
+                            <input type="text" placeholder="languagename name" ng-model="languagename">
+                        </label>  
+                    </div>     
+                    <div class="col col-100">
+                         <label class="item item-input item-floating-label">
+                           
+                         <!--   <input type="text" placeholder="proficiency_level" ng-model="proficiency_level">-->
+                             <select name="plevel" ng-model="plevel"   class="reg_select" >
+                   <option value="" disabled="disabled" selected="selected"> Select Profiency Level</option>
+                     <option  ng-repeat="group in prolevel" value="{{group.name}}"
+             ng-disabled="group.disabled" >{{group.name}}</option>
+                  
+                   
+                          
+                    </select>
+                        </label>  
+                    </div> 
+                    
+                  
+                  </div> 
+                 <!-- <button ng-click="languageadd1(languagename,plevel)">Save</button>-->
+                  </div>
+            </form>
+          </ion-item>
+        </div>
+          
+          
+          
+          
+          
+      </ion-list>
+      
+
+    </md-content>
+      
+  </div>
+          
+          
+          
+          
+      
+          </md-content>
+  
+      
+
+	  
+
+ 
+  </ion-content>
+
+    
+    
+ <!-- <ion-footer-bar class="bar-positive tabs tabs-stable already_sign">
+    	<a class="tab-item tab-item-active" ui-sref="common.individual">Save</span></a>
+  </ion-footer-bar> -->    
+    
+</ion-view>

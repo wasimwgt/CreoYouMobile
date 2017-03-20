@@ -1,0 +1,87 @@
+<ion-view class="walkthrough-view multi-bg-outer" style="background-image: url('img/background.jpg')" cache-view="false">
+  
+    <ion-content>
+    <form name="myForm" novalidate>
+    <div class="top-content row"> 
+        <div class="reg_block_fraim">
+            <div class="col register_logo_section">
+                <img ng-src="img/logo.png" class="app_logo">    
+            </div>
+            
+        
+            <div class="col col-center registration_field">                
+                <div class="list list-inset">
+                  <label class="tem item-input">
+                    <input type="text" name="name" ng-model="name" placeholder="Full Name" ng-pattern="/^[a-zA-Z\s]*$/" required>
+                      
+<!--                    <div ng-show="myForm.name.$error.required" class="message_in" >* Name is required</div>-->
+                  </label>
+             <p class="ValError" ng-show="myForm.name.$error.required && !myForm.email.$pristine" >* Name is required
+                    </p>
+                 <p class="ValError" ng-show="myForm.name.$error.pattern " >Only Leters are allowed
+                    </p>
+                    
+                  <label  class="item item-input select_label">                    
+                  
+                      <select name="cfield" ng-model="cfield"   class="reg_select"ng-change="showSelectValue(cfield)" required>
+                       <option value="" disabled="disabled"                           selected="selected">Select Creative field</option>  
+                     <option  ng-repeat="group in listOfOptions" value="{{group.id}}"
+             ng-disabled="group.disabled" >{{group.cat_name}}</option>
+                    <option ng-repeat="group1 in choi"value="-1" selected>{{group1.name}} </option>
+                    <option value="0">Other Category </option>
+                   <!--<option value="">{{catagory}}</option>-->
+                    
+                   
+                          
+                    </select>
+                     
+                  </label>                    
+                    <p class="ValError" ng-show="myForm.cfield.$error.required && !myForm.email.$pristine "   >* Creative Field is required</p>
+                    
+                  <label class="item item-input">
+                    <input type="email" id="input" name="email" ng-model="email"ng-keyup='doSomething()' placeholder="Email Address" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" required>
+                     
+                  </label>
+                    <!-- <p ng-show="myForm.email.$invalid && !myForm.email.$pristine">* Invalid email address</p>-->
+                     <p class="ValError" ng-show="myForm.email.$error.pattern" class="help-block">* Invalid email address.</p>
+                    <p class="help-block">{{email_check}}</p>
+                  <button ng-click="valuestep1(name,cfield,email)" class="button button-block reg_sub"ng-show="next"  ng-disabled="myForm.$invalid" >Next</button> 
+                  <button  class="button button-block reg_sub"  ng-disabled="true" ng-show="next1">Next</button> 
+                   
+                   
+                    
+                </div>
+                <div class="ion-item-divider or_devider" ng-show="chosetype1">
+                    <div class="or">or</div>
+                </div>
+                <div class="ion-item-divider login_through_social" ng-show="chosetype" >
+                   <div class="row">
+                     <div class="col col-50">
+                        <a class="face_sign" ui-sref="auth.login">
+                            <span><img ng-src="img/facebook_icon.png"></span>
+                            Login With facebook
+                        </a>
+                    </div>
+                     <div class="col col-50">
+                        <a class="goog_sign" ui-sref="auth.login">
+                            <span><img ng-src="img/goog.png"></span>
+                            Login With google
+                        </a>
+                    </div>
+                   </div>       
+                </div>
+                
+            </div> 
+        </div>    
+        
+    </div> 
+        </form>
+  </ion-content>
+
+    
+    
+  <ion-footer-bar class="bar-positive tabs tabs-stable already_sign">
+    	<a class="tab-item tab-item-active" ui-sref="common.login">Already have an acount?<span>Sign In</span></a>
+  </ion-footer-bar>     
+    
+</ion-view>

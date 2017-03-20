@@ -1,0 +1,107 @@
+<ion-view class="walkthrough-view multi-bg-outer" cache-view="false" >
+
+<ion-header-bar align-title="left" class="bar-creoyou">
+
+
+<div class="row" ng-controller="Headercontroler">
+	<div class="col-45" ui-sref="common.search_on_keystock"><label class="item-input-wrapper header_search">    
+    <i class="material-icons">search</i><input type="search" placeholder="People,Business,Jobs.....">
+  </label></div>
+    	<!--<div class="col-50" ui-sref="common.search_on_keystock"><label class="item-input-wrapper header_search">    
+    <i class="material-icons" ui-sref="common.chat_">search</i><input type="search" placeholder="People,Business,Jobs.....">
+  </label></div>-->
+    <div class="col header_right_creoyou" ng-controller="refresh_control" >
+    	<a ui-sref="common.creo_loop" class="creoyou_loop"></a>
+        <a class="add_invite" ui-sref="common.request"><span class="info">{{pendingrequest}}</span></a>
+        <a class="notification" ui-sref="common.notification"><span class="info">{{notificationscount}}</span></a>
+        <a class="message" ui-sref="common.chat_message" ng-click="msg"><span class="info">{{count}}</span></a>
+       
+         <a class="top_settings" ng-click="popover1.show($event)">
+        </a>
+         <script id="templates/popover1.html"  type="text/ng-template">
+      <ion-popover-view>
+        <ion-content class="list1">
+          <div class="list">
+            <a class="item" ng-click="postjob()">
+               Job post
+            </a>
+            <a class="item" ng-click="alljob()" >
+              Jobs
+            </a>
+               <a class="item" ng-click="myjob()">
+               My Job 
+            </a>
+            <a class="item" ng-click="changepassword()">
+              Change Password
+            </a>
+            <a class="item" 
+             <i class="material-icons">settings</i>
+           
+            </a>
+            <a class="item" ng-click="logout()">
+              Logout
+            </a>
+          </div>
+        </ion-content>
+      </ion-popover-view>
+    </script>
+    </div>
+</div>
+
+</ion-header-bar>
+  
+  <ion-content scroll="true">
+      <div id="load" ng-show="log1">Uploading...</div> 
+      
+    
+      
+      <div class="back"> 
+          <button ng-controller="Arrowctrl" ng-click="arrowback()"><i class="material-icons">arrow_back</i> Compose</button> 
+          <button ng-click="videouploadtotal(name,description)" style="float:right"><i class="material-icons">done</i> Save</button>
+      </div>
+      
+      <div class="post_top_bar"> 
+          <button><i class="material-icons">lock</i> Set privacy</button> 
+          <a  style="float:right" ng-click="privacy()"> privacy <i class="material-icons">arrow_drop_down</i></a>
+      </div>
+
+      
+      <div class="card">      
+            <div class="compose_message_body">
+<div class="list">
+    <!--<div id="load" ng-show="log1"></div> -->  
+  <label class="item item-input item-floating-label">
+    <span class="input-label">Video Name</span>
+    <input type="text" placeholder="Untitled Video" ng-model="name" >
+  </label>
+  <label class="item item-input item-floating-label">
+    <textarea name="comment" id="" placeholder="Add a description... " ng-model="description"></textarea>
+  </label>
+    <div ng-repeat="video in videoss" > 
+ <video id="{{video.id}}" controls style="width:100%;height:auto;" video-control control-play="{{play}}" oncontextmenu="return false" loop controls="controls" class="composition-video" ng-src={{trustSrc(video.src)}}  ></video>
+     
+      </div>
+  <div class="upload_video">
+      <div>
+     
+      <button ng-click="videoupload()"><i class="material-icons">video_call</i><span>Add Video</span></button>      
+  </div>
+    
+</div>
+    <!--  <ion-spinner ng-show="LoadingView" icon="spiral"></ion-spinner>-->
+     
+      </div>
+             
+      </div>
+      
+  </ion-content>
+
+    
+    
+<!--
+  <ion-footer-bar class="bar-positive tabs tabs-stable already_sign">
+    	<a class="tab-item tab-item-active" ui-sref="common.login">Already have an acount?<span>Sign In</span></a>
+  </ion-footer-bar>     
+-->
+    
+</ion-view>

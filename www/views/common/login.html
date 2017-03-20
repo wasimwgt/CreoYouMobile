@@ -1,0 +1,77 @@
+<ion-view class="walkthrough-view multi-bg-outer" style="background-image: url('img/background.jpg')"  cache-view="false">
+    <ion-content ng-controller="loginctrl">
+         <form name="myForm" novalidate>
+    <div class="top-content row"> 
+        <div class="row responsive-sm">
+            <div class="reg_block_fraim">
+                <div class="col register_logo_section">
+                <img ng-src="img/logo.png" class="app_logo">    
+            </div>
+            
+        
+                <div class="col col-center registration_field">
+                    
+                <div class="list list-inset">
+                  <label class="item item-input">
+                    <input type="text" name="Username" ng-model="Username" placeholder="Enter  Username" required>
+                   
+                      
+                  </label>
+                    <p  ng-show="myForm.Username.$error.required && !myForm.password.$pristine" >* Username is required</p>
+<!--                     <p ng-show="{{show}}"  >* Username is required</p>-->
+                      <label class="item item-input">
+                    <input type="Password" name="password" ng-model="password" placeholder="Enter Password"  required>
+                      
+                  </label>
+                    <p ng-show="myForm.password.$error.required && !myForm.password.$pristine " >* Password is required</p> 
+                   <!-- <img id="mySpinner" src="img/loder_home.gif"  ng-show="loading"/>-->
+                  <!--  <p ng-show="{{show1}}"  >* Password is required</p>-->
+                  <button  ng-click="login(Username,password)"ng-show="log" class="button button-block Log_sub" ng-disabled="myForm.$invalid" >Login</button>  
+                  
+                    <button   class="button button-block Log_sub" ng-show="log1"ng-disabled="true" >Login</button>
+                    
+                  <div class="ion-item-divider login_divider">
+                        <a class="tab-item tab-item-active" ui-sref="common.help">Login Help?</a> 
+                  </div>   
+                    
+                </div>
+               <!-- <div class="ion-item-divider or_devider">
+                    <div class="or" ng-show="or">or</div>
+                    <img id="mySpinner" src="img/loder_home.gif" ng-show="loading"/>
+                </div>-->
+                   <div class="ion-item-divider or_devider">
+                    <div class="or" ng-show="or">or</div>
+                    <div class="or loder" ng-show="loading"><img id="mySpinner" src="img/loder_home.gif" /></div>
+                </div> 
+                <div class="ion-item-divider login_through_social">
+                   <div class="row">
+                     <div class="col col-50">
+                        <a class="face_sign" ng-click="facebookSignIn()">
+                            <span><img ng-src="img/facebook_icon.png"></span>
+                            Facebook
+                        </a>
+                    </div>
+                     <div class="col col-50">
+                        <a class="goog_sign" ui-sref="auth.login">
+                            <span><img ng-src="img/goog.png"></span>
+                            Google
+                        </a>
+                    </div>
+                   </div>       
+                </div>
+                
+            </div> 
+             </div>
+        </div>    
+        
+    </div>  
+        </form>
+  </ion-content>
+
+    
+    
+  <ion-footer-bar class="bar-positive tabs tabs-stable already_sign">
+    	<a class="tab-item tab-item-active" ui-sref="auth.Registration_choice">New to Creoyou?<span>Sign Up</span></a>
+    </ion-footer-bar>     
+    
+</ion-view>

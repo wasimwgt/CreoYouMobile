@@ -1,0 +1,8 @@
+{
+    "jscodehints.detectedExclusions": [
+        "E:/dip_da_desk_bkp/Samik/ionic/myApp/platforms/android/build/intermediates/assets/debug/www/lib/angular-ui-router/release/angular-ui-router.min.js",
+        "E:/dip_da_desk_bkp/Samik/ionic/myApp/platforms/android/build/intermediates/assets/debug/www/lib/angular-ui-router/src/common.js",
+        "E:/dip_da_desk_bkp/Samik/ionic/myApp/plugins/cordova-plugin-device/src/windows/DeviceProxy.js",
+        "E:/dip_da_desk_bkp/Samik/ionic/myApp/platforms/android/build/intermediates/assets/debug/www/lib/angular/index.js"
+    ]
+}

@@ -1,0 +1,263 @@
+<ion-view class="walkthrough-view multi-bg-outer" style="background-image: url('img/background.jpg')" cache-view="false" >
+
+<ion-header-bar align-title="left" class="bar-creoyou">
+    <div class="back"> <button ng-controller="Arrowctrl" ng-click="arrowback()"><i class="material-icons">arrow_back</i></button> </div>
+	<div class="search_col">     
+    <!--    label-->
+        <div class="item-input-wrapper header_search">    
+            <button class="SearchAll" ng-click="search(searchdata)"><i class="material-icons" >search</i></button>
+            <input type="search" placeholder="People,Business,Jobs....."name="searchdata" ng-model="searchdata">
+            
+        </div>
+    </div>
+</ion-header-bar>
+  
+  <ion-content scroll="true">
+      
+<!--     <img id="mySpinner" src="img/loder_home.gif" ng-           show="loading"/> -->
+
+ <md-content >
+   	<md-tabs md-selected="selectedTab" md-dynamic-height md-border-bottom stretchTabs flex class="search_tab" >
+      
+        
+       <md-tab label="All" ng-click="changeTab(0)">
+           
+         <md-content class="" scroll="y" layout="column">     
+                <div class="tab_body" ng-show="searchfield">
+                    
+                    
+                    <h3 class="recent_search_people_head">People</h3>
+                    <ul class="recent_search_list_people">
+                        <li ng-repeat="search in usersearch | limitTo:2" ng-if="nouser!=='null'">
+                            <span class="search_people_image"><img ng-src="http://creoyou.net/uploads/profileImages/{{search.image}}"/> </span>
+                            <span class="search_people_title">{{search.fname}}{{search.lname}}</span>
+                            <span class="search_people_Location">{{search.city}},{{search.state}}, {{search.country}}</span>
+                        </li>
+                       <li class="item emty_data"  ng-if="nouser==='null'" >
+                         No People Found
+                       </li>
+                                                
+                    </ul>
+    
+<div class="ion-item-divider">
+   <!-- <button class="more" ui-sref="#" >More</button>-->
+ <md-button class="more" ng-click="changeTab(1)">MORE</md-button>    
+</div> 
+                    
+                    
+                    <h3 class="recent_search_people_head">Business</h3>
+                    <ul class="recent_search_list_people">
+                        <li ng-repeat="search in business | limitTo:2" ng-if="nobusiness!=='null'">
+                            <span class="search_people_image"><img ng-src="http://creoyou.net/uploads/profileImages/{{search.image}}"/> </span>
+                            <span class="search_people_title">{{search.buisness_name}}</span>
+                            <span class="search_people_Location">{{search.city}},{{search.state}}, {{search.country}}</span>
+                        </li>
+                       
+                                                
+                    </ul>
+    <li class="item emty_data"  ng-if="nobusiness==='null'" >
+       No Business Found
+    </li>
+     <div class="ion-item-divider">
+    <!--<button class="more" ui-sref="#" >More</button>-->
+ <md-button class="more" ng-click="changeTab(2)">MORE</md-button>
+</div>                  
+                    
+                    <h3 class="recent_search_people_head">Jobs</h3>
+                    <ul class="recent_search_list_people">
+                        <li ng-repeat="search in userjob | limitTo:2"  ng-if="nojob!=='null'">
+                            <span class="search_people_image"><img ng-src="http://creoyou.net/uploads/profileImages/{{search.image}}"/> </span>
+                            <span class="search_people_title">{{search.job_title}}</span>
+                            <span class="search_people_Location">{{search.city}},{{search.state}}, {{search.country}}</span>
+                        </li>
+                        
+                        <li class="item emty_data"  ng-if="nojob==='null'" >
+                       No Jobs Found
+                            </li> 
+                                                
+                    </ul>
+
+        <div class="ion-item-divider">
+   <!-- <button class="more" ui-sref="#" >More</button>-->
+     <md-button class="more" ng-click="changeTab(3)">MORE</md-button>
+</div>                    
+                    
+                                      
+                    
+                </div>
+         </md-content>   
+     </md-tab>
+<!------------------------------------------------------->
+        
+        
+      <md-tab label="People"> 
+        <md-content class="" scroll="y" layout="column">
+        	
+            
+            <div class="tab_body" ng-controller="people_filter_PopupCtrl">
+<a class="filter_bar" ui-sref="common.people_filter"> <i class="material-icons">tune</i> Filter</a>                                                
+<ul class="list user_list" >
+    <li class="item" ng-repeat="search in usersearch" ng-if="nouser!=='null'" >
+        <div class="row" id="sugghide/{{search.id}}">
+            <div class="col col-25">
+                <div class="user_img" ng-if="search.image!==''"><img ng-src="http://creoyou.net/uploads/profileImages/{{search.image}}" class="user_img"></div>
+                   <div class="user_img" ng-if="search.image===''"><img ng-src="img/management.png" class="user_img"></div>
+                <!--<div class="user_img" ng-if="search.image===null"><img ng-src="img/management.png" class="user_img"></div>-->
+            </div>
+            <div class="col user_details" ng-click="other(search.id)">
+                <div class="user_name">{{search.fname}}{{search.lname}}</div>
+                <div class="user_desig" ><i class="material-icons">card_travel</i>{{search.cat_name}}</div>
+                
+                <div class="user_address" ng-if="search.country!=='' "><i class="material-icons">location_city</i> {{search.city}},{{search.state}},<br>{{search.country}}</div>
+            </div>
+            <div class="col col-30 user_choice">
+              <!--  <i class="material-icons"ng-click="people()">settings</i>-->
+               <!-- <div class="card pop_card">
+                      <div class="item item-text-wrap">
+                         <button class="privacy">
+                            <i class="material-icons">block</i> Block
+                         </button>
+
+                         
+
+                      </div>
+                </div>-->
+                 <button class="accept_forward" ng-click="follow(search.id)" ng-if="search.friend!=='friend'"><i class="material-icons">forward</i></button>
+                <button class="accept_person_add" ng-click="connect(search.id)" ng-if="search.friend!=='friend'"><i class="material-icons">person_add</i></button>
+            </div>
+        </div>
+    </li>
+    <li class="item emty_data"  ng-if="nouser==='null'" >
+           
+
+                                  
+                                    
+
+                                        <!--<div class="col Businessuser_details">
+                                            <div class="Businessuser_name">No Followers Found</div>
+                                            <div class="Businessuser_desig"></div>
+                                            <div class="Businessuser_foollowing"></div>
+                                        </div>-->
+                                         
+                                                         No People Found
+                                                                          
+                                           
+
+                                                                         
+         
+    </li>
+                                    
+</ul>             
+                
+            </div>
+        
+           
+        </md-content>        
+      </md-tab>
+
+      
+      <md-tab label="Business">
+        <md-content class="" scroll="y" layout="column">                    
+            <div class="tab_body">
+<a href="#" class="filter_bar" ui-sref="common.business_filter"> <i class="material-icons">tune</i> Filter</a>                 
+ <ul class="list user_list" >               
+   
+      <li class="item BusinessList" ng-repeat="search in business" ng-if="nobusiness!=='null'">
+        <div class="row" id="sugghide/{{search.id}}">
+            <div class="col col-25 Businessuser_img" ng-if="search.image!==''">
+                <img ng-src="http://creoyou.net/uploads/profileImages/{{search.image}}">
+            </div>
+             <div class="col col-25 Businessuser_img" ng-if="search.image===''"><img ng-src="img/management.png" ></div>
+            <div class="col Businessuser_details" ng-click="userpro(search.id)">
+                <div class="Businessuser_name" >{{search.buisness_name}}</div>
+                <div class="Businessuser_desig">{{search.designation}}</div>
+                <div class="Businessuser_foollowing">{{search.city}},{{search.state}},{{search.country}}</div>
+            </div>
+            <div class="col col-30 user_choice">
+               <!-- <i class="material-icons" ng-click="business()">settings</i>-->
+                <!--div class="card pop_card">
+                      <div class="item item-text-wrap">
+                         <button class="privacy">
+                            <i class="material-icons">cancel</i> Cancel
+                         </button>
+                          
+                         <button class="Delete">
+                            <i class="material-icons">block</i> Block
+                         </button> 
+
+                      </div>
+                </div-->
+                <button class="job_button" ng-if="search.following!=='following'" ng-click="followperson(search.id)"><i class="material-icons">forward</i> Follow</button>
+                <button class="job_button" ng-if="search.following==='following'" ng-click="unfollowperson(search.id)" id="ext-gen26"><i class="material-icons">forward</i> Unfollow</button>
+                
+            </div>
+        </div>
+    </li>
+     
+      <li class="item emty_data" ng-if="nobusiness==='null'" >
+        No Business Found
+    </li>
+     
+     
+</ul>                
+            </div>                        
+        </md-content>
+      </md-tab>
+            
+      
+      <md-tab label="Jobs">
+        <md-content class="" scroll="y" layout="column">
+            
+            <div class="tab_body">
+<a href="#" class="filter_bar" ui-sref="common.job_filter"> <i class="material-icons">tune</i> Filter</a>  
+       
+ <ul class="list user_list" >  
+     
+    <li class="item BusinessList" ng-repeat="search in userjob" ng-if="nojob!=='null'" >
+        <div class="row">
+            <div class="col col-25 job_image">
+                <img ng-src="http://creoyou.net/uploads/profileImages/{{search.image}}">
+            </div>
+            <div class="col Businessuser_details" ng-click="jobid(search.id)">
+                <div class="jobs_name">{{search.job_title}}</div>
+                <div class="job_company_name">{{search.fname}}{{search.lname}}{{search.businessname}}</div>
+            </div>
+            <div class="col busi_descrip">
+               <div class="business_address"><i class="material-icons">location_on</i> {{search.city}},{{search.state}},<br>{{search.country}}</div>
+               <div class="BusinessPost_date_type">{{search.creation_date}} / {{search.jobtype}}</div> 
+            </div>
+        </div>
+    </li>
+     
+    
+    <li class="item emty_data"  ng-if="nojob==='null'" >
+        No Jobs Found
+    </li>
+    
+     
+</ul>                
+            </div>            
+        </md-content>
+      </md-tab>
+      
+      
+      
+    </md-tabs>
+     
+     
+     
+ </md-content> 
+      
+
+	  
+
+ 
+  </ion-content>
+
+    
+    
+  <!--<ion-footer-bar class="bar-positive tabs tabs-stable already_sign">
+    	<a class="tab-item tab-item-active" ui-sref="common.login">Already have an acount?<span>Sign In</span></a>
+  </ion-footer-bar>   -->  
+    
+</ion-view>

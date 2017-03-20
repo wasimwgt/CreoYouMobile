@@ -1,0 +1,351 @@
+<ion-view class="walkthrough-view" cache-view="false" >
+
+<ion-header-bar align-title="left" class="bar-creoyou">
+<!--
+<div class="row">
+	<div class="col-50"><label class="item-input-wrapper header_search">    
+    <i class="material-icons">search</i><input type="search" placeholder="People,Business,Jobs.....">
+  </label></div>
+    <div class="col header_right_creoyou">
+    	<a ui-sref="#" href="#" class="creoyou_loop"></a>
+        <a ui-sref="#" href="#" class="add_invite"><span class="info">4</span></a>
+        <a ui-sref="#" href="#" class="notification"><span class="info">12</span></a>
+        <a ui-sref="#" href="#" class="message"><span class="info">3</span></a>
+    
+    </div>
+</div>-->
+    
+<div class="row" ng-controller="Headercontroler">
+	<div class="col-45" ui-sref="common.search_on_keystock"><label class="item-input-wrapper header_search">    
+    <i class="material-icons">search</i><input type="search" placeholder="People,Business,Jobs.....">
+  </label></div>
+    	<!--<div class="col-50" ui-sref="common.search_on_keystock"><label class="item-input-wrapper header_search">    
+    <i class="material-icons" ui-sref="common.chat_">search</i><input type="search" placeholder="People,Business,Jobs.....">
+  </label></div>-->
+    <div class="col header_right_creoyou" ng-controller="refresh_control" >
+    	<a ui-sref="common.creo_loop" class="creoyou_loop"></a>
+        <a class="add_invite" ui-sref="common.request"><span class="info">{{pendingrequest}}</span></a>
+        <a class="notification" ui-sref="common.notification"><span class="info">{{notificationscount}}</span></a>
+        <a class="message" ui-sref="common.chat_message" ng-click="msg"><span class="info">{{count}}</span></a>
+       <!-- <a class="notification" ng-click="popover.show($event)">
+        </a>-->
+         <a class="top_settings" ng-click="popover1.show($event)">
+        </a>
+         <script id="templates/popover1.html"  type="text/ng-template">
+      <ion-popover-view>
+        <ion-content class="list1">
+          <div class="list">
+            <a class="item" ng-click="postjob()">
+               Job post
+            </a>
+            <a class="item" ng-click="alljob()" >
+              Jobs
+            </a>
+               <a class="item" ng-click="myjob()">
+               My Job 
+            </a>
+            <a class="item" ng-click="changepassword()">
+              Change Password
+            </a>
+            <a class="item" 
+             <i class="material-icons">settings</i>
+           
+            </a>
+            <a class="item" ng-click="logout()">
+              Logout
+            </a>
+          </div>
+        </ion-content>
+      </ion-popover-view>
+    </script>
+    </div>
+</div>
+
+</ion-header-bar>
+  
+  <ion-content scroll="true" class="About_me_tab">
+  <div class="back"> <button ng-controller="Arrowctrl" ng-click="arrowback()"><i class="material-icons">arrow_back</i> Back </button> 
+      
+  <!--  <a  class="back" > <i class="material-icons">video_call</i> Video</a>-->
+      <div class="creat_right">
+        <i class="material-icons" ng-click="createEvent()">perm_contact_calendar</i>
+          
+       <!--    <i class="material-icons" ng-click="find()">perm_contact_calendar</i>-->
+      </div>
+      </div>
+      
+     <div class="clearfix"></div>
+        <md-tabs md-dynamic-height md-border-bottom stretchTabs flex class="album_tab">
+            <md-tab label="UPCOMING">      
+                <md-content class="" scroll="y" layout="column">
+                      <div ng-repeat="conection in followings">
+                        <div data-ng-init="tagto(conection.id,conection.media_type,conection.name,conection.fname,conection.lname,conection.media_type,conection.start_date_time,conection.end_date_time,conection.location,conection.likeActive,conection.description,conection.likes,conection.incidentId,conection.count,conection.hosted_by)">
+                        </div>
+                        <!--     <div> <h1>wssimakram bora</h1></div>-->
+                     </div>
+                   <div class="tab_body">    
+                    <a href="#" class="connec_top_button">UPCOMING</a>                           <ul class="list user_list">
+                        <li class="item" ng-repeat="conection in final " id="sugghide12/{{conection.id}}">
+                           
+                            <div class="row EventHeader" >    
+                                <div class="col user_details">
+                                    <div class="user_name" ng-click="other(conection.id)">{{conection.name }} by {{conection.fname}} {{conection.lname}}</div>
+                                    <div class="user_desig"> {{conection.datetime | date:"dd MMM  'at' h:mma"}} - {{conection.datetime1 | date:"dd MMM 'at' h:mma"}} </div>
+                                    <div class="user_address"> {{conection.location}}</div>
+                                    
+                                    <!--<div class="user_address"> {{conection.description}}</div>-->
+                                </div>
+                            
+                              <div class="col col-30 user_choice" ng-click="option(conection.id)" ng-if="conection.hosted_by===userid">
+                                          <i class="material-icons"   >settings</i>
+                                          <!-- <div id="myDropdown" class="dropdown-content">
+                                             <a class="privacy">
+                                                      <i class="material-icons">block</i> Block
+                                                   </a>
+                                             
+                                             </div>-->
+                                          <div class="card pop_card" id="sugghide/{{conection.id}} " >
+                                             <div class="item item-text-wrap">
+                                                <button class="privacy" ng-click="invite(conection.id)">
+                                              <i class="material-icons">card_giftcard</i> Invite
+                                                </button>
+                                                 <button class="privacy" ng-click="Editevent(conection.id,conection.name,conection.datetime,conection.datetime1,conection.location,conection.description)">
+                                                <i class="material-icons">border_color</i> Edit
+                                                </button>
+                                                 <button class="privacy" ng-click="delete(conection.id)">
+                                                <i class="material-icons">delete_sweep</i> Delete
+                                                </button>
+                                                <!--<button class="Delete">
+                                                   <i class="material-icons">remove_circle_outline</i> Disconnect
+                                                   </button>-->  
+                                             </div>
+                                          </div>
+                                       </div>
+
+                                <!--<button class="job_button">Unfollow <i class="material-icons">camera_rear</i></button>-->
+                                </div>
+                            
+                            <div class="row" id="sugghidee/{{conection.id}}">
+                                <div class="col col-100" >
+
+                                    <div class="Event_img" ng-controller="Eventdectrl"ng-click="seedetails(conection.id)">
+                                        <img ng-show="conection.image ===''" ng-src="img/management.png" >
+                                        <img ng-show="conection.image !==''" ng-src="http://creoyou.net/uploads/eventsImages/thumbnailImages/{{conection.media_type}}" >
+                                        <div class="EventDate">
+                                             <span>{{conection.datetime | date:"MMM"}}</span>
+                                             {{conection.datetime | date:"dd"}}
+                                        </div>
+                                    </div> 
+                                </div>
+                            </div>  
+                            <div class="clearfix"></div>
+                             
+                        <div class="row" >
+                            <div class="col col-100"> 
+                             <ul class="list EventList">
+                              <li class="item post_footer">
+                                  <ul ng-controller="Likectrl">
+                                    <li class="wishlist" ><a href="#"><i class="material-icons {{conection.likeActive}} " ng-click="likecreate(conection.incidentId,conection.incident_type,conection.likeActive,conection.fname,conection.lname)" ng-class="mainclass"  id="btn1">favorite</i><label  ng-click="like(conection.incidentId,conection.incident_type,conection.id)" ng-if="values!==111" >{{conection.likes}}</label>
+                                        <label  ng-click="like(conection.incidentId,conection.incident_type,conection.id)" ng-if="values==111" >{{lik}}</label>
+                                        <label  ng-click="like(conection.incidentId,conection.incident_type,conection.id)" ng-if="likes==''" >0</label>
+                                       </a>
+                                    </li>
+                                    <li class="comment" ng-if="indihome.countit!==''"><a href="#"><i class="material-icons ">chat_bubble</i><label ng-click="comment(conection.incidentId,conection.incident_type,conection.id)" ng-if="conection.count!==''">{{conection.count}}</label>
+                                    <label ng-click="comment(conection.incidentId,conection.incident_type,conection.id)" ng-if="conection.count===''">0</label></a></li>
+                                    <li class="share"><a href="#"><i class="material-icons">share</i><label>30</label></a></li>
+                                 </ul>
+                                <div class="clearfix"></div>
+                              </li>
+                              <li class="recent_comment" ng-controller="Likectrl">
+                                 <div ng-repeat="mes in messages" class="PostComment">
+                                    <div class="postericon">
+                                       <img ng-src="http://creoyou.net/uploads/profileImages/{{indihome.image}}" class="update_logo" >  
+                                    </div>
+                                    <div class="poster_name">{{mes.fname}}{{mes.lname}}</div>
+                                    <div class="poster_name">{{mes.comment}}</div>
+                                 </div>
+                                <!-- <div class="reply"><i class="material-icons">chat_bubble</i> Reply</div>-->
+                                 <!--<div class="post_date">August 11th 2016 at 11:33am </div>  -->
+                                  <div class="clearfix"></div>
+                                 <div class="post_body">
+                                    <input class="CommentBox" type="text" ng-model="yourcomment" placeholder="Your comment">
+                                    <a class="PostSubmit" ng-click="postcomment(conection.incidentId,conection.incident_type,yourcomment,conection.id,conection.fname,conection.lname)">   <i class="material-icons">near_me</i></a>
+                                 </div>
+                              </li>
+                           </ul>
+                          </div>
+                       </div>        
+                            
+                            
+
+                            </div>
+                      
+                        </li>
+
+                    </ul>    
+                       <ul class="list user_list" ng-if="value1==='null'">
+
+                           <li class="item emty_data" >
+                            
+
+                               <!-- <div class="col Businessuser_details">
+                                    <div class="Businessuser_name">No Followers Found</div>
+                                    <div class="Businessuser_desig"></div>
+                                    <div class="Businessuser_foollowing"></div>
+                                </div>-->
+                               
+                                                         No Upcoming Event Found
+                                             
+
+                        </li>                                              
+                </ul>
+                   </div>
+                        </md-content>
+                    </md-tab>
+              
+                    <md-tab label="PAST" >      
+                        
+                <md-content class="" scroll="y" layout="column">
+                    <div ng-repeat="conection in followerss">
+                        <div data-ng-init="tagto1(conection.id,conection.media_type,conection.name,conection.fname,conection.lname,conection.media_type,conection.start_date_time,conection.end_date_time,conection.location,conection.likeActive,conection.description,conection.likes,conection.incidentId,conection.count,conection.hosted_by)">
+                        </div>
+                    </div>
+                   <div class="tab_body">    
+                    <a href="#" class="connec_top_button">PAST</a>
+                       
+                        <!--     <div> <h1>wssimakram bora</h1></div>-->
+                    <ul class="list user_list">
+                        <li class="item" ng-repeat="conection in final1 " id="sugghide12/{{conection.id}}">
+                           
+                            <div class="row EventHeader" >    
+                                <div class="col user_details">
+                                    <div class="user_name" ng-click="other(conection.id)">{{conection.name }} by {{conection.fname}} {{conection.lname}}</div>
+                                    <div class="user_desig"> {{conection.datetime | date:"dd MMM  'at' h:mma"}} - {{conection.datetime1 | date:"dd MMM 'at' h:mma"}} </div>
+                                    <div class="user_address"> {{conection.location}}</div>
+                                    
+                                    <!--<div class="user_address"> {{conection.description}}</div>-->
+                                </div>
+                            
+                              <div class="col col-30 user_choice" ng-click="option(conection.id)" ng-if="conection.hosted_by===userid">
+                                          <i class="material-icons"   >settings</i>
+                                          <!-- <div id="myDropdown" class="dropdown-content">
+                                             <a class="privacy">
+                                                      <i class="material-icons">block</i> Block
+                                                   </a>
+                                             
+                                             </div>-->
+                                          <div class="card pop_card" id="sugghide/{{conection.id}} " >
+                                             <div class="item item-text-wrap">
+                                               
+                                                 <button class="privacy" ng-click="unfollowpersone(conection.id)">
+                                                <i class="material-icons">border_color</i> Edit
+                                                </button>
+                                                 <button class="privacy" ng-click="delete(conection.id)">
+                                                <i class="material-icons">delete_sweep</i> Delete
+                                                </button>
+                                                <!--<button class="Delete">
+                                                   <i class="material-icons">remove_circle_outline</i> Disconnect
+                                                   </button>-->  
+                                             </div>
+                                          </div>
+                                       </div>
+
+                                <!--<button class="job_button">Unfollow <i class="material-icons">camera_rear</i></button>-->
+                                </div>
+                            
+                            <div class="row" id="sugghidee/{{conection.id}}">
+                                <div class="col col-100" >
+
+                                    <div class="Event_img" ng-controller="Eventdectrl"ng-click="seedetails(conection.id)">
+                                        <img ng-show="conection.image ===''" ng-src="img/management.png" >
+                                        <img ng-show="conection.image !==''" ng-src="http://creoyou.net/uploads/eventsImages/thumbnailImages/{{conection.media_type}}" >
+                                        <div class="EventDate">
+                                             <span>{{conection.datetime | date:"MMM"}}</span>
+                                             {{conection.datetime | date:"dd"}}
+                                        </div>
+                                    </div> 
+                                </div>
+                            </div>  
+                            <div class="clearfix"></div>
+                             
+                        <div class="row" >
+                            <div class="col col-100"> 
+                                
+                             <ul class="list EventList">
+                              <li class="item post_footer">
+                                  <ul ng-controller="Likectrl">
+                                    <li class="wishlist" ><a href="#"><i class="material-icons {{conection.likeActive}} " ng-click="likecreate(conection.incidentId,conection.incident_type,conection.likeActive,conection.fname,conection.lname)" ng-class="mainclass"  id="btn1">favorite</i><label  ng-click="like(conection.incidentId,conection.incident_type,conection.id)" ng-if="values!==111" >{{conection.likes}}</label>
+                                        <label  ng-click="like(conection.incidentId,conection.incident_type,conection.id)" ng-if="values==111" >{{lik}}</label>
+                                        <label  ng-click="like(conection.incidentId,conection.incident_type,conection.id)" ng-if="likes==''" >0</label>
+                                       </a>
+                                    </li>
+                                    <li class="comment" ng-if="indihome.countit!==''"><a href="#"><i class="material-icons ">chat_bubble</i><label ng-click="comment(conection.incidentId,conection.incident_type,conection.id)" ng-if="conection.count!==''">{{conection.count}}</label>
+                                    <label ng-click="comment(conection.incidentId,conection.incident_type,conection.id)" ng-if="conection.count===''">0</label></a></li>
+                                    <li class="share"><a href="#"><i class="material-icons">share</i><label>30</label></a></li>
+                                 </ul>
+                                <div class="clearfix"></div>
+                              </li>
+                              <li class="recent_comment" ng-controller="Likectrl">
+                                 <div ng-repeat="mes in messages" class="PostComment">
+                                    <div class="postericon">
+                                       <img ng-src="http://creoyou.net/uploads/profileImages/{{indihome.image}}" class="update_logo" >  
+                                    </div>
+                                    <div class="poster_name">{{mes.fname}}{{mes.lname}}</div>
+                                    <div class="poster_name">{{mes.comment}}</div>
+                                 </div>
+                                <!-- <div class="reply"><i class="material-icons">chat_bubble</i> Reply</div>-->
+                                 <!--<div class="post_date">August 11th 2016 at 11:33am </div>  -->
+                                  <div class="clearfix"></div>
+                                 <div class="post_body">
+                                    <input class="CommentBox" type="text" ng-model="yourcomment" placeholder="Your comment">
+                                    <a class="PostSubmit" ng-click="postcomment(conection.incidentId,conection.incident_type,yourcomment,conection.id,conection.fname,conection.lname)">   <i class="material-icons">near_me</i></a>
+                                 </div>
+                              </li>
+                           </ul>
+                          </div>
+                       </div>        
+                            
+                            
+
+                            </div>
+                      
+                        </li>
+
+                    </ul>    
+                       <ul class="list user_list" ng-if="value1==='null'">
+
+                           <li class="item emty_data" >
+                            
+
+                               <!-- <div class="col Businessuser_details">
+                                    <div class="Businessuser_name">No Followers Found</div>
+                                    <div class="Businessuser_desig"></div>
+                                    <div class="Businessuser_foollowing"></div>
+                                </div>-->
+                               
+                                                         No Upcoming Event Found
+                                             
+
+                        </li>                                              
+                </ul>
+                   </div>
+                        </md-content>
+                    </md-tab>                   
+          </md-tabs>
+      
+
+
+      
+
+  </ion-content>
+
+     <a ui-sref="common.createevent" class="type_message"><i class="material-icons">create</i></a> 
+    
+    
+<!--
+  <ion-footer-bar class="bar-positive tabs tabs-stable already_sign">
+    	<a class="tab-item tab-item-active" ui-sref="common.login">Already have an acount?<span>Sign In</span></a>
+  </ion-footer-bar>     
+-->
+    
+</ion-view>

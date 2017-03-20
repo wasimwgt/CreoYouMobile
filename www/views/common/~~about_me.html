@@ -1,0 +1,1027 @@
+<ion-view class="walkthrough-view multi-bg-outer" style="background-image: url('img/background.jpg')" cache-view="false" >
+
+<ion-header-bar align-title="left" class="bar-creoyou">
+
+<div class="row">
+	<div class="col-50"><label class="item-input-wrapper header_search">    
+    <i class="material-icons">search</i><input type="search" placeholder="People,Business,Jobs.....">
+  </label></div>
+    <div class="col header_right_creoyou">
+    	<a ui-sref="#" href="#" class="creoyou_loop"></a>
+        <a class="add_invite" ui-sref="common.request"><span class="info">4</span></a>
+        <a class="notification" ui-sref="common.notification"><span class="info">12</span></a>
+        <a ui-sref="#" href="#" class="message"><span class="info">3</span></a>
+    
+    </div>
+</div>
+
+</ion-header-bar>
+  
+  <ion-content scroll="true">
+
+ <md-content>
+   	    <md-tabs md-dynamic-height md-border-bottom stretchTabs flex class="About_me_tab">
+      <md-tab label="Home">      
+        <md-content class="" scroll="y" layout="column">
+        	<div class="about_me_top" style=" background-image:url(img/banner1-1466142223.jpg); background-size:cover;">            	<div class="about_me_cover row">
+             	              <div class="col col-34">
+                	<h2 class="yps">Your Profile Status</h2>
+                	 <div class="progress-wrapper">
+            			<div class="progress ng-cloak" ng-style="getStyle()">{{ per }}%</div>
+            			<round-progress
+                max="max"
+                current="current"
+                color="{{ getColor() }}"
+                bgcolor="{{ bgColor }}"
+                radius="{{ radius }}"
+                semi="isSemi"
+                rounded="rounded"
+                stroke="{{ stroke }}"
+                clockwise="clockwise"
+                responsive="responsive"
+                duration="{{ duration }}"
+                animation="{{ currentAnimation }}"
+                offset="{{ offset }}"
+                animation-delay="{{ animationDelay }}"
+                on-render="showPreciseCurrent">
+            </round-progress>
+          			</div>
+                    <button class="complete_profile">Complete Profile</button>
+                </div>                
+                              <div class="col " ng-controller="ExampleController">
+                    <div class="prifile_image_box">    
+                        <div class="prifile_image">
+                        <!--img ng-src="img/jwt.png" src="img/jwt.png" style="text-align: center"-->
+                            <img ng-show="imgURI !== undefined" ng-src="{{imgURI}}" style="text-align: center">
+                        </div>
+                        <button class="attach_photo" ng-click="choosePhoto()"><i class="material-icons">mode_edit</i></button>
+                    </div>
+                    
+                    <h2 class="user_name">John Doe</h2>
+                    <h3 class="profession"><i class="material-icons">card_travel</i> Photographer</h3>
+                    <h3 class="Address"><i class="material-icons">location_city</i> New York, USA</h3>
+                </div>                                
+              	              <div class="col col-34">
+                    <h2 class="yps">Upgrade</h2>
+                        <img ng-src="img/Upgrade_logo.png" class="update_logo" src="img/Upgrade_logo.png">    
+                    <button class="Provile_view">6 Profile Views</button>
+                </div>  
+                        </div>
+            </div>
+        
+            <div class="followers">                
+                <h1 class="follow_count"><label>Followers</label>2.634</h1>
+<!--                <button class="job_button">JOBS <i class="material-icons">work</i></button>-->
+                 <button class="job_button" ui-sref="common.job_posted_list">JOBS <i class="material-icons">work</i></button>
+            </div>
+            
+            <div class="tab_body" ng-controller="Homectrl" >
+                    <div class="item item-input what_your_mind" >
+                        <textarea name="status" ng-model="status" placeholder="What’s on your mind ?"></textarea>
+                        <i class="material-icons" ng-click="action()" >settings</i>
+                    
+<!--                         <i class="material-icons" ng-click="openPopover($event)">settings</i>-->
+<!--
+                        <div class="card pop_card">
+                              <div class="item item-text-wrap">
+                                 <button class="privacy">
+                                    <i class="material-icons">lock_outline</i> Privacy
+                                 </button>
+                                 
+                                 <button class="delete">
+                                    <i class="material-icons">delete_sweep</i> Delete
+                                 </button>  
+                                  
+                              </div>
+                        </div>
+-->
+                    </div>
+                 <div>
+                      <div class="caed postcard" ng-show="img">
+                           <img ng-show="imgURI !== undefined" ng-src="{{imgURI}}" style="text-align: center">
+                         
+                     </div>
+                  <button ng-click="post(status)">Post</button>
+                  <a ng-click="image()">Image</a>
+                     
+                </div >
+                <div ng-repeat="home in homes">
+                    <div class="caed postcard" ng-if="home.type==='status'">                        
+                        <ul class="list">
+                            <li class="item post_heading">
+                              <div class="postericon">
+                                <img ng-src="img/jwt.png" class="update_logo" src="img/jwt.png">  
+                              </div>
+                              <div class="poster_name">John Doe <label class="status">has Updated the Status</label></div>    
+                              <div class="post_date">August 11th 2016 at 11:33am </div>  
+                            </li>
+                            <li class=" post_body">
+                              I believe there should be a better way to start each day… instead of waking up every morning.
+                            </li>
+                            <li class="item post_with">
+                                - with <a href="#">Perez Joyce</a> and <a href="#">2 others</a>.
+                            </li>
+                            <li class="item post_footer">
+                        <ul>
+                            <li class="wishlist"><a href="#"><i class="material-icons">favorite</i><label>18k</label></a></li>
+                            <li class="comment"><a href="#"><i class="material-icons">chat_bubble</i><label>245</label></a></li>
+                            <li class="share"><a href="#"><i class="material-icons">share</i><label>30</label></a></li>
+                        </ul>
+                            </li>                            
+                        </ul>
+                        
+                        
+                        
+                        
+                        <i class="material-icons" ng-click="openPopover($event)">settings</i>
+                       
+                    </div>
+                
+                    <div class="caed postcard" ng-if="home.type==='photo'">
+                        
+                        <ul class="list">
+                            <li class="item post_heading">
+                              <div class="postericon">
+                                <img ng-src="img/jwt.png" class="update_logo" src="img/jwt.png">  
+                              </div>
+                              <div class="poster_name">John Doe <label class="status">has Updated a new Picture</label></div>    
+                              <div class="post_date">August 11th 2016 at 11:33am </div>  
+                            </li>
+                            <li class="post_body">
+                                <img ng-src="img/share_image.jpg" class="pist_image" src="img/share_image.jpg"> 
+                            </li>                            
+                            <li class="item post_footer">
+                        <ul>
+                            <li class="wishlist"><a href="#"><i class="material-icons">favorite</i><label>18k</label></a></li>
+                            <li class="comment"><a href="#"><i class="material-icons">chat_bubble</i><label>245</label></a></li>
+                            <li class="share"><a href="#"><i class="material-icons">share</i><label>30</label></a></li>
+                        </ul>
+                            </li>
+                            <li class="recent_comment">
+                                <div class="postericon">
+                                    <img ng-src="img/jwt.png" class="update_logo" src="img/jwt.png">  
+                                </div>
+                                <div class="poster_name">John Doe</div> 
+                                <div class="reply"><i class="material-icons">chat_bubble</i> Reply</div>
+                                <div class="post_date">August 11th 2016 at 11:33am </div>                                
+                                <div class="post_body">
+                                    I believe there should be a better way to start each day… instead of waking up every morning.
+                                </div>                                
+
+                                
+                                
+                            </li>
+                        </ul>
+                        
+                        
+                        
+                        
+                        <i class="material-icons" ng-click="openPopover($event)">settings</i>
+                       
+                    </div>
+                                
+                    <div class="caed postcard" ng-if="home.type==='audio'">
+                        
+                        <ul class="list">
+                            <li class="item post_heading">
+                              <div class="postericon">
+                                <img ng-src="img/jwt.png" class="update_logo" src="img/jwt.png">  
+                              </div>
+                              <div class="poster_name">John Doe <label class="status">has Updated a new Picture</label></div>    
+                              <div class="post_date">August 11th 2016 at 11:33am </div>  
+                            </li>
+                            <li class="post_body">                                
+<ion-audio-track ng-repeat="track in tracks" track="track">
+    <div class="">
+      <div class="item item-thumbnail-left">
+        <img src="{{track.art}}">
+        <ion-audio-controls>
+          <a class="button button-icon icon" ion-audio-play></a>
+          <ion-spinner icon="ios" style="position: relative; top: 8px; left: 4px"></ion-spinner>            
+        </ion-audio-controls>
+      </div>
+      <div class="item progress-right">
+        <ion-audio-progress-bar track="dynamicTrack" display-time></ion-audio-progress-bar>
+        <h2>{{track.title}}</h2>
+        <!--p>{{track.artist}}</p-->  
+          
+      </div>
+    </div>
+</ion-audio-track>
+                            </li>                            
+                            <li class="item post_footer">
+                        <ul>
+                            <li class="wishlist"><a href="#"><i class="material-icons">favorite</i><label>18k</label></a></li>
+                            <li class="comment"><a href="#"><i class="material-icons">chat_bubble</i><label>245</label></a></li>
+                            <li class="share"><a href="#"><i class="material-icons">share</i><label>30</label></a></li>
+                        </ul>
+                            </li>
+                            <!--li class="recent_comment">                                                                 
+                                <div class="postericon">
+                                    <img ng-src="img/jwt.png" class="update_logo" src="img/jwt.png">  
+                                </div>
+                                
+                                <div class="post_date">August 11th 2016 at 11:33am </div>                                
+                                <div class="post_body">
+                                    I believe there should be a better way to start each day… instead of waking up every morning.
+                                </div>                                
+
+                                
+                                
+                            </li-->
+                        </ul>
+                        
+                        
+                        
+                        
+                        <i class="material-icons" ng-click="openPopover($event)">settings</i>
+                       
+                    </div>                
+                
+                    <div class="caed postcard" ng-if="home.type==='video'">
+                        
+                        <ul class="list">
+                            <li class="item post_heading">
+                              <div class="postericon">
+                                <img ng-src="img/jwt.png" class="update_logo" src="img/jwt.png">  
+                              </div>
+                              <div class="poster_name">John Doe <label class="status">has Updated a new Picture</label></div>    
+                              <div class="post_date">August 11th 2016 at 11:33am </div>  
+                            </li>
+                            <li class="post_body">                                
+                                    <video controls style="width:100%;height:auto;" poster="poster.png">
+                                        <source src="http://player.vimeo.com/external/85569724.sd.mp4?s=43df5df0d733011263687d20a47557e4" type='video/webm;codecs="vp8, vorbis"' />
+                                        <!--source src="devstories.mp4" type='video/mp4;codecs="avc1.42E01E, mp4a.40.2"' /-->
+                                        <track src="devstories-en.vtt" label="English subtitles" kind="subtitles" srclang="en" default>
+                                    </video>
+                            </li>                            
+                            <li class="item post_footer">
+                        <ul>
+                            <li class="wishlist"><a href="#"><i class="material-icons">favorite</i><label>18k</label></a></li>
+                            <li class="comment"><a href="#"><i class="material-icons">chat_bubble</i><label>245</label></a></li>
+                            <li class="share"><a href="#"><i class="material-icons">share</i><label>30</label></a></li>
+                        </ul>
+                            </li>
+                            <li class="recent_comment">
+                                <div class="postericon">
+                                    <img ng-src="img/jwt.png" class="update_logo" src="img/jwt.png">  
+                                </div>
+                                <div class="poster_name">John Doe</div> 
+                                <div class="reply"><i class="material-icons">chat_bubble</i> Reply</div>    
+                                <div class="post_date">August 11th 2016 at 11:33am </div> 
+                                
+                                
+                                <div class="post_body">
+                                    I believe there should be a better way to start each day… instead of waking up every morning.
+                                </div>                                
+
+                                
+                                
+                            </li>
+                        </ul>
+                        
+                        
+                        
+                        
+                        <i class="material-icons" ng-click="openPopover($event)">settings</i>
+                       
+                    </div>
+                </div>
+            </div>
+        
+        
+         
+        
+        
+           
+        </md-content>        
+      </md-tab>
+
+      
+      <md-tab label="About">
+        <md-content class="" scroll="y" layout="column">                    
+            <div class="tab_body">
+                <div class="caed about_card about_top_card">
+                    <div class="row">
+                        <div class="col col-33 Pubsilh_for"><a href="#"><i class="material-icons">https</i>Public</a></div>
+                        <div class="col "></div>
+                        <div class="col col-33"><a href=""><i class="material-icons">border_color</i>Edit</a></div>
+                    </div>
+                    
+                </div>                    
+                
+                 <div class="caed about_card listing">
+                     <label class="item">Location</label>
+                     India,West Bengal,Kolkata 700736                                        
+                </div>                    
+                
+                 <div class="caed about_card listing">
+                     <label class="item">Creative Field</label>
+                     Photographer                                        
+                 </div>
+                
+                 <div class="caed about_card listing">
+                     <label class="item">Specialization / Skill</label>
+                     PHP, Javascript , Ajax , Jquery, JavaScript                                        
+                 </div>
+                
+                 <div class="caed about_card listing">
+                     <label class="item">Occupation</label>
+                     Introduction to Project Management Principles and Practices                                        
+                 </div>
+                
+                 <div class="caed about_card listing">
+                     <label class="item">Experience/Work</label>
+                     Accredited Asset Management Specialist (AAMS)                                        
+                 </div>
+                
+                 <div class="caed about_card listing">
+                     <label class="item">Education</label>
+                     <span class="listing_head">BA, Fine Arts</span><br>
+                     UC Irvine (Uci.edu), Irvine, USA<br>
+                     June, 2008 – March, 2010<br>
+                     Senior design project included a large scale sculpture of the lady in black. The work was representational of the medieval era in art. Work was enhanced by the use of light                                         
+                 </div>
+                
+                 <div class="caed about_card listing">
+                     <label class="item">Courses</label>
+                     <span class="listing_head">Photography through the ages,</span>
+                     CC Multimedia Tech Ltd. , 2006                                        
+                 </div>
+                
+                 <div class="caed about_card listing">
+                     <label class="item">Certifications</label>
+                     Certificate Name, Organization, Year                                        
+                 </div>
+                
+                 <div class="caed about_card listing">
+                     <label class="item">Achievement/Awards</label>
+                     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+Ipsum has been the industry's standard dummy text ever since the 1500s,                                         
+                 </div>
+                 
+                 <div class="caed about_card listing">
+                     <label class="item">Exhibitions/Concert/Events</label>
+                     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+Ipsum has been the industry's standard dummy text ever since the 1500s,                                         
+                 </div>
+                
+                 <div class="caed about_card listing">
+                     <label class="item">Languages</label>
+                     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+Ipsum has been the industry's standard dummy text ever since the 1500s,                                         
+                 </div>
+                
+                 <div class="caed about_card listing">
+                     <label class="item">Interests</label>
+                     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+Ipsum has been the industry's standard dummy text ever since the 1500s,                                         
+                 </div>
+                
+                 <div class="caed about_card listing">
+                     <label class="item">Personal Statement</label>
+                     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+Ipsum has been the industry's standard dummy text ever since the 1500s,                                         
+                 </div>
+                
+            </div>                        
+        </md-content>
+      </md-tab>
+            
+      
+      <md-tab label="Portfolio">
+        <md-content class="" scroll="y" layout="column">
+           
+            
+                
+                <md-tabs md-dynamic-height md-border-bottom stretchTabs flex class="album_tab">
+                    <md-tab label="Photo">      
+                        <md-content class="" scroll="y" layout="column">
+                            <div ng-controller="Photoctrl"
+                                 class="tab_body">    
+                                <a ng-click="create()" class="cr_nw_al"> <i class="material-icons">create_new_folder</i> Create new album</a>
+                
+                                <div class="row" style="flex-wrap: wrap;">
+                   
+                    <div class="col col-50"ng-repeat="folder in folders" >
+                        <a href="#">
+                        <div class="folder" ng-click="alshow(folder)">
+                            <img ng-src="{{folder.src}}"  src="{{folder.src}}" class="album_image"/> 
+                            <div class="folder_desc">
+                                <div class="album_name"><i class="material-icons">photo_library</i> {{folder.alname}}</div>
+                                <div class="file_count">{{folder.size}}</div>
+                            </div>
+                        </div>    
+                        </a>                            
+                    </div>
+                </div>
+                           
+                                  
+                            </div>
+                        </md-content>
+                    </md-tab>
+                    <md-tab label="Videos" >      
+                        <md-content class="" scroll="y" layout="column">
+                            <div ng-controller="VideoCtrl" class="tab_body">
+                                <a ng-click="vupload()" class="cr_nw_al"> <i class="material-icons">video_call</i> Upload Vew Video</a>
+                                <div class="card video_album" ng-repeat="video in videos" >                                    
+                                    <video controls style="width:100%;height:auto;" poster="poster.png">
+                                        <source src="http://player.vimeo.com/external/85569724.sd.mp4?s=43df5df0d733011263687d20a47557e4"/>
+                                        <!--source {{trustSrc(video.src)}}"  type="video/mp4 /-->
+                                        <track src="devstories-en.vtt" label="English subtitles" kind="subtitles" srclang="en" default>
+                                    </video> 
+                                        
+                                        <div class="col video_sha_like">
+                        <ul>
+                            <li class="wishlist"><a href="#"><i class="material-icons">favorite</i><label>18k</label></a></li>
+                            <li class="comment"><a href="#"><i class="material-icons">chat_bubble</i><label>245</label></a></li>
+                            <li class="eyeview"><a href="#"><i class="material-icons">remove_red_eye</i><label>21</label></a></li>
+                            <li class="share"><a href="#"><i class="material-icons">share</i><label>30</label></a></li>
+                        </ul>
+                                            <i class="material-icons">settings</i>
+                                            <!--div class="card pop_card">
+                              <div class="item item-text-wrap">
+                                 <button class="privacy">
+                                    <i class="material-icons">lock_outline</i> Privacy
+                                 </button>
+                                 
+                                 <button class="delete">
+                                    <i class="material-icons">delete_sweep</i> Delete
+                                 </button>  
+                                  
+                              </div>
+                        </div-->
+                                        </div>                                    
+                             <div class="col">
+                         <h4 class="video_title">Video Title</h4>
+                         <p class="video_desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
+                         </div>
+                                </div>
+                                <div class="card video_album">
+
+                                    <video controls style="width:100%;height:auto;" poster="poster.png">
+                                        <source src="http://player.vimeo.com/external/85569724.sd.mp4?s=43df5df0d733011263687d20a47557e4" type='video/webm;codecs="vp8, vorbis"' />
+                                        <!--source src="devstories.mp4" type='video/mp4;codecs="avc1.42E01E, mp4a.40.2"' /-->
+                                        <track src="devstories-en.vtt" label="English subtitles" kind="subtitles" srclang="en" default>
+                                    </video>
+                                    
+                                            <div class="col video_sha_like">
+                        <ul>
+                            <li class="wishlist"><a href="#"><i class="material-icons">favorite</i><label>18k</label></a></li>
+                            <li class="comment"><a href="#"><i class="material-icons">chat_bubble</i><label>245</label></a></li>
+                            <li class="eyeview"><a href="#"><i class="material-icons">remove_red_eye</i><label>21</label></a></li>
+                            <li class="share"><a href="#"><i class="material-icons">share</i><label>30</label></a></li>
+                        </ul>
+                                            <i class="material-icons">settings</i>
+                                            <!--div class="card pop_card">
+                                                  <div class="item item-text-wrap">
+                                                     <button class="privacy">
+                                                        <i class="material-icons">lock_outline</i> Privacy
+                                                     </button>
+
+                                                     <button class="delete">
+                                                        <i class="material-icons">delete_sweep</i> Delete
+                                                     </button>  
+
+                                                  </div>
+                                            </div-->
+                                        </div>                                    
+                                        <div class="col">
+                                            <h4 class="video_title">Video Title</h4>
+                                            <p class="video_desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
+                                        </div>
+                                    
+                                </div> 
+                             
+                            </div>    
+                        </md-content>
+                    </md-tab>                                                            
+                    <md-tab label="Audios">                        
+                        <md-content class="" scroll="y" layout="column">
+                            <div class="tab_body">
+                                <a href="#" class="cr_nw_al"> <i class="material-icons">queue_music</i> Upload Vew Audio</a>
+                                <div class="card audio_album">
+                                    <div>
+                                    <ion-audio-track ng-repeat="track in tracks" track="track">
+                                        <div class="">
+                                          <div class="item item-thumbnail-left">
+                                            <img src="{{track.art}}">
+                                            <ion-audio-controls>
+                                              <a class="button button-icon icon" ion-audio-play></a>
+                                              <ion-spinner icon="ios" style="position: relative; top: 8px; left: 4px"></ion-spinner>            
+                                            </ion-audio-controls>                                                
+                                          </div>
+                                            
+                                          <div class="item progress-right">
+                                              <h2>{{track.title}}</h2> 
+                                              <div class="col video_sha_like">
+                        <ul>
+                            <li class="wishlist"><a href="#"><i class="material-icons">favorite</i><label>18k</label></a></li>
+                            <li class="comment"><a href="#"><i class="material-icons">chat_bubble</i><label>245</label></a></li>
+                            <li class="eyeview"><a href="#"><i class="material-icons">remove_red_eye</i><label>21</label></a></li>
+                            <li class="share"><a href="#"><i class="material-icons">share</i><label>30</label></a></li>
+                        </ul>
+                                            <i class="material-icons">settings</i>
+                         
+                                        </div>   
+                                       
+                                   
+                                              <h2>{{track.title}}</h2>                            
+                                            <ion-audio-progress-bar track="dynamicTrack" display-time></ion-audio-progress-bar> 
+
+                                          </div>
+                                        </div>
+                                    </ion-audio-track> 
+                                        
+                                                                            
+                                </div>
+                               
+                            </div>  
+<!--------------------start------------------------------>
+                      
+<!--------------------end-------------------------------->
+                        </md-content>
+                    </md-tab>
+                </md-tabs>    
+                
+                
+                <!--div class="Port_album">
+                    <ul class="album_type">
+                    <li class="active"><a href="#">Photos</a></li>
+                    <li class=""><a href="#">Videos</a></li>
+                    <li class=""><a href="">Audios</a></li>
+                </ul>
+                </div-->
+               
+            
+        </md-content>
+      </md-tab>
+      
+      
+      <md-tab label="Connections">
+        <md-content class="" scroll="y" layout="column">
+          <md-tabs md-dynamic-height md-border-bottom stretchTabs flex class="album_tab">
+                    <md-tab label="Connections">      
+                        <md-content class="" scroll="y" layout="column">
+                            <div class="tab_body">    
+<a href="#" class="connec_top_button">Connected</a>                                                
+<ul class="list user_list">
+    <li class="item">
+        <div class="row">
+            <div class="col col-25">
+                <div class="user_img"><img ng-src="img/user_list_img.jpg" class="user_img"></div>
+            </div>
+            <div class="col user_details">
+                <div class="user_name">Jhon Smith</div>
+                <div class="user_desig"><i class="material-icons">card_travel</i> Photographer</div>
+                <div class="user_address"><i class="material-icons">location_city</i> New York, USA</div>
+            </div>
+            <div class="col col-30 user_choice">
+                <i class="material-icons">settings</i>
+                <div class="card pop_card">
+                      <div class="item item-text-wrap">
+                         <button class="privacy">
+                            <i class="material-icons">block</i> Block
+                         </button>
+
+                         <button class="Delete">
+                            <i class="material-icons">remove_circle_outline</i> Disconnect
+                         </button>  
+
+                      </div>
+                </div>
+                <button class="job_button">Message <i class="material-icons">email</i></button>
+            </div>
+        </div>
+    </li>
+    <li class="item">
+        <div class="row">
+            <div class="col col-25">
+                <div class="user_img"><img ng-src="img/user_list_img.jpg" class="user_img"></div>
+            </div>
+            <div class="col user_details">
+                <div class="user_name">Jhon Smith</div>
+                <div class="user_desig"><i class="material-icons">card_travel</i> Photographer</div>
+                <div class="user_address"><i class="material-icons">location_city</i> New York, USA</div>
+            </div>
+            <div class="col col-30 user_choice">
+                <i class="material-icons">settings</i>
+                <!--div class="card pop_card">
+                      <div class="item item-text-wrap">
+                         <button class="privacy">
+                            <i class="material-icons">lock_outline</i> Privacy
+                         </button>
+
+                         <button class="delete">
+                            <i class="material-icons">delete_sweep</i> Delete
+                         </button>  
+
+                      </div>
+                </div-->
+                <button class="job_button">Message <i class="material-icons">email</i></button>
+            </div>
+        </div>
+    </li>
+    <li class="item">
+        <div class="row">
+            <div class="col col-25">
+                <div class="user_img"><img ng-src="img/user_list_img.jpg" class="user_img"></div>
+            </div>
+            <div class="col user_details">
+                <div class="user_name">Jhon Smith</div>
+                <div class="user_desig"><i class="material-icons">card_travel</i> Photographer</div>
+                <div class="user_address"><i class="material-icons">location_city</i> New York, USA</div>
+            </div>
+            <div class="col col-30 user_choice">
+                <i class="material-icons">settings</i>
+                <!--div class="card pop_card">
+                      <div class="item item-text-wrap">
+                         <button class="privacy">
+                            <i class="material-icons">lock_outline</i> Privacy
+                         </button>
+
+                         <button class="delete">
+                            <i class="material-icons">delete_sweep</i> Delete
+                         </button>  
+
+                      </div>
+                </div-->
+                <button class="job_button">Message <i class="material-icons">email</i></button>
+            </div>
+        </div>
+    </li>
+    <li class="item">
+        <div class="row">
+            <div class="col col-25">
+                <div class="user_img"><img ng-src="img/user_list_img.jpg" class="user_img"></div>
+            </div>
+            <div class="col user_details">
+                <div class="user_name">Jhon Smith</div>
+                <div class="user_desig"><i class="material-icons">card_travel</i> Photographer</div>
+                <div class="user_address"><i class="material-icons">location_city</i> New York, USA</div>
+            </div>
+            <div class="col col-30 user_choice">
+                <i class="material-icons">settings</i>
+                <!--div class="card pop_card">
+                      <div class="item item-text-wrap">
+                         <button class="privacy">
+                            <i class="material-icons">lock_outline</i> Privacy
+                         </button>
+
+                         <button class="delete">
+                            <i class="material-icons">delete_sweep</i> Delete
+                         </button>  
+
+                      </div>
+                </div-->
+                <button class="job_button">Message <i class="material-icons">email</i></button>
+            </div>
+        </div>
+    </li>
+    <li class="item">
+        <div class="row">
+            <div class="col col-25">
+                <div class="user_img"><img ng-src="img/user_list_img.jpg" class="user_img"></div>
+            </div>
+            <div class="col user_details">
+                <div class="user_name">Jhon Smith</div>
+                <div class="user_desig"><i class="material-icons">card_travel</i> Photographer</div>
+                <div class="user_address"><i class="material-icons">location_city</i> New York, USA</div>
+            </div>
+            <div class="col col-30 user_choice">
+                <i class="material-icons">settings</i>
+                <!--div class="card pop_card">
+                      <div class="item item-text-wrap">
+                         <button class="privacy">
+                            <i class="material-icons">lock_outline</i> Privacy
+                         </button>
+
+                         <button class="delete">
+                            <i class="material-icons">delete_sweep</i> Delete
+                         </button>  
+
+                      </div>
+                </div-->
+                <button class="job_button">Message <i class="material-icons">email</i></button>
+            </div>
+        </div>
+    </li>
+    <li class="item">
+        <div class="row">
+            <div class="col col-25">
+                <div class="user_img"><img ng-src="img/user_list_img.jpg" class="user_img"></div>
+            </div>
+            <div class="col user_details">
+                <div class="user_name">Jhon Smith</div>
+                <div class="user_desig"><i class="material-icons">card_travel</i> Photographer</div>
+                <div class="user_address"><i class="material-icons">location_city</i> New York, USA</div>
+            </div>
+            <div class="col col-30 user_choice">
+                <i class="material-icons">settings</i>
+                <!--div class="card pop_card">
+                      <div class="item item-text-wrap">
+                         <button class="privacy">
+                            <i class="material-icons">lock_outline</i> Privacy
+                         </button>
+
+                         <button class="delete">
+                            <i class="material-icons">delete_sweep</i> Delete
+                         </button>  
+
+                      </div>
+                </div-->
+                <button class="job_button">Message <i class="material-icons">email</i></button>
+            </div>
+        </div>
+    </li>                                    
+</ul>
+                                
+                            </div>
+                        </md-content>
+                    </md-tab>
+                    <md-tab label="Following" >      
+                        <md-content class="" scroll="y" layout="column">
+                            <div class="tab_body">
+<a href="#" class="connec_top_button">I am following</a>                                                
+<ul class="list user_list">
+    <li class="item">
+        <div class="row">
+            <div class="col col-25">
+                <div class="user_img"><img ng-src="img/user_list_img.jpg" class="user_img"></div>
+            </div>
+            <div class="col user_details">
+                <div class="user_name">Jhon Smith</div>
+                <div class="user_desig"><i class="material-icons">card_travel</i> Photographer</div>
+                <div class="user_address"><i class="material-icons">location_city</i> New York, USA</div>
+            </div>
+            <div class="col col-30 user_choice">
+                <i class="material-icons">settings</i>
+                <div class="card pop_card">
+                      <div class="item item-text-wrap">
+                         <button class="privacy">
+                            <i class="material-icons">cancel</i> Cancel
+                         </button>
+
+                         <button class="Delete">
+                            <i class="material-icons">backspace</i> Unfollow
+                         </button>
+                          
+                         <button class="Delete">
+                            <i class="material-icons">block</i> Block
+                         </button> 
+
+                      </div>
+                </div>
+                <button class="job_button"><i class="material-icons">camera_rear</i> Following</button>
+            </div>
+        </div>
+    </li>
+    <li class="item">
+        <div class="row">
+            <div class="col col-25">
+                <div class="user_img"><img ng-src="img/user_list_img.jpg" class="user_img"></div>
+            </div>
+            <div class="col user_details">
+                <div class="user_name">Jhon Smith</div>
+                <div class="user_desig"><i class="material-icons">card_travel</i> Photographer</div>
+                <div class="user_address"><i class="material-icons">location_city</i> New York, USA</div>
+            </div>
+            <div class="col col-30 user_choice">
+                <i class="material-icons">settings</i>
+                <!--div class="card pop_card">
+                      <div class="item item-text-wrap">
+                         <button class="privacy">
+                            <i class="material-icons">cancel</i> Cancel
+                         </button>
+
+                         <button class="Delete">
+                            <i class="material-icons">backspace</i> Unfollow
+                         </button>
+                          
+                         <button class="Delete">
+                            <i class="material-icons">block</i> Block
+                         </button> 
+
+                      </div>
+                </div-->
+                <button class="job_button"><i class="material-icons">camera_rear</i> Following</button>
+            </div>
+        </div>
+    </li>
+    <li class="item BusinessList">
+        <div class="row">
+            <div class="col col-25 Businessuser_img">
+                <img ng-src="img/businessuser_list_img.jpg">
+            </div>
+            <div class="col Businessuser_details">
+                <div class="Businessuser_name">Red Zone Media Channel</div>
+                <div class="Businessuser_desig">Entertainment</div>
+                <div class="Businessuser_foollowing">1,12,3403 followers</div>
+            </div>
+            <div class="col col-30 user_choice">
+                <i class="material-icons">settings</i>
+                <!--div class="card pop_card">
+                      <div class="item item-text-wrap">
+                         <button class="privacy">
+                            <i class="material-icons">cancel</i> Cancel
+                         </button>
+
+                         <button class="Delete">
+                            <i class="material-icons">backspace</i> Unfollow
+                         </button>
+                          
+                         <button class="Delete">
+                            <i class="material-icons">block</i> Block
+                         </button> 
+
+                      </div>
+                </div-->
+                <button class="job_button"><i class="material-icons">camera_rear</i> Following</button>
+            </div>
+        </div>
+    </li>
+    <li class="item BusinessList">
+        <div class="row">
+            <div class="col col-25 Businessuser_img">
+                <img ng-src="img/businessuser_list_img.jpg">
+            </div>
+            <div class="col Businessuser_details">
+                <div class="Businessuser_name">Red Zone Media Channel</div>
+                <div class="Businessuser_desig">Entertainment</div>
+                <div class="Businessuser_foollowing">1,12,3403 followers</div>
+            </div>
+            <div class="col col-30 user_choice">
+                <i class="material-icons">settings</i>
+                <!--div class="card pop_card">
+                      <div class="item item-text-wrap">
+                         <button class="privacy">
+                            <i class="material-icons">cancel</i> Cancel
+                         </button>
+
+                         <button class="Delete">
+                            <i class="material-icons">backspace</i> Unfollow
+                         </button>
+                          
+                         <button class="Delete">
+                            <i class="material-icons">block</i> Block
+                         </button> 
+
+                      </div>
+                </div-->
+                <button class="job_button"><i class="material-icons">camera_rear</i> Following</button>
+            </div>
+        </div>
+    </li>                                    
+</ul>   
+                                
+<div class="ion-item-divider">
+    <button class="view_more" ui-sref="common.following_followers">View More</button>
+</div>
+                                
+<a href="#" class="connec_top_button my_folowers">My Followers</a>                                                
+<ul class="list user_list">
+    <li class="item">
+        <div class="row">
+            <div class="col col-25">
+                <div class="user_img"><img ng-src="img/user_list_img.jpg" class="user_img"></div>
+            </div>
+            <div class="col user_details">
+                <div class="user_name">Jhon Smith</div>
+                <div class="user_desig"><i class="material-icons">card_travel</i> Photographer</div>
+                <div class="user_address"><i class="material-icons">location_city</i> New York, USA</div>
+            </div>
+            <div class="col col-30 user_choice">
+                <i class="material-icons">settings</i>
+                <div class="card pop_card">
+                      <div class="item item-text-wrap">
+                         <button class="privacy">
+                            <i class="material-icons">cancel</i> Cancel
+                         </button>
+                          
+                         <button class="Delete">
+                            <i class="material-icons">block</i> Block
+                         </button> 
+
+                      </div>
+                </div>
+                <button class="job_button"><i class="material-icons">forward</i> Follow</button>
+            </div>
+        </div>
+    </li>
+    <li class="item">
+        <div class="row">
+            <div class="col col-25">
+                <div class="user_img"><img ng-src="img/user_list_img.jpg" class="user_img"></div>
+            </div>
+            <div class="col user_details">
+                <div class="user_name">Jhon Smith</div>
+                <div class="user_desig"><i class="material-icons">card_travel</i> Photographer</div>
+                <div class="user_address"><i class="material-icons">location_city</i> New York, USA</div>
+            </div>
+            <div class="col col-30 user_choice">
+                <i class="material-icons">settings</i>
+                <!--div class="card pop_card">
+                      <div class="item item-text-wrap">
+                         <button class="privacy">
+                            <i class="material-icons">cancel</i> Cancel
+                         </button>
+                          
+                         <button class="Delete">
+                            <i class="material-icons">block</i> Block
+                         </button> 
+
+                      </div>
+                </div-->
+                <button class="job_button"><i class="material-icons">forward</i> Follow</button>
+            </div>
+        </div>
+    </li>
+    <li class="item BusinessList">
+        <div class="row">
+            <div class="col col-25 Businessuser_img">
+                <img ng-src="img/businessuser_list_img.jpg">
+            </div>
+            <div class="col Businessuser_details">
+                <div class="Businessuser_name">Red Zone Media Channel</div>
+                <div class="Businessuser_desig">Entertainment</div>
+                <div class="Businessuser_foollowing">1,12,3403 followers</div>
+            </div>
+            <div class="col col-30 user_choice">
+                <i class="material-icons">settings</i>
+                <!--div class="card pop_card">
+                      <div class="item item-text-wrap">
+                         <button class="privacy">
+                            <i class="material-icons">cancel</i> Cancel
+                         </button>
+                          
+                         <button class="Delete">
+                            <i class="material-icons">block</i> Block
+                         </button> 
+
+                      </div>
+                </div-->
+                <button class="job_button"><i class="material-icons">forward</i> Follow</button>
+            </div>
+        </div>
+    </li>
+    <li class="item BusinessList">
+        <div class="row">
+            <div class="col col-25 Businessuser_img">
+                <img ng-src="img/businessuser_list_img.jpg">
+            </div>
+            <div class="col Businessuser_details">
+                <div class="Businessuser_name">Red Zone Media Channel</div>
+                <div class="Businessuser_desig">Entertainment</div>
+                <div class="Businessuser_foollowing">1,12,3403 followers</div>
+            </div>
+            <div class="col col-30 user_choice">
+                <i class="material-icons">settings</i>
+                <!--div class="card pop_card">
+                      <div class="item item-text-wrap">
+                         <button class="privacy">
+                            <i class="material-icons">cancel</i> Cancel
+                         </button>
+                          
+                         <button class="Delete">
+                            <i class="material-icons">block</i> Block
+                         </button> 
+
+                      </div>
+                </div-->
+                <button class="job_button"><i class="material-icons">forward</i> Follow</button>
+            </div>
+        </div>
+    </li>                                    
+</ul>   
+                                
+<div class="ion-item-divider">
+    <button class="view_more" ui-sref="common.following_followers">View More</button>
+</div>
+                                
+                                
+                                
+                            </div>    
+                        </md-content>
+                    </md-tab>                   
+          </md-tabs>
+        </md-content>
+      </md-tab>
+      
+    </md-tabs>
+      </md-content> 
+      
+
+	  
+
+ 
+  </ion-content>
+
+    
+    
+<!--
+  <ion-footer-bar class="bar-positive tabs tabs-stable already_sign">
+    	<a class="tab-item tab-item-active" ui-sref="common.login">Already have an acount?<span>Sign In</span></a>
+  </ion-footer-bar>     
+-->
+    
+</ion-view>

@@ -1,0 +1,110 @@
+<ion-view class="walkthrough-view multi-bg-outer" style="background-image: url('img/background.jpg')" cache-view="false" >
+
+<ion-header-bar align-title="left" class="bar-creoyou">
+<!--
+<div class="row">
+	<div class="col-50"><label class="item-input-wrapper header_search">    
+    <i class="material-icons">search</i><input type="search" placeholder="People,Business,Jobs.....">
+  </label></div>
+    <div class="col header_right_creoyou">
+    	<a ui-sref="common.creo_loop" class="creoyou_loop"></a>
+        <a class="add_invite" ui-sref="common.request"><span class="info">4</span></a>
+        <a class="notification" ui-sref="common.notification"><span class="info">12</span></a>
+        <a class="message" ui-sref="common.chat_message"><span class="info">3</span></a>    
+    </div>
+</div>-->
+    
+<div class="row" ng-controller="Headercontroler">
+	<div class="col-45" ui-sref="common.search_on_keystock"><label class="item-input-wrapper header_search">    
+    <i class="material-icons">search</i><input type="search" placeholder="People,Business,Jobs.....">
+  </label></div>
+    	<!--<div class="col-50" ui-sref="common.search_on_keystock"><label class="item-input-wrapper header_search">    
+    <i class="material-icons" ui-sref="common.chat_">search</i><input type="search" placeholder="People,Business,Jobs.....">
+  </label></div>-->
+    <div class="col header_right_creoyou" ng-controller="refresh_control" >
+    	<a ui-sref="common.creo_loop" class="creoyou_loop"></a>
+        <a class="add_invite" ui-sref="common.request"><span class="info">{{pendingrequest}}</span></a>
+        <a class="notification" ui-sref="common.notification"><span class="info">{{notificationscount}}</span></a>
+        <a class="message" ui-sref="common.chat_message" ng-click="msg"><span class="info">{{count}}</span></a>
+       
+         <a class="top_settings" ng-click="popover1.show($event)">
+        </a>
+         <script id="templates/popover1.html"  type="text/ng-template">
+      <ion-popover-view>
+        <ion-content class="list1">
+          <div class="list">
+            <a class="item" ng-click="postjob()">
+               Job post
+            </a>
+            <a class="item" ng-click="alljob()" >
+              Jobs
+            </a>
+               <a class="item" ng-click="myjob()">
+               My Job 
+            </a>
+            <a class="item" ng-click="changepassword()">
+              Change Password
+            </a>
+            <a class="item" 
+             <i class="material-icons">settings</i>
+           
+            </a>
+            <a class="item" ng-click="logout()">
+              Logout
+            </a>
+          </div>
+        </ion-content>
+      </ion-popover-view>
+    </script>
+    </div>
+</div>
+
+
+</ion-header-bar>
+  
+  <ion-content scroll="true">
+
+ <md-content>
+   	  
+                            <div class="tab_body">    
+                                <div class="cr_nw_al row">
+                                    <button class="col col-10" ng-controller="Arrowctrl" ng-click="arrowback()"><i class="material-icons">arrow_back</i></button>       
+                                    <div class="col"><!--<i class="material-icons">create_new_folder</i>--> {{albumname}}</div> 
+                                    <button class="col col-10 settings"><i class="material-icons">settings</i></button>
+                                </div>
+
+                                <p class="folder_description">{{description}}</p>   
+                                 <div class="album_folder">
+                                <div class="row" style="flex-wrap: wrap;">
+                   
+                    <div class="col col-50"ng-repeat="folder in images" >
+                        <a href="#">
+                        <div class="folder" ng-click="showPopup()">
+                            <img ng-src="http://creoyou.net/uploads/portfolioImages/resizedimages/{{folder.image_name}}"  src="http://creoyou.net/uploads/portfolioImages/resizedimages/{{folder.image_name}}" class="album_image"/> 
+                            <div class="folder_desc">
+                                <div class="album_name"> {{folder.alname}}</div>
+                                
+                            </div>
+                        </div>    
+                        </a>                            
+                    </div>
+                </div>
+                                </div>
+                            </div>
+                       
+</md-content> 
+      
+
+	  
+
+ 
+  </ion-content>
+
+    
+  <a ui-sref="common.album_image_upload" class="upoad_image" ui-sref=""><i class="material-icons">add_a_photo</i></a>
+ <!--   
+  <ion-footer-bar class="bar-positive tabs tabs-stable already_sign">
+    	<a class="tab-item tab-item-active" ui-sref="common.login">Already have an acount?<span>Sign In</span></a>
+  </ion-footer-bar> -->    
+    
+</ion-view>

@@ -1,0 +1,174 @@
+<ion-view class="walkthrough-view" cache-view="false" >
+
+<ion-header-bar align-title="left" class="bar-creoyou">
+<!--
+<div class="row">
+	<div class="col-50"><label class="item-input-wrapper header_search">    
+    <i class="material-icons">search</i><input type="search" placeholder="People,Business,Jobs.....">
+  </label></div>
+    <div class="col header_right_creoyou">
+    	<a ui-sref="#" href="#" class="creoyou_loop"></a>
+        <a class="add_invite" ui-sref="common.request"><span class="info">4</span></a>
+        <a class="notification" ui-sref="common.notification"><span class="info">12</span></a>
+        <a ui-sref="common.chat_message"  class="message"><span class="info">3</span></a>
+    
+    </div>
+</div>-->
+<!--
+<div class="row" >
+	<div class="col-45" ui-sref="common.search_on_keystock"><label class="item-input-wrapper header_search">    
+    <i class="material-icons">search</i><input type="search" placeholder="People,Business,Jobs.....">
+  </label></div>
+    	
+    <div class="col header_right_creoyou" >
+    	<a ui-sref="common.creo_loop" class="creoyou_loop"></a>
+        <a class="add_invite" ui-sref="common.request"><span class="info">{{pendingrequest}}</span></a>
+        <a class="notification" ui-sref="common.notification"><span class="info">{{notificationscount}}</span></a>
+        <a class="message" ui-sref="common.chat_message"><span class="info">{{count}}</span></a>
+      
+         <a class="top_settings"ng-controller="Headercontroler" ng-click="popover1.show($event)" >
+        </a>
+         <script id="templates/popover1.html"  type="text/ng-template">
+      <ion-popover-view>
+        <ion-content class="list1">
+          <div class="list">
+            <a class="item" >
+              Post Job
+            </a>
+            <a class="item" >
+              Jobs
+            </a>
+            <a class="item" >
+              Change Password
+            </a>
+            <a class="item" 
+             <i class="material-icons">settings</i>
+           
+            </a>
+            <a class="item" ng-click="logout()">
+              Logout
+            </a>
+          </div>
+        </ion-content>
+      </ion-popover-view>
+    </script>
+    </div>
+</div>-->
+    
+<div class="row" ng-controller="Headercontroler">
+	<div class="col-45" ui-sref="common.search_on_keystock"><label class="item-input-wrapper header_search">    
+    <i class="material-icons">search</i><input type="search" placeholder="People,Business,Jobs.....">
+  </label></div>
+    	<!--<div class="col-50" ui-sref="common.search_on_keystock"><label class="item-input-wrapper header_search">    
+    <i class="material-icons" ui-sref="common.chat_">search</i><input type="search" placeholder="People,Business,Jobs.....">
+  </label></div>-->
+    <div class="col header_right_creoyou" ng-controller="refresh_control" >
+    	<a ui-sref="common.creo_loop" class="creoyou_loop"></a>
+        <a class="add_invite" ui-sref="common.request"><span class="info">{{pendingrequest}}</span></a>
+        <a class="notification" ui-sref="common.notification"><span class="info">{{notificationscount}}</span></a>
+        <a class="message" ui-sref="common.chat_message" ng-click="msg"><span class="info">{{count}}</span></a>
+       <!-- <a class="notification" ng-click="popover.show($event)">
+        </a>-->
+         <a class="top_settings" ng-click="popover1.show($event)">
+        </a>
+         <script id="templates/popover1.html"  type="text/ng-template">
+      <ion-popover-view>
+        <ion-content class="list1">
+          <div class="list">
+            <a class="item" ng-click="postjob()">
+               Job post
+            </a>
+            <a class="item" ng-click="alljob()" >
+              Jobs
+            </a>
+               <a class="item" ng-click="myjob()">
+               My Job 
+            </a>
+            <a class="item" ng-click="changepassword()">
+              Change Password
+            </a>
+            <a class="item" 
+             <i class="material-icons">settings</i>
+           
+            </a>
+            <a class="item" ng-click="logout()">
+              Logout
+            </a>
+          </div>
+        </ion-content>
+      </ion-popover-view>
+    </script>
+    </div>
+</div>
+
+</ion-header-bar>
+  
+  <ion-content scroll="true">
+    <ion-refresher ng-controller="pullctrl" pulling-text="Pull to refresh"
+         refreshing-text="Loading..."
+         refreshing-icon="ion-loading-c"
+     
+         on-refresh="doRefresh()">
+         </ion-refresher>
+
+                    <div class="back"> <button ng-controller="Arrowctrl" ng-click="arrowback()"><i class="material-icons">arrow_back</i> Request</button> </div> 
+<a href="#" class="connec_top_button">Connection requests</a>                                              
+<ul class="list user_list"ng-show="datafound" >
+    <li class="item" ng-repeat="request in requests" >
+        <div class="row" id="sugghide/{{request.id}}" >
+            <div class="col col-25">
+                <div class="user_img"ng-if="request.image!==''"><img ng-src="http://creoyou.net/uploads/profileImages/searchImages/{{request.image}}" class="user_img"></div>
+                
+                <div class="user_img" ng-if="request.image===''"><img ng-src="img/management.png" class="user_img"></div>
+            </div>
+            <div class="col user_details">
+                <div class="user_name">{{request.fname}}{{request.lname}}{{request.buisness_name}}</div>
+                <div class="user_desig" ng-if="request.designation!==''"><!--<i class="material-icons">card_travel</i>--> {{request.designation}}</div>
+               <!-- <div class="user_address"><i class="material-icons">location_city</i> {{request.location}}</div>-->
+            </div>
+            <div class="col col-30 user_choice">
+                <button class="requ_accept" ng-click="accept(request.id)"><i class="material-icons">person_add</i> Accept </button>
+                <button class="requ_cancel" ng-click="cancel(request.id)"><i class="material-icons">clear</i> Cancel </button>
+            </div>
+        </div>
+    </li>                               
+</ul>
+      
+ <ul class="list user_list" ng-show="datanotfound">
+    <li class="item emty_data"  >
+       {{show}}
+    </li>                               
+</ul>     
+                    
+
+<a href="#" class="connec_top_button">Suggestions</a>                                                
+                                                  
+<ul class="list user_list" >
+    <li class="item" ng-repeat="request in surequests" >
+        <div class="row"  id="sugghide/{{request.user_id}}">
+            <!--ng-show="sugghide"-->
+            <div class="col col-25">
+                <div class="user_img" ng-if="request.image!==''"><img ng-src="http://creoyou.net/uploads/profileImages/searchImages/{{request.image}}" class="user_img"></div>
+                <div class="user_img" ng-if="request.image===''"><img ng-src="img/management.png" class="user_img"></div>
+            </div>
+            <div class="col user_details">
+                <div class="user_name">{{request.fname}}{{request.lname}} {{request.buisness_name}}</div>
+                <div class="user_desig" ng-if="request.occupation!==''"><i class="material-icons">card_travel</i> {{request.occupation}}</div>
+                <div class="user_address" ng-if="request.city!==''"><i class="material-icons">location_city</i> {{request.city}}</div>
+            </div>
+            <div class="col col-30 user_choice">
+                <button class="requ_accept" ng-click="connect(request.user_id)" ng-if="request.buisness_name===null"><i class="material-icons" >person_add</i> Connect </button>
+                <button class="requ_cancel" ng-click="followperson(request.user_id)"><i class="material-icons">clear</i> Follow </button>
+            </div>
+        </div>
+    </li>                               
+</ul>              
+                           
+                                 
+  </ion-content>
+
+    
+    
+    
+    
+</ion-view>

@@ -1,0 +1,50 @@
+<ion-view class="walkthrough-view multi-bg-outer" style="background-image: url('img/background.jpg')" cache-view="false">
+    <ion-content>
+        <form name="myForm" novalidate>
+    <div class="top-content row"> 
+        <div class="reg_block_fraim">
+            <div class="col register_logo_section">
+                <img ng-src="img/logo.png" class="app_logo">    
+            </div>
+            
+        
+            <div class="col col-center registration_field">                
+                <div class="list list-inset">
+                
+                	<div class="accepted_icon"><img ng-src="img/accepeted_icon.png" class="app_logo"></div>
+
+                  	<div class="V_code">We Have Sent A Verification Code To <br>  {{mobno}}</div>
+               	
+                <p ng-show="myForm.otp.$error.required && !myForm.otp.$pristine">* OTP is required</p>
+                  <label class="item item-input">
+                       
+                    <input type="text" name="otp" ng-model="otp"  placeholder="Enter Confirmation Code Here" required>
+                  </label>
+                  
+                  <div class="ion-item-divider resend_otp" >
+                        <span class="ter_pri" ng-click="showPopup()">Want to change the Mobile Number ?</span> 
+                  </div>    
+                    
+                  <button class="button button-block Log_sub" ng-disabled="myForm.$invalid"ng-click="verify(otp)" >Next</button>  
+                  
+                  <div class="ion-item-divider login_divider">
+                        <a class="tab-item tab-item-active" ng-click="resendcode()">Resend Code</a> 
+                  </div>   
+                    
+                </div>
+                
+                
+            </div> 
+        </div>    
+        
+    </div> 
+        </form>
+  </ion-content>
+
+    
+    
+ <!-- <ion-footer-bar class="bar-positive tabs tabs-stable already_sign">
+    	<a class="tab-item tab-item-active" ui-sref="auth.Registration_choice">Already have an acount?<span>Sign Up</span></a>
+    </ion-footer-bar>-->     
+    
+</ion-view>

@@ -1,0 +1,194 @@
+<ion-view class="walkthrough-view multi-bg-outer" style="background-image: url('img/background.jpg')" cache-view="false" >
+
+<ion-header-bar align-title="left" class="bar-creoyou">
+<!--
+<div class="row">
+	<div class="col-50"><label class="item-input-wrapper header_search">    
+    <i class="material-icons">search</i><input type="search" placeholder="People,Business,Jobs.....">
+  </label></div>
+    <div class="col header_right_creoyou">
+    	<a ui-sref="#" href="#" class="creoyou_loop"></a>
+        <a class="add_invite" ui-sref="common.request"><span class="info">4</span></a>
+        <a class="notification" ui-sref="common.notification"><span class="info">12</span></a>
+        <a class="message" ui-sref="common.chat_message"><span class="info">3</span></a>
+    
+    </div>
+</div>-->
+
+<div class="row" ng-controller="Headercontroler">
+	<div class="col-45" ui-sref="common.search_on_keystock"><label class="item-input-wrapper header_search">    
+    <i class="material-icons">search</i><input type="search" placeholder="People,Business,Jobs.....">
+  </label></div>
+    	<!--<div class="col-50" ui-sref="common.search_on_keystock"><label class="item-input-wrapper header_search">    
+    <i class="material-icons" ui-sref="common.chat_">search</i><input type="search" placeholder="People,Business,Jobs.....">
+  </label></div>-->
+    <div class="col header_right_creoyou" ng-controller="refresh_control" >
+    	<a ui-sref="common.creo_loop" class="creoyou_loop"></a>
+        <a class="add_invite" ui-sref="common.request"><span class="info">{{pendingrequest}}</span></a>
+        <a class="notification" ui-sref="common.notification"><span class="info">{{notificationscount}}</span></a>
+        <a class="message" ui-sref="common.chat_message" ng-click="msg"><span class="info">{{count}}</span></a>
+       
+         <a class="top_settings" ng-click="popover1.show($event)">
+        </a>
+         <script id="templates/popover1.html"  type="text/ng-template">
+      <ion-popover-view>
+        <ion-content class="list1">
+          <div class="list">
+            <a class="item" ng-click="postjob()">
+               Job post
+            </a>
+            <a class="item" ng-click="alljob()" >
+              Jobs
+            </a>
+               <a class="item" ng-click="myjob()">
+               My Job 
+            </a>
+            <a class="item" ng-click="changepassword()">
+              Change Password
+            </a>
+            <a class="item" 
+             <i class="material-icons">settings</i>
+           
+            </a>
+            <a class="item" ng-click="logout()">
+              Logout
+            </a>
+          </div>
+        </ion-content>
+      </ion-popover-view>
+    </script>
+    </div>
+</div>
+
+</ion-header-bar>
+  
+  <ion-content scroll="true">
+<div class="back job_admin"> 
+    <button ui-sref="common.joblist"><i class="material-icons">arrow_back</i></button> 
+    
+    <div class="job_post_admin_title">
+        <h2>Job Details</h2>
+    </div>
+    
+    <!--<a href="" class="job_filter"><i class="material-icons">tune</i></a>-->
+        
+    
+    <div class="clearfix"></div>
+    
+</div>
+      
+<div class="admin_banner_block" ng-repeat="job in jobdetails">
+    
+    <!--<i class="material-icons">settings</i>
+    <div class="card pop_card">
+      <div class="item item-text-wrap">
+         <button class="privacy">
+            <i class="material-icons">border_color</i> Edit
+         </button>
+         <button class="Delete">
+            <i class="material-icons">delete_sweep</i> Delite
+         </button>
+         <button class="privacy" ui-sref="common.job_applicants">
+            <i class="material-icons">visibility</i> View Applicants
+         </button>  
+      </div>
+    </div>-->
+    
+    
+    <div class="job_admin_image">
+        <img ng-src="img/job-admin_image.jpg">
+    </div>
+    <h2 class="post_name">{{job.job_title}}</h2>
+    <h4 class="post_company_name">{{job.fname}}{{job.lname}}</h4>
+    <h4 class="post_company_address"><i class="material-icons">location_on</i>{{job.city}},{{job.state}},{{job.country}}</h4>
+</div> 
+
+<!--<div class="apply_bar"> Apply</div>  -->    
+      
+
+<div class="job_list_body" ng-repeat="job in jobdetails" >
+    
+    <div class="admin_job_desc">
+         <label class="item">Description</label>
+
+       {{job.description}}
+    </div>
+    
+    <div class="admin_job_desc">
+         <label class="item">Required experience</label>
+        {{job.required_experience}}                                      
+    </div>
+    
+    <div class="admin_job_desc">
+         <label class="item">Skills</label>
+    {{job.required_skills}}      
+    </div>
+    
+    <div class="admin_job_desc">
+         <label class="item">Job Type</label>
+{{job.jobtype}}                                      
+    </div>
+    
+    <div class="admin_job_desc">
+         <label class="item">Job Keywords</label>
+Web Design                                       
+    </div>
+    
+    <div class="admin_job_desc">
+         <label class="item">Salary</label>
+{{job.salary}}                                        
+    </div>
+    
+    <div class="admin_job_desc">
+         <label class="item">Deadline for application</label>
+{{job.deadline_for_application}}                                        
+    </div>
+    
+   <!-- <h3 class="expired_retracted_bar">People also Viewed</h3>        
+    <ul class="list user_list" >  
+        <li class="item BusinessList">
+
+            <div class="row">
+                <div class="col col-25 job_image">
+                    <img ng-src="img/businessuser_list_img.jpg">
+                </div>
+                <div class="col Businessuser_details">
+                    <div class="jobs_name">SR. Graphics Designer</div>
+                    <div class="job_company_name">Sobhagya Advertising</div>
+                </div>
+                <div class="col busi_descrip job_post_list">
+                    <i class="material-icons">settings</i>
+                    div class="card pop_card">
+                      <div class="item item-text-wrap">
+                         <button class="privacy">
+                            <i class="material-icons">block</i> Block
+                         </button>
+
+                         <button class="Delete">
+                            <i class="material-icons">remove_circle_outline</i> Disconnect
+                         </button>  
+
+                      </div>
+                    </div
+                    
+                   <div class="business_address"><i class="material-icons">location_on</i> Ahmedabad,Gujrat</div> 
+                </div>
+            </div>
+        </li>
+         
+    </ul>-->
+    
+    
+</div>      
+      
+  </ion-content>
+
+    
+    
+  <ion-footer-bar class="bar-positive tabs tabs-stable already_sign" ng-repeat="job in status">
+    	<a class="tab-item tab-item-active" ng-click="apply(status.flag)" ng-if="status.flag==='Applied'">You already applied</a>
+      <a class="tab-item tab-item-active" ng-click="apply(status.flag)" ng-if="status.flag==='Not Applied'"  ng-show="log1">Apply</a>
+       <a class="tab-item tab-item-active" ng-click="apply(status.flag)" ng-if="status.flag==='Not Applied'" ng-disabled="true" ng-show="log2">Apply</a>
+  </ion-footer-bar>     
+    
+</ion-view>

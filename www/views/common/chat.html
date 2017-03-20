@@ -1,0 +1,116 @@
+<ion-view class="walkthrough-view multi-bg-outer" style="background-image: url('img/background.jpg')" cache-view="false" >
+
+
+  <ion-header-bar align-title="left" class="bar-creoyou"> 
+  
+<div class="back job_admin"> 
+    <button ui-sref="common.chat_message">
+        <i class="material-icons">arrow_back</i>
+    </button> 
+    
+    <div class="job_post_admin_title MessagesTitle ChatMessagesTitle"  >
+        <h2>{{username}}</h2>
+    </div>
+    <div class="MessageDrop">
+        
+        <i ng-click="popover1.show($event)" class="material-icons">more_vert</i>
+
+          <script id="templates/popover1.html"  type="text/ng-template">
+               <ion-popover-view>
+                 <ion-content class="list1">
+                   <div class="list">
+                     <a class="item" ng-click="deleteconversion()">
+                       Delete Conversation
+                     </a>
+                     <a class="item" ng-click="alljob()" >
+                       Archive
+                     </a>
+                       <a class="item" ng-click="alljob()" >
+                       Delete Message
+                     </a>  
+                   </div>
+                 </ion-content>
+               </ion-popover-view>
+            </script>
+        
+    </div>
+    
+    <div class="clearfix"></div>
+    
+</div>
+      
+   </ion-header-bar>
+    
+<ion-content class="msgscroll">   
+   
+    <div  ng-repeat="message in datecreation" data-ng-init="init(message.creation_date,message.content,message.image,message.userId)">
+
+    </div>
+          <div class="chat_body"  ng-repeat="message in messages"  >
+        
+        <!--  <div class="chat_date"> Today 1:13 AM</div>-->
+          
+        
+          <!--for chating to friend------------------->
+           
+           <div class="chat_user" ng-if="message.userId!=myId">
+              <div class="teme">{{ message.creation_date | date:"dd MMMM yyyy 'at' h:mma"}}</div>
+             <!-- <div class="copy_message"><i class="material-icons">content_copy</i></div>
+              <div class="delete_message"><i class="material-icons">delete_sweep</i></div>
+              -->
+            <div class="chat_bubble" ng-bind-html=" message.content  | trusted">                
+               <!--{{ message.content }}-->
+            </div>  
+            <div class="chat_img">
+                <img ng-src="http://creoyou.net/uploads/profileImages/{{message.image}}">  
+            </div>              
+          </div>
+          
+           <div class="chat_oponent "ng-if="message.userId===myId" >
+               <div class="teme">{{ message.creation_date | date:"dd MMMM yyyy 'at' h:mma"}}</div>
+            <div class="chat_img">
+                <img ng-src="http://creoyou.net/uploads/profileImages/{{message.image}}">  
+            </div>
+               
+              <!--<div class="copy_message"><i class="material-icons">content_copy</i></div>
+              <div class="delete_message"><i class="material-icons">delete_sweep</i></div>-->
+            <div class="chat_bubble" ng-bind-html=" message.content  | trusted"><!--{{message.content}}-->
+               
+               
+            </div>  
+          </div>
+          
+          <!--------------------end of chting------------------->
+      </div>
+     
+ <!-- <input placeholder="Type a Message" type="text"  ng-model="message" required> -->
+    
+        
+        
+   
+    
+        
+     
+  </ion-content>
+  
+    
+     <!--  <a href="" class="type_message"><i class="material-icons">create</i></a> -->
+ 
+     <div class="ChatInputBox bar-positive message-input">    
+      <input  placeholder="Type a Message" type="text"  ng-model="data.message" required>
+       <button class="message_send_button" ng-click="sendMessage()" >
+        <i class="material-icons">send</i>
+      </button>
+   </div>  
+
+    
+   
+
+  <!--ion-footer-bar class="bar-positive tabs tabs-stable message-input">   
+  </ion-footer-bar-->
+      
+      
+    
+    
+    
+</ion-view>

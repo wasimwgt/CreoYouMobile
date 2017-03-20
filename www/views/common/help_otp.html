@@ -1,0 +1,59 @@
+<ion-view class="multi-bg-outer walkthrough-view"  cache-view="false">
+    <ion-content>
+         <form name="myForm" novalidate>
+    <div class="back job_admin"> 
+    <!--<button ui-sref="common.chat_message"><i class="material-icons">arrow_back</i></button> -->
+    
+    <div class="job_post_admin_title">
+        <h2>Login Help</h2>
+    </div>
+    
+    
+    <div class="clearfix"></div>
+    
+</div>
+    <div class="top-content row chat_body help_otp-wrap"> 
+        <div class="reg_block_fraim">
+            
+            
+        
+            <div class="col col-center registration_field">                
+                <div class="list list-inset ">
+                
+                	 <h1><img ng-src="img/help-otp.png" class=""> </h1>
+
+                  	<div class="V_code">We Have Sent A Verification Code To <br> {{mobileno}}</div>
+               	
+                
+                  <label class="item item-input">
+                      <p ng-show="myForm.otp.$error.required && !myForm.otp.$pristine">* OTP is required</p>
+                    <input type="text" placeholder="Enter Confirmation Code Here" ng-model="otp"required>
+                  </label>
+                  
+                  <div class="ion-item-divider resend_otp" ng-controller="PopupCtrl">
+                       <!-- <span class="ter_pri" ng-click="showPopup()">Want to change the Mobile Number ?</span> -->
+                  </div>    
+                    
+                  <button class="button button-block Log_sub" ng-click="verify(otp)"ng-disabled="myForm.$invalid">Next</button>  
+                  
+                  <div class="ion-item-divider login_divider">
+                        <a class="tab-item tab-item-active" ng-click="resendcode()">Resend Code</a> 
+                  </div>   
+                    
+                </div>
+                
+                
+            </div> 
+        </div>    
+        
+    </div>   
+         </form>
+  </ion-content>
+
+    
+    
+ <!--  <ion-footer-bar class="bar-positive tabs tabs-stable already_sign">
+    	<a class="tab-item tab-item-active" ui-sref="common.login">Sign in</a>
+    </ion-footer-bar>   
+    -->
+</ion-view>

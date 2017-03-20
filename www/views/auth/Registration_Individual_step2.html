@@ -1,0 +1,75 @@
+<ion-view class="walkthrough-view multi-bg-outer" style="background-image: url('img/background.jpg')" cache-view="false">
+    <ion-content>
+   <form name="myForm" novalidate>
+    <div class="top-content row"> 
+        <div class="reg_block_fraim">
+            <div class="col register_logo_section">
+                <img ng-src="img/logo.png" class="app_logo">    
+            </div>
+            
+        
+            <div class="col col-center registration_field">                
+                <div class="list list-inset">
+                  <label class="tem item-input message_parrent">
+                    <input type="text" name="Username" ng-model="Username" id="user" ng-keyup='usercheck()' placeholder="Username" ng-pattern="/^[a-zA-Z0-9]*$/" required>
+                      
+                  </label>
+                    <p ng-show="myForm.Username.$error.pattern">Only letters and numbers are allowed </p>
+                    <p ng-show="myForm.Username.$error.required">* Username is required</p>
+                    <p >{{username}}</p>
+
+				  <div class="mobile_label item item-input">
+                   	<input type="text" ng-model="country.dial_code" class="country_code">
+                   	<select ng-model="country" ng-init="country=countries[0]" ng-options="country.name for country in countries" class="reg_select"></select>
+                    <input type="tel" name="mob" ng-model="mob"
+                           id="phone" ng-keyup='phonecheck()'ng-minlength="8" ng-maxlength="11"class="mobile_no" placeholder="Mobile Number" ng-pattern="/^[0-9]+$/"required>   
+                      
+                  </div>   
+                    <p  class="help-block">{{phone}}</p>
+                    <p ng-show="myForm.mob.$error.required && !myForm.mob.$pristine " >* Mobile number is required</p>
+                    <p ng-show="myForm.mob.$error.minlength" class="help-block">Your phone no must be 8 Number</p>
+                   <p ng-show="myForm.mob.$error.maxlength" class="help-block">Your Phoneno is invalid.</p>
+                    <p ng-show="myForm.mob.$error.pattern" class="help-block">Only Numbers are allowed.</p>
+                     
+                </td>
+                  <label class="item item-input message_parrent">
+                    <input type="Password" name="password" ng-model="password" placeholder="Password" ng-minlength="8" ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/" required>
+                      <div ng-show="myForm.password.$error.pattern" class="message_in">Password must have at least 8 characters and contain at least 1 Uppercase letter and 1 number and one lower case letter</div> 
+                  </label>
+                    <p ng-show="myForm.password.$error.required && !myForm.password.$pristine " >* Password is required</p> 
+<!--                     <p ng-show="myForm.password.$error.pattern"  class="help-block">Your password must contain one lower and uppercase letter, and one non-alpha character.</p>-->
+                    <p ng-show="myForm.password.$error.minlength" >* Password must be longer than 8 characters</p>
+                      <label class="item item-input item-input-help">
+           
+                   <!-- <input type="password" placeholder=""name="rpassword" ng-model="rpassword" required>-->
+                <input type="password"   name="confirm_password" ng-model="confirm_password" placeholder="Confirm password" match-password="password" required>
+                  </label>
+                <p ng-show="myForm.confirm_password.$error.matchPassword && !myForm.confirm_password.$error.required" >Confirm password didn't match</p>
+               <p ng-show="myForm.confirm_password.$error.required && !myForm.password.$pristine " >* Password is required</p> 
+                  <div class="ion-item-divider login_divider">
+                        <span class="ter_pri" ui-sref="#">By clicking Sign Up, you agree with CreoYou's <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a>.</span> 
+                  </div>
+                  
+                  <button ng-click="valuestep2(Username,country,mob,password)" class="button button-block reg_sub"  ng-disabled="myForm.$invalid"ng-show="sub" >Sign Up</button> 
+                <button ng-click="valuestep2(Username,country,mob,password)" class="button button-block reg_sub"  ng-disabled="true" ng-show="sub1">Sign Up</button>
+                                      
+                  <img id="mySpinner" src="img/loder_home.gif" ng-show="loading"/>
+                </div>
+              
+                
+            </div> 
+        </div>    
+        
+    </div> 
+        </form>
+  </ion-content>
+
+    
+    
+  <!--<ion-footer-bar class="bar-positive tabs tabs-stable already_sign">
+    	<a class="tab-item tab-item-active" ui-sref="common.login">Already have an acount?<span>Sign In</span></a>
+  </ion-footer-bar>   -->  
+    
+    
+    
+</ion-view>

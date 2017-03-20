@@ -1,0 +1,79 @@
+<ion-view class="walkthrough-view multi-bg-outer" cache-view="false" >
+   <ion-header-bar align-title="left" class="bar-creoyou">
+      <!--
+         <div class="row">
+         	<div class="col-50"><label class="item-input-wrapper header_search">    
+             <i class="material-icons">search</i><input type="search" placeholder="People,Business,Jobs.....">
+           </label></div>
+             <div class="col header_right_creoyou">
+             	<a ui-sref="#" href="#" class="creoyou_loop"></a>
+                 <a class="add_invite" ui-sref="common.request"><span class="info">4</span></a>
+                 <a class="notification" ui-sref="common.notification"><span class="info">12</span></a>
+                 <a class="message" ui-sref="common.chat_message"><span class="info">3</span></a>
+             
+             </div>
+         </div>-->
+<div class="row" ng-controller="Headercontroler">
+	<div class="col-45" ui-sref="common.search_on_keystock"><label class="item-input-wrapper header_search">    
+    <i class="material-icons">search</i><input type="search" placeholder="People,Business,Jobs.....">
+  </label></div>
+</div>
+   </ion-header-bar>
+   <ion-content scroll="true">
+      <div class="back" ng-if="invite1===1"> 
+         <button ui-sref="common.createevent"><i class="material-icons">arrow_back</i> Back</button> 
+         <button  style="float:right" ng-click=donetag() ><i class="material-icons">done</i> Done</button>
+      </div>
+        <div class="back" ng-if="invite1===0"> 
+         <button ui-sref="common.event"><i class="material-icons">arrow_back</i> Back</button> 
+         <button  style="float:right" ng-click=donetag1() ><i class="material-icons">card_giftcard</i> Invite</button>
+      </div>
+      <div class="chat_user_search TagSearch">
+         <input type="search" placeholder="Search by Firend Name"   ng-model="filter">
+      </div>
+      <div class="post_top_bar"> 
+         <button></button> 
+         <button ui-sref="" style="float:right"></button>
+      </div>
+      <!-- <div class="chat_user_search">
+         <input type="search" placeholder="Search"   ng-model="filter">
+            
+         </div>-->
+      <div class="card">
+      <div class="compose_message_body">
+      <div class="list TagFriend">
+         <label class="item item-input item-floating-label">
+            <p>Tag A Friend</p>
+         </label>
+            <ion-scroll zooming="true" direction="y" style="width: 100%; height: auto">
+               <div style="width:100%; height: auto">
+                  <!--  <label ng-repeat="role in conections">
+                     <input type="checkbox" checklist-model="user.roles" checklist-value="role"> {{role.fname}}{{role.lname}}
+                     </label>-->
+                  <ul class="list user_list TagList">
+                     <li class="item" ng-repeat="conection in conections | filter:filter" >
+                        <div class="row">
+                           <div class="col col-10 user_choice">
+                              <!--<input type="checkbox" checklist-model="user.roles" checklist-value="role"> -->
+                              <input type="checkbox" ng-change="sync(bool, conection.user_id)" ng-model="bool" ng-checked="isChecked(conection.user_id)">
+                           </div>    
+                           <div class="col col-20">
+                              <div class="user_img"><img ng-src="http://creoyou.net/uploads/profileImages/{{conection.image}}" class="user_img"></div>
+                           </div>
+                           <div class="col col-70 user_details">
+                            <div class="user_name">{{conection.fname}} {{conection.lname}}</div>
+                           </div>
+                           
+                        </div>
+                     </li>
+                  </ul>
+               </div>
+         </ion-scroll>      
+      </div>
+     </div>
+    </div>          
+   </ion-content>
+   <!--  <ion-footer-bar class="bar-positive tabs tabs-stable already_sign">
+      <a class="tab-item tab-item-active" ui-sref="common.login">Already have an acount?<span>Sign In</span></a>
+      </ion-footer-bar>  -->   
+</ion-view>

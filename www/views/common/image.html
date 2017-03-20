@@ -1,0 +1,66 @@
+<ion-view class="walkthrough-view" cache-view="false" >
+   <ion-header-bar align-title="left" class="bar-creoyou">
+      <div class="ImagesView"> 
+         <button  ng-click="arrowback()">
+         <i class="material-icons">arrow_back</i>
+         Notification</button> 
+      </div>
+   </ion-header-bar>
+   <ion-content scroll="false">
+      <ion-slide-box class="ImageViewSlider" show-pager="false" on-slide-changed="onSlideChanged(index)" active-slide="currentIndex">
+         <ion-slide  ng-repeat="image in images12">
+           <h2 ng-if="image.image_title!=='null'">{{image.image_title}}</h2>  
+             <h2 ng-if="image.image_title===null">No Title Found</h2>   
+             
+           <div class="col col-30 user_choice ImgaesViewDrop" >
+              <i class="material-icons"  ng-click="block(image.id)" >settings</i>
+              <div class="card pop_card" id="sugghide/{{image.id}} " >
+                 <div class="item item-text-wrap">
+                    <button class="privacy" ng-click="title(image.id)">
+                    <i class="material-icons">mode_edit</i>Title
+                    </button>
+                    <button class="Delete" ng-click="description(image.id,image.image_description)">
+                       <i class="material-icons">mode_edit</i>Description
+                       </button>  
+                 </div>
+              </div>
+           </div>
+            <img ng-src="http://creoyou.net/uploads/portfolioImages/{{image.image_name}}" />
+            
+<div class="images-button">
+    <p class="ImgDetails">
+      {{image.image_description}}
+    </p>
+      <div class="caed postcard">
+         <ul class="list">
+            <li class="item post_footer">
+               <ul ng-controller="Likectrl">
+             
+                  <li class="wishlist" ><a href="#"><i class="material-icons {{image.likeActive}} " ng-click="likecreate(image.id,'Photo',image.likeActive,indihome.fname,indihome.lname)" ng-class="mainclass"  id="btn1">favorite</i><label  ng-click="like(image.incidentId,'Photo',image.id)" ng-if="values!==111" >{{image.image_like -- lik}}</label>
+                     <label  ng-click="like(image.incidentId,'Photo',image.id)" ng-if="values==111" >{{lik}}</label>
+                     <label  ng-click="like(indihome.incidentId,'Photo',image.id)" ng-if="lik==''" >0</label>
+                     </a>
+                  </li>
+                  <li class="comment" ><a href="#"><i class="material-icons ">chat_bubble</i><label ng-click="comment(indihome.incidentId,indihome.incident_type,indihome.id)"  ng-if="image.count!=='count'">{{image.count}}</label>
+                     <label ng-click="comment(indihome.incidentId,indihome.incident_type,indihome.id)"  ng-if="image.count==='count'">0</label>    
+                     </a>
+                  </li>
+                  <li class="share"><a href="#"><i class="material-icons">share</i><label>30</label></a></li>
+               </ul>
+            </li>
+            <!--  <li class="recent_comment" ng-controller="Likectrl">-->
+           
+         </ul>
+         <!-- <i class="material-icons" ng-click="openPopover($event)">settings</i>-->
+      </div>
+     </div>   
+             
+         </ion-slide>
+          
+            
+          
+      </ion-slide-box>
+
+       
+   </ion-content>
+</ion-view>

@@ -1,0 +1,82 @@
+<ion-view class="walkthrough-view multi-bg-outer" style="background-image: url('img/background.jpg')" cache-view="false" >
+
+
+  
+  <ion-content scroll="true">
+      <form name="myForm" novalidate>
+<div class="back job_admin"> 
+    <!--<button ui-sref="common.chat_message"><i class="material-icons">arrow_back</i></button> -->
+    
+    <div class="job_post_admin_title">
+        <h2>Help</h2>
+    </div>
+    
+    
+    <div class="clearfix"></div>
+    
+</div>
+
+      <div class="chat_body help_wrap help_wrap_email">
+        <h1>Recover Using</h1>
+         <md-content>
+   	    <md-tabs md-dynamic-height md-border-bottom stretchTabs flex class="About_me_tab">
+     
+            
+      
+      <md-tab label="Email">
+        <md-content class="" scroll="y" layout="column">
+           
+            
+               
+                             <div class="help-form">
+                                <label class="item item-input item-input-help">
+                    <input type="Email" placeholder="Email Address"ng-model="email">
+                  </label>
+                    
+                  <button class="button button-block reg_sub"  ng-click="emailhelp(email)">Next</button>  
+                             </div>
+                       
+                
+                
+                
+               
+            
+        </md-content>
+      </md-tab>
+      
+      
+      <md-tab label="Phone">
+        <md-content class="" scroll="y" layout="column">
+           <div class="help-form">
+            <div class="mobile_label item item-input item-input-help">
+                   	<input type="text" ng-model="country.dial_code" class="country_code">
+                   	<select ng-model="country" ng-init="country=countries[0]" ng-options="country.name for country in countries" class="reg_select"></select>
+                   <!-- <input type="tel" class="mobile_no" placeholder="Mobile Number" ng-model="mob">-->    <input type="tel" name="mob" ng-model="mob"
+                           id="phone" ng-keyup='phonecheck()'ng-minlength="8" ng-maxlength="11"class="mobile_no" placeholder="Mobile Number" ng-pattern="/^[0-9]+$/"required>              
+                  </div>  
+                 
+                    <p ng-show="myForm.mob.$error.required && !myForm.mob.$pristine " >* Mobile number is required</p>
+                    <p ng-show="myForm.mob.$error.minlength" class="help-block">Your phone no must be 8 Number</p>
+                   <p ng-show="myForm.mob.$error.maxlength" class="help-block">Your Phoneno is invalid.</p>
+                    <p ng-show="myForm.mob.$error.pattern" class="help-block">Only Numbers are allowed.</p>
+            <button class="button button-block reg_sub" ng-click="phonehelp(mob,country)"ng-disabled="myForm.$invalid">Next</button>  
+           </div>
+        </md-content>
+      </md-tab>
+      
+    </md-tabs>
+      </md-content> 
+          
+      </div>
+
+      </form>
+      
+  </ion-content>
+
+    
+   <!-- <ion-footer-bar class="bar-positive tabs tabs-stable already_sign">
+    	<a class="tab-item tab-item-active" ui-sref="common.login">Sign in</a>
+    </ion-footer-bar>     
+ -->
+    
+</ion-view>

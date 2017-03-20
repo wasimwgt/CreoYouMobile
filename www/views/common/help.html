@@ -1,0 +1,45 @@
+<ion-view class="walkthrough-view multi-bg-outer" style="background-image: url('img/background.jpg')" cache-view="false" >
+
+
+  
+  <ion-content scroll="true">
+<div class="back job_admin"> 
+    <button ui-sref="common.login"><i class="material-icons">arrow_back</i></button> 
+    
+    <div class="job_post_admin_title">
+        <h2>Login Help</h2>
+    </div>
+    
+    
+    <div class="clearfix"></div>
+    
+</div>
+
+      <div class="chat_body help_wrap">
+        <h1>Need Help with?</h1>
+         <div class="V_code">
+          <!--<ion-checkbox id="username" ng-model="uname" ng-click="myClick(uname)">Username</ion-checkbox>-->
+          <!--  <input id="chkusername" type="checkbox" ng-model="chkusername" />Username </br>-->
+    <input class="checkbox" type="checkbox" name="name[]" value="username" id="username" ng-model="uname" ng-click="myClick(uname)"/> User Name
+        </div>            
+  <div class="V_code">
+      <input class="checkbox" type="checkbox" name="name[]" value="password" id="password"ng-model="pass" ng-click="myClick1(pass)"/> Password
+          <!-- <ion-checkbox ng-model="isChecked2">Password</ion-checkbox>-->
+           <!-- <input type="checkbox" id="myCheck1">password-->
+         </div> 
+          <button class="button button-block Log_sub" ng-click="next()">Next</button>           
+      </div>
+
+
+      
+  </ion-content>
+
+    
+<!--
+    <ion-footer-bar class="bar-positive tabs tabs-stable already_sign">
+    	<a class="tab-item tab-item-active" ui-sref="common.login">Sign in</a>
+    </ion-footer-bar>     
+ 
+-->
+    
+</ion-view>

@@ -1,0 +1,230 @@
+<ion-view class="walkthrough-view multi-bg-outer" style="background-image: url('img/background.jpg')" cache-view="false" >
+
+<ion-header-bar align-title="left" class="bar-creoyou">
+
+
+<!--
+<div class="row" ng-controller="Headercontroler">
+	<div class="col-45" ui-sref="common.search_on_keystock"><label class="item-input-wrapper header_search">    
+    <i class="material-icons">search</i><input type="search" placeholder="People,Business,Jobs.....">
+  </label></div>
+    	
+    <div class="col header_right_creoyou">
+    	<a ui-sref="common.creo_loop" class="creoyou_loop"></a>
+        <a class="add_invite" ui-sref="common.request"><span class="info">4</span></a>
+        <a class="notification" ui-sref="common.notification"><span class="info">12</span></a>
+        <a class="message" ui-sref="common.chat_message"><span class="info">3</span></a>
+       
+         <a class="top_settings" ng-click="popover1.show($event)">
+        </a>
+         <script id="templates/popover1.html"  type="text/ng-template">
+      <ion-popover-view>
+        <ion-content class="list1">
+          <div class="list">
+            <a class="item" >
+              Post Job
+            </a>
+            <a class="item" >
+              Jobs
+            </a>
+            <a class="item" >
+              Change Password
+            </a>
+            <a class="item" 
+             <i class="material-icons">settings</i>
+           
+            </a>
+            <a class="item" >
+              Logout
+            </a>
+          </div>
+        </ion-content>
+      </ion-popover-view>
+    </script>
+    </div>
+</div>-->
+    
+<div class="row" ng-controller="Headercontroler">
+	<div class="col-45" ui-sref="common.search_on_keystock"><label class="item-input-wrapper header_search">    
+    <i class="material-icons">search</i><input type="search" placeholder="People,Business,Jobs.....">
+  </label></div>
+    	<!--<div class="col-50" ui-sref="common.search_on_keystock"><label class="item-input-wrapper header_search">    
+    <i class="material-icons" ui-sref="common.chat_">search</i><input type="search" placeholder="People,Business,Jobs.....">
+  </label></div>-->
+    <div class="col header_right_creoyou" ng-controller="refresh_control" >
+    	<a ui-sref="common.creo_loop" class="creoyou_loop"></a>
+        <a class="add_invite" ui-sref="common.request"><span class="info">{{pendingrequest}}</span></a>
+        <a class="notification" ui-sref="common.notification"><span class="info">{{notificationscount}}</span></a>
+        <a class="message" ui-sref="common.chat_message" ng-click="msg"><span class="info">{{count}}</span></a>
+       <!-- <a class="notification" ng-click="popover.show($event)">
+        </a>-->
+         <a class="top_settings" ng-click="popover1.show($event)">
+        </a>
+         <script id="templates/popover1.html"  type="text/ng-template">
+      <ion-popover-view>
+        <ion-content class="list1">
+          <div class="list">
+            <a class="item" ng-click="postjob()">
+               Job post
+            </a>
+            <a class="item" ng-click="alljob()" >
+              Jobs
+            </a>
+               <a class="item" ng-click="myjob()">
+               My Job 
+            </a>
+            <a class="item" ng-click="changepassword()">
+              Change Password
+            </a>
+            <a class="item" 
+             <i class="material-icons">settings</i>
+           
+            </a>
+            <a class="item" ng-click="logout()">
+              Logout
+            </a>
+          </div>
+        </ion-content>
+      </ion-popover-view>
+    </script>
+    </div>
+</div>
+
+</ion-header-bar>
+  
+  <ion-content scroll="true">
+<div class="back"> 
+    <button ng-controller="Arrowctrl" ng-click="arrowback()"><i class="material-icons">arrow_back</i></button> 
+    
+    <div class="job_post_list_title">
+        <h2>Posted Job</h2>
+        <h5>Expired/Retracted</h5>
+    </div>
+    <div class="clearfix"></div>
+    
+</div>
+
+<div class="job_list_body">
+    <ul class="list user_list">               
+
+        <li class="item BusinessList" ng-repeat="job in jobs"
+            ng-if="check!=='null'" ng-click="jobid(job.id)">
+            <div class="row">
+                
+                <div class="col col-100  Businessuser_details">
+                    <div class="jobs_name PostJobsTitle">{{job.job_title}}</div>
+                    <div class="business_address_location">
+                       <i class="material-icons">location_on</i>
+                       {{job.country}},{{job.state}},{{job.city}}</div>
+                </div>
+                <!-- <div col-60 class="col busi_descrip job_post_list">
+                    <i class="material-icons">settings</i>
+
+                    <div class="card pop_card">
+                      <div class="item item-text-wrap">
+                         <button class="privacy"  ui-sref="common.job_applicants">
+                            <i class="material-icons">visibility</i> View Applicants
+                         </button>
+
+                         <button class="privacy">
+                            <i class="material-icons">border_color</i> Edit
+                         </button>
+                        
+                         <button class="delite">
+                            <i class="material-icons">delete_forever</i> Retract
+                         </button>                           
+                      </div>
+                </div>  
+                </div>-->
+            </div>
+        </li>
+        <li class="item BusinessList" 
+            ng-if="check==='null'" >
+            <div class="row">
+                <div class="col col-25 job_image">
+                    <img ng-src="http://creoyou.net/uploads/profileImages/{{job.image}}">
+                </div>
+                <div class="col Businessuser_details">
+                    <div class="jobs_name">No Jobs Found!!!!</div>
+                    <div class="job_company_name"></div>
+                </div>
+                <div class="col busi_descrip job_post_list">
+                    <i class="material-icons"></i>
+<!--
+                   
+-->
+                    
+                   <div class="business_address"><i class="material-icons">location_on</i></div> 
+                </div>
+            </div>
+        </li>
+         <h3 class="expired_retracted_bar">Expired/Retracted/h3>        
+        
+        <li class="item BusinessList" ng-repeat="job in ejobs" ng-if="check1!=='null'"
+             ng-click="jobid(job.id)">
+            <div class="row">
+                <!--<div class="col col-25 job_image">
+                    <img ng-src="img/businessuser_list_img.jpg">
+                </div>-->
+                <div class="col Businessuser_details col-80">
+                    <div class="jobs_name PostJobsTitle">{{job.job_title}}</div>
+                    <div class="business_address_location"><i class="material-icons">location_on</i> {{job.country}},{{job.state}},{{job.city}}</div> 
+                </div>
+                <div class="col busi_descrip job_post_list">
+                    <i class="material-icons">settings</i>
+                   <!-- <div class="card pop_card">
+                      <div class="item item-text-wrap">
+                         <button class="privacy" ui-sref="common.job_applicants">
+                            <i class="material-icons">visibility</i> View Applicants
+                         </button>
+
+                         <button class="privacy">
+                            <i class="material-icons">border_color</i> Edit
+                         </button>
+                        
+                         <button class="delite">
+                            <i class="material-icons">file_upload</i> Publish
+                         </button>  
+                      </div>
+                    </div>-->
+                    
+                   
+                </div>
+            </div>
+        </li> 
+        
+        <li class="item BusinessList" 
+            ng-if="check1==='null'" >
+            <div class="row">
+                <div class="col col-25 job_image">
+                    <img ng-src="http://creoyou.net/uploads/profileImages/{{job.image}}">
+                </div>
+                <div class="col Businessuser_details">
+                    <div class="jobs_name">No Expired Jobs Found!!!!</div>
+                    <div class="job_company_name"></div>
+                </div>
+                <div class="col busi_descrip job_post_list">
+                    <i class="material-icons"></i>
+<!--
+                   
+-->
+                    
+                   <div class="business_address"><i class="material-icons">location_on</i></div> 
+                </div>
+            </div>
+        </li>
+        <ion-infinite-scroll ng-if="!noMoreItemsAvailable" on-infinite="loadMore()" distance="10%"></ion-infinite-scroll>
+    </ul>    
+</div>      
+      
+  </ion-content>
+
+    
+    
+<!--
+  <ion-footer-bar class="bar-positive tabs tabs-stable already_sign">
+    	<a class="tab-item tab-item-active" ui-sref="common.login">Already have an acount?<span>Sign In</span></a>
+  </ion-footer-bar>     
+-->
+    
+</ion-view>

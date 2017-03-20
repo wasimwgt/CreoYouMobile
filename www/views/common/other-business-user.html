@@ -1,0 +1,1202 @@
+<ion-view class="walkthrough-view multi-bg-outer" style="background-image: url('img/background.jpg')" cache-view="false" >
+
+<ion-header-bar align-title="left" class="bar-creoyou">
+<!--
+
+<div class="row">
+	<div class="col-50"><label class="item-input-wrapper header_search">    
+    <i class="material-icons">search</i><input type="search" placeholder="People,Business,Jobs.....">
+  </label></div>
+    <div class="col header_right_creoyou">
+    	<a ui-sref="#" href="#" class="creoyou_loop"></a>
+        <a class="add_invite" ui-sref="common.request"><span class="info">4</span></a>
+        <a class="notification" ui-sref="common.notification"><span class="info">12</span></a>
+        <a class="message" ui-sref="common.chat_message"><span class="info">3</span></a>
+    
+    </div>
+</div>
+-->
+<!--
+<div class="row" ng-controller="Headercontroler">
+	<div class="col-45" ui-sref="common.search_on_keystock"><label class="item-input-wrapper header_search">    
+    <i class="material-icons">search</i><input type="search" placeholder="People,Business,Jobs.....">
+  </label></div>
+    	
+    <div class="col header_right_creoyou">
+    	<a ui-sref="common.creo_loop" class="creoyou_loop"></a>
+        <a class="add_invite" ui-sref="common.request"><span class="info">4</span></a>
+        <a class="notification" ui-sref="common.notification"><span class="info">12</span></a>
+        <a class="message" ui-sref="common.chat_message"><span class="info">3</span></a>
+     
+         <a class="top_settings" ng-click="popover1.show($event)">
+        </a>
+         <script id="templates/popover1.html"  type="text/ng-template">
+      <ion-popover-view>
+        <ion-content class="list1">
+          <div class="list">
+            <a class="item" >
+              Post Job
+            </a>
+            <a class="item" >
+              Jobs
+            </a>
+            <a class="item" >
+              Change Password
+            </a>
+            <a class="item" 
+             <i class="material-icons">settings</i>
+           
+            </a>
+            <a class="item" >
+              Logout
+            </a>
+          </div>
+        </ion-content>
+      </ion-popover-view>
+    </script>
+    </div>
+</div>-->
+    
+<div class="row" ng-controller="Headercontroler">
+	<div class="col-45" ui-sref="common.search_on_keystock"><label class="item-input-wrapper header_search">    
+    <i class="material-icons">search</i><input type="search" placeholder="People,Business,Jobs.....">
+  </label></div>
+    	<!--<div class="col-50" ui-sref="common.search_on_keystock"><label class="item-input-wrapper header_search">    
+    <i class="material-icons" ui-sref="common.chat_">search</i><input type="search" placeholder="People,Business,Jobs.....">
+  </label></div>-->
+    <div class="col header_right_creoyou" ng-controller="refresh_control" >
+    	<a ui-sref="common.creo_loop" class="creoyou_loop"></a>
+        <a class="add_invite" ui-sref="common.request"><span class="info">{{pendingrequest}}</span></a>
+        <a class="notification" ui-sref="common.notification"><span class="info">{{notificationscount}}</span></a>
+        <a class="message" ui-sref="common.chat_message" ng-click="msg"><span class="info">{{count}}</span></a>
+       <!-- <a class="notification" ng-click="popover.show($event)">
+        </a>-->
+         <a class="top_settings" ng-click="popover1.show($event)">
+        </a>
+         <script id="templates/popover1.html"  type="text/ng-template">
+      <ion-popover-view>
+        <ion-content class="list1">
+          <div class="list">
+            <a class="item" ng-click="postjob()">
+               Job post
+            </a>
+            <a class="item" ng-click="alljob()" >
+              Jobs
+            </a>
+               <a class="item" ng-click="myjob()">
+               My Job 
+            </a>
+            <a class="item" ng-click="changepassword()">
+              Change Password
+            </a>
+            <a class="item" 
+             <i class="material-icons">settings</i>
+           
+            </a>
+            <a class="item" ng-click="logout()">
+              Logout
+            </a>
+          </div>
+        </ion-content>
+      </ion-popover-view>
+    </script>
+    </div>
+</div>
+
+</ion-header-bar>
+  
+  <ion-content scroll="true">
+
+ <md-content>
+     
+                  <div class="about_me_top" ng-repeat="mainhomes in mainhomess" style=" background-image:url(http://creoyou.net/uploads/backgroundImages/{{mainhomes.background_image}}); background-size:cover;">
+                   <div class="about_me_cover">    
+                     <div class="row" >
+                        <!--<div class="col col-34">
+                           <h2 class="yps">Your Profile Status</h2>
+                           <div class="positionRelative">
+                              <round-progress
+                                 max="100"
+                                 current="mainhomes.completenessPercentage"
+                                 color="#4AB7EC"
+                                 bgcolor="#56606B"
+                                 radius="35"
+                                 stroke="5"
+                                 semi="false"
+                                 rounded="false"
+                                 clockwise="true"
+                                 responsive="false"
+                                 duration="800"
+                                 animation="easeInOutQuart"
+                                 animation-delay="0"></round-progress>
+                              <div class="percentageValue">
+                                 {{mainhomes.completenessPercentage}}%
+                              </div>
+                           </div>
+                           <button class="complete_profile">Complete Profile</button>
+                        </div>-->
+                        <div class="col " ng-controller="ExampleController">
+                           <div class="prifile_image_box">
+                              <div class="prifile_image">
+                                 <img ng-show="imgURI === undefined" ng-src="http://creoyou.net/uploads/profileImages/{{mainhomes.image}}" src="http://creoyou.net/uploads/profileImages/{{mainhomes.image}}" style="text-align: center" >
+                                 <img ng-show="imgURI !== undefined" ng-src="{{imgURI}}" style="text-align: center" id="picture">
+                                 <!-- <img id="mySpinner1" src="img/profileimage.gif"ng-show="loading"/>-->
+                              </div><!--
+                              <button class="attach_photo" ng-click="choosePhoto(mainhomes.image)"><i class="material-icons">mode_edit</i></button>-->
+                           </div>
+                           <h2 class="user_name">{{mainhomes.buisness_name}}</h2>
+                        </div>
+                       <!-- <div class="col col-34">
+                           <h2 class="yps">Upgrade</h2>
+                           <img ng-src="img/Upgrade_logo.png" class="update_logo" src="img/Upgrade_logo.png">    
+                           <button class="Provile_view">{{mainhomes.countViews}}</button>
+                        </div>-->
+                     </div>
+                      <div class="row">
+                        <div class="clearfix"></div>
+                         <div class="col col-100">
+                            <h3 class="profession" ng-if="mainhomes.cat_name !== ''"><i class="material-icons">card_travel</i> {{mainhomes.cat_name}}</h3>
+                           <h3 class="Address" ng-if="mainhomes.country !== ''"><i class="material-icons">location_city</i> {{mainhomes.country}}, {{mainhomes.state}}</h3>  
+                         </div>
+                      </div>
+                    </div>   
+                  </div>
+     
+
+      
+     
+     
+   	<md-tabs md-dynamic-height md-border-bottom stretchTabs flex class="About_me_tab other_user_tab">            
+        
+            <md-tab label="Home" >
+               <md-content class="" scroll="y" layout="column">
+                   
+                  <div class="followers">
+                     <div class="row" ng-repeat="mainhomes in mainhomess">
+                        <div class="col col-50 ">
+                           <h1 class="follow_count_normal_user followers_count"><label>Followers</label>{{mainhomes.countFollowers}}</h1>
+                        </div>
+                        <div class="col col-50" ng-click="friendlist()">
+                           <h1 class="follow_count_normal_user"><label>Connection</label>{{mainhomes.countFriends}}</h1>
+                        </div>
+                     </div>
+                  </div>
+                  <!--  <img id="mySpinner" src="img/loder_home.gif" ng-show="loading"/> -->
+                   
+                  <div class="tab_body" ng-show="body">
+                     
+                     <!-- --------------------------------------------------- -->
+
+                     <div ng-repeat="indihome in individualhomes">
+                        <div data-ng-init="tagto(indihome.tagged_to,indihome.count,indihome.audio_name,indihome.audio_title,indihome.audio_title,indihome.id,indihome.incidentId,indihome.incident_type,indihome.fname,indihome.lname,indihome.creation_date,indihome.user_status,indihome.image,indihome.video_name,indihome.likes,indihome.countit,indihome.media_name,indihome.incidentId,indihome.buisness_name,indihome.audio_source,indihome.likeActive,indihome.albums,indihome.incident_name)">
+                        </div>
+                            
+                     </div>
+                     <div ng-repeat="indihome in final">
+                        <div class="caed postcard" ng-if="indihome.incident_type==='Status'">
+                           <ul class="list">
+                              <li class="item post_heading">
+                                 <div class="postericon">
+                                    <img ng-src="http://creoyou.net/uploads/profileImages/{{indihome.image}}" class="update_logo" >  
+                                 </div>
+                                 <div class="poster_name">{{indihome.fname}}{{indihome.lname}}{{indihome.buisness_name}} <label class="status">{{indihome.incident_name}}</label></div>
+                                 <div class="post_date">
+                                    {{indihome.creation_date | date:"dd MMMM yyyy 'at' h:mma"}} 
+                                 </div>
+                              </li>
+                              <li class=" post_body">
+                                 {{indihome.user_status}}
+                              </li>
+                              <li class="post_body" ng-if ="indihome.media_name !==''" >
+                                 <img ng-src="http://creoyou.net/uploads/statusMedia/{{indihome.media_name}}" class="pist_image" src="img/share_image.jpg"> 
+                              </li>
+                              <!--  <li class="item post_with" > -->
+                              <!--<a data-ng-repeat="i in [0,1,2,3,4,5]"ng-repeat="day in rangeCreator(1,31)">-->
+                             <a ng-if="indihome.tag!==null"> with</a>
+                              <a  ng-repeat="i in rangeCreator(0,indihome.tag)"
+                                 ng-click="profile(indihome.tag[i].id)">
+                              {{indihome.tag[i].fname}}</a>  <a href="#">{{moretag}}</a>
+                              </li>
+                              <li class="item post_footer">
+                                 <ul ng-controller="Likectrl">
+                                    <li class="wishlist" ><a href="#"><i class="material-icons {{indihome.likeActive}} " ng-click="likecreate(indihome.incidentId,indihome.incident_type,indihome.likeActive,indihome.fname,indihome.lname)" ng-class="mainclass"  id="btn1">favorite</i><label  ng-click="like(indihome.incidentId,indihome.incident_type,indihome.id)" ng-if="values!==111" >{{indihome.likes}}</label>
+                                        <label  ng-click="like(indihome.incidentId,indihome.incident_type,indihome.id)" ng-if="values==111" >{{ lik}}</label>
+                                       </a>
+                                    </li>
+                                      <li class="comment" ><a href="#"><i class="material-icons ">chat_bubble</i><label ng-click="comment(indihome.incidentId,indihome.incident_type,indihome.id)"  ng-if="indihome.countid!=='count'">{{indihome.countid}}</label>
+                                        
+                                    <label ng-click="comment(indihome.incidentId,indihome.incident_type,indihome.id)"  ng-if="indihome.countid==='count'">{{0 -- cmt}}</label>    
+                                    </a></li>
+                                    <li class="share"><a href="#"><i class="material-icons">share</i><label>30</label></a></li>
+                                 </ul>
+                              </li>
+                              <li class="recent_comment" ng-controller="Likectrl">
+                                 <div ng-repeat="mes in messages" class="PostComment">
+                                    <div class="postericon">
+                                       <img ng-src="http://creoyou.net/uploads/profileImages/{{indihome.image}}" class="update_logo" >  
+                                    </div>
+                                    <div class="poster_name">{{mes.fname}}{{mes.lname}}</div>
+                                    <div class="poster_name">{{mes.comment}}</div>
+                                 </div>
+                                <!-- <div class="reply"><i class="material-icons">chat_bubble</i> Reply</div>-->
+                                 <!--<div class="post_date">August 11th 2016 at 11:33am </div>  -->
+                                  <div class="clearfix"></div>
+                                 <div class="post_body">
+                                    <input class="CommentBox" type="text" ng-model="yourcomment" placeholder="Your comment">
+                                    <a class="PostSubmit" ng-click="postcomment(indihome.incidentId,indihome.incident_type,yourcomment,indihome.id,indihome.fname,indihome.lname)">   <i class="material-icons">near_me</i></a>
+                                 </div>
+                              </li>
+                              </li>                            
+                           </ul>
+                           <!-- <i class="material-icons" ng-click="openPopover($event)">settings</i>-->
+                        </div>
+                        <div class="caed postcard" ng-if="indihome.incident_type==='Profile'">
+                           <ul class="list">
+                              <li class="item post_heading">
+                                 <div class="postericon">
+                                    <img ng-src="http://creoyou.net/uploads/profileImages/{{indihome.image}}" class="update_logo" >  
+                                 </div>
+                                 <div class="poster_name">{{indihome.fname}}{{indihome.lname}}{{indihome.buisness_name}} <label class="status">{{indihome.incident_name}}</label></div>
+                                 <div class="post_date">{{indihome.creation_date | date:"dd MMMM yyyy 'at' h:mma"}} </div>
+                              </li>
+                              <li class="post_body">
+                                 <img ng-src="http://creoyou.net/uploads/profileImages/{{indihome.media_name}}" class="pist_image" src="img/share_image.jpg"> 
+                              </li>
+                              <li class="item post_footer">
+                                  <ul ng-controller="Likectrl">
+                                    <li class="wishlist" ><a href="#"><i class="material-icons {{indihome.likeActive}} " ng-click="likecreate(indihome.incidentId,indihome.incident_type,indihome.likeActive,indihome.fname,indihome.lname)" ng-class="mainclass"  id="btn1">favorite</i><label  ng-click="like(indihome.incidentId,indihome.incident_type,indihome.id)" ng-if="values!==111" >{{indihome.likes -- lik}}</label>
+                                        <label  ng-click="like(indihome.incidentId,indihome.incident_type,indihome.id)" ng-if="values==111" >{{lik}}</label>
+                                        <label  ng-click="like(indihome.incidentId,indihome.incident_type,indihome.id)" ng-if="lik==''" >0</label>
+                                       </a>
+                                    </li>   <li class="comment" ><a href="#"><i class="material-icons ">chat_bubble</i><label ng-click="comment(indihome.incidentId,indihome.incident_type,indihome.id)"  ng-if="indihome.countid!=='count'">{{indihome.countid}}</label>
+                                        
+                                    <label ng-click="comment(indihome.incidentId,indihome.incident_type,indihome.id)"  ng-if="indihome.countid==='count'">{{0 -- cmt}}</label>    
+                                    </a></li>
+                                    <li class="share"><a href="#"><i class="material-icons">share</i><label>30</label></a></li>
+                                 </ul>
+                              </li>
+                              <li class="recent_comment" ng-controller="Likectrl">
+                                 <div ng-repeat="mes in messages" class="PostComment">
+                                    <div class="postericon">
+                                       <img ng-src="http://creoyou.net/uploads/profileImages/{{indihome.image}}" class="update_logo" >  
+                                    </div>
+                                    <div class="poster_name">{{mes.fname}}{{mes.lname}}</div>
+                                    <div class="poster_name">{{mes.comment}}</div>
+                                 </div>
+                                <!-- <div class="reply"><i class="material-icons">chat_bubble</i> Reply</div>-->
+                                 <!--<div class="post_date">August 11th 2016 at 11:33am </div>  -->
+                                  <div class="clearfix"></div>
+                                 <div class="post_body">
+                                    <input class="CommentBox" type="text" ng-model="yourcomment" placeholder="Your comment">
+                                    <a class="PostSubmit" ng-click="postcomment(indihome.incidentId,indihome.incident_type,yourcomment,indihome.id,indihome.fname,indihome.lname)">   <i class="material-icons">near_me</i></a>
+                                 </div>
+                              </li>
+                           </ul>
+                           <!-- <i class="material-icons" ng-click="openPopover($event)">settings</i>-->
+                        </div>
+                   
+                        <div class="caed postcard" ng-if="indihome.incident_type==='Image'">
+                           <ul class="list">
+                              <li class="item post_heading">
+                                 <div class="postericon">
+                                    <img ng-src="http://creoyou.net/uploads/profileImages/{{indihome.image}}" class="update_logo" >  
+                                 </div>
+                                 <div class="poster_name">{{indihome.fname}}{{indihome.lname}}{{indihome.buisness_name}}
+                                   <label class="status">{{indihome.incident_name}}</label></div>
+                                 <div class="post_date">{{indihome.creation_date | date:"dd MMMM yyyy 'at' h:mma"}} </div>
+                              </li>
+                              <li class="post_body" ng-if="indihome.countImages===1">
+                                 <img ng-src="http://creoyou.net//uploads/portfolioImages/{{indihome.AlbumImages[0].image_name}}" class="pist_image" > 
+                                  
+                              </li>
+                                <li class="post_body ImgTwo" ng-if="indihome.countImages===2">
+                                 <img ng-src="http://creoyou.net//uploads/portfolioImages/{{indihome.AlbumImages[0].image_name}}" class="pist_image" > 
+                                    <img ng-src="http://creoyou.net//uploads/portfolioImages/{{indihome.AlbumImages[1].image_name}}" class="pist_image" > 
+                              </li>
+                                <li class="post_body imgThree" ng-if="indihome.countImages===3">
+                                 <img ng-src="http://creoyou.net//uploads/portfolioImages/{{indihome.AlbumImages[1].image_name}}" class="pist_image firstThree"> 
+                                    <img ng-src="http://creoyou.net//uploads/portfolioImages/{{indihome.AlbumImages[1].image_name}}" class="pist_image" > 
+                                    <img ng-src="http://creoyou.net//uploads/portfolioImages/{{indihome.AlbumImages[2].image_name}}" class="pist_image" src="img/share_image.jpg"> 
+                              </li>
+                                <li class="post_body imgfour" ng-if="indihome.countImages===4">
+                                 <img ng-src="http://creoyou.net//uploads/portfolioImages/{{indihome.AlbumImages[0].image_name}}" class="pist_image"> 
+                                    <img ng-src="http://creoyou.net//uploads/portfolioImages/{{indihome.AlbumImages[1].image_name}}" class="pist_image"> 
+                                    <img ng-src="http://creoyou.net//uploads/portfolioImages/{{indihome.AlbumImages[2].image_name}}" class="pist_image"> 
+                                      <img ng-src="http://creoyou.net//uploads/portfolioImages/{{indihome.AlbumImages[3].image_name}}" class="pist_image">
+                              </li>
+                               
+                                <li class="post_body imgAll" ng-if="indihome.countImages>4">
+                                 <img ng-src="http://creoyou.net//uploads/portfolioImages/{{indihome.AlbumImages[0].image_name}}" class="pist_image"> 
+                                    <img ng-src="http://creoyou.net//uploads/portfolioImages/{{indihome.AlbumImages[1].image_name}}" class="pist_image"> 
+                                    <img ng-src="http://creoyou.net//uploads/portfolioImages/{{indihome.AlbumImages[2].image_name}}" class="pist_image"> 
+                                    <a hidden="#" value="+{{indihome.countImages - 4}}" class="fourplus">
+                                      <img ng-src="http://creoyou.net//uploads/portfolioImages/{{indihome.AlbumImages[3].image_name}}" class="pist_image">
+                                    </a>        
+                              </li>
+                               
+                               
+                               
+                              <li class="item post_footer">
+                                  <ul ng-controller="Likectrl">
+                                    <li class="wishlist" ><a href="#"><i class="material-icons {{indihome.likeActive}} " ng-click="likecreate(indihome.incidentId,indihome.incident_type,indihome.likeActive,indihome.fname,indihome.lname)" ng-class="mainclass"  id="btn1">favorite</i><label  ng-click="like(indihome.incidentId,indihome.incident_type,indihome.id)" ng-if="values!==111" >{{indihome.likes -- lik}}</label>
+                                        <label  ng-click="like(indihome.incidentId,indihome.incident_type,indihome.id)" ng-if="values==111" >{{lik}}</label>
+                                        <label  ng-click="like(indihome.incidentId,indihome.incident_type,indihome.id)" ng-if="lik==''" >0</label>
+                                       </a>
+                                    </li>   <li class="comment" ><a href="#"><i class="material-icons ">chat_bubble</i><label ng-click="comment(indihome.incidentId,indihome.incident_type,indihome.id)"  ng-if="indihome.countid!=='count'">{{indihome.countid}}</label>
+                                        
+                                    <label ng-click="comment(indihome.incidentId,indihome.incident_type,indihome.id)"  ng-if="indihome.countid==='count'">{{0 -- cmt}}</label>    
+                                    </a></li>
+                                    <li class="share"><a href="#"><i class="material-icons">share</i><label>30</label></a></li>
+                                 </ul>
+                              </li>
+                              <li class="recent_comment" ng-controller="Likectrl">
+                                 <div ng-repeat="mes in messages" class="PostComment">
+                                    <div class="postericon">
+                                       <img ng-src="http://creoyou.net/uploads/profileImages/{{indihome.image}}" class="update_logo" >  
+                                    </div>
+                                    <div class="poster_name">{{mes.fname}}{{mes.lname}}</div>
+                                    <div class="poster_name">{{mes.comment}}</div>
+                                 </div>
+                                <!-- <div class="reply"><i class="material-icons">chat_bubble</i> Reply</div>-->
+                                 <!--<div class="post_date">August 11th 2016 at 11:33am </div>  -->
+                                  <div class="clearfix"></div>
+                                 <div class="post_body">
+                                    <input class="CommentBox" type="text" ng-model="yourcomment" placeholder="Your comment">
+                                    <a class="PostSubmit" ng-click="postcomment(indihome.incidentId,indihome.incident_type,yourcomment,indihome.id,indihome.fname,indihome.lname)">   <i class="material-icons">near_me</i></a>
+                                 </div>
+                              </li>
+                           </ul>
+                           <!-- <i class="material-icons" ng-click="openPopover($event)">settings</i>-->
+                        </div>
+                        <div class="caed postcard" ng-if="indihome.incident_type==='User'">
+                           <ul class="list">
+                              <li class="item post_heading">
+                                 <div class="postericon">
+                                    <img ng-src="http://creoyou.net/uploads/profileImages/{{indihome.image}}" class="update_logo" >  
+                                 </div>
+                                 <div class="poster_name">{{indihome.fname}}{{indihome.lname}}{{indihome.buisness_name}} <label class="status"> {{indihome.incident_name}}</label></div>
+                                 <div class="post_date">{{indihome.creation_date | date:"dd MMMM yyyy 'at' h:mma"}} </div>
+                              </li>
+                             <!-- <li class="post_body">
+                                 <img ng-src="http://creoyou.net/uploads/profileImages/{{indihome.image}}" class="pist_image" src="img/share_image.jpg"> 
+                              </li>
+                              with
+                              <a ng-repeat="i in rangeCreator(0,indihome.yyy)">
+                              {{indihome.yyy[i].fname}}</a>  <a href="#">{{moretag}}</a>-->
+                              <div class="post_date">{{indihome.incident_details}} </div>
+                              <li class="item post_footer">
+                                  <ul ng-controller="Likectrl">
+                                    <li class="wishlist" ><a href="#"><i class="material-icons {{indihome.likeActive}} " ng-click="likecreate(indihome.incidentId,indihome.incident_type,indihome.likeActive,indihome.fname,indihome.lname)" ng-class="mainclass"  id="btn1">favorite</i><label  ng-click="like(indihome.incidentId,indihome.incident_type,indihome.id)" >{{indihome.likes -- lik}}</label>
+                                       </a>
+                                    </li>   <li class="comment" ><a href="#"><i class="material-icons ">chat_bubble</i><label ng-click="comment(indihome.incidentId,indihome.incident_type,indihome.id)"  ng-if="indihome.countid!=='count'">{{indihome.countid}}</label>
+                                        
+                                    <label ng-click="comment(indihome.incidentId,indihome.incident_type,indihome.id)"  ng-if="indihome.countid==='count'">{{0 -- cmt}}</label>    
+                                    </a></li>
+                                    <li class="share"><a href="#"><i class="material-icons">share</i><label>30</label></a></li>
+                                 </ul>
+                              </li>
+                               <li class="recent_comment" ng-controller="Likectrl">
+                                 <div ng-repeat="mes in messages" class="PostComment">
+                                    <div class="postericon">
+                                       <img ng-src="http://creoyou.net/uploads/profileImages/{{indihome.image}}" class="update_logo" >  
+                                    </div>
+                                    <div class="poster_name">{{mes.fname}}{{mes.lname}}</div>
+                                    <div class="poster_name">{{mes.comment}}</div>
+                                 </div>
+                                <!-- <div class="reply"><i class="material-icons">chat_bubble</i> Reply</div>-->
+                                 <!--<div class="post_date">August 11th 2016 at 11:33am </div>  -->
+                                  <div class="clearfix"></div>
+                                 <div class="post_body">
+                                    <input class="CommentBox" type="text" ng-model="yourcomment" placeholder="Your comment">
+                                    <a class="PostSubmit" ng-click="postcomment(indihome.incidentId,indihome.incident_type,yourcomment,indihome.id,indihome.fname,indihome.lname)">   <i class="material-icons">near_me</i></a>
+                                 </div>
+                              </li>
+                           </ul>
+                           <!-- <i class="material-icons" ng-click="openPopover($event)">settings</i>-->
+                        </div>
+                        <div class="caed postcard" ng-if="indihome.incident_type==='Audio'">
+                           <ul class="list">
+                              <li class="item post_heading">
+                                 <div class="postericon">
+                                    <img ng-src="http://creoyou.net/uploads/profileImages/{{indihome.image}}" class="update_logo" > 
+                                 </div>
+                                 <div class="poster_name">{{indihome.fname}}{{indihome.lname}}{{indihome.buisness_name}} <label class="status">{{indihome.incident_name}}</label></div>
+                                 <div class="post_date">{{indihome.creation_date | date:"dd MMMM yyyy 'at' h:mma"}} </div>
+                              </li>
+                              <li class="post_body">
+                                 <ion-audio-track >
+                                    <div class="row">
+                                       <div class="item item-thumbnail-left col">
+                                          <img ng-src="img/audio_new.png">
+                                       </div>
+                                       <div class="item progress-right col col-75">
+                                         <!-- <div class="col video_sha_like">
+                                             <ul>
+                                                <li class="wishlist"><a href="#"><i class="material-icons">favorite</i><label>{{track.audio_like}}</label></a></li>
+                                                <li class="comment"><a href="#"><i class="material-icons">chat_bubble</i><label>{{track.countComment}}</label></a></li>
+                                                <li class="eyeview"><a href="#"><i class="material-icons">remove_red_eye</i><label>{{track.audio_viewed}}</label></a></li>
+                                                <li class="share"><a href="#"><i class="material-icons">share</i><label>30</label></a></li>
+                                                </ul>
+                                             <i class="material-icons">settings</i>
+                                          </div>-->
+                                          <div class="audio_title">{{indihome.audio_title1}}</div>
+                                          <audio controls ng-if="indihome.audio_source===null">
+                                             <source ng-src="{{trustSrc2(indihome.audio_name)}}" type="audio/mpeg">
+                                             Your browser does not support the audio element.
+                                          </audio>
+                                          <audio controls ng-if="track.audio_source!==null">
+                                             <source ng-src="{{trustSrc1(indihome.audio_name)}}" type="audio/mpeg">
+                                             Your browser does not support the audio element.
+                                          </audio>
+                                       </div>
+                                    </div>
+                                 </ion-audio-track>
+                              </li>
+                              <li class="item post_footer">
+                                 <ul ng-controller="Likectrl">
+                                    <li class="wishlist" ><a href="#"><i class="material-icons {{indihome.likeActive}} " ng-click="likecreate(indihome.incidentId,indihome.incident_type,indihome.likeActive,indihome.fname,indihome.lname)" ng-class="mainclass"  id="btn1">favorite</i><label  ng-click="like(indihome.incidentId,indihome.incident_type,indihome.id)" ng-if="values!==111" >{{indihome.likes -- lik}}</label>
+                                        <label  ng-click="like(indihome.incidentId,indihome.incident_type,indihome.id)" ng-if="values==111" >{{ lik}}</label>
+                                       </a>
+                                    </li>
+                                    <li class="comment" ><a href="#"><i class="material-icons ">chat_bubble</i><label ng-click="comment(indihome.incidentId,indihome.incident_type,indihome.id)"  ng-if="indihome.countid!=='count'">{{indihome.countid}}</label>
+                                        
+                                    <label ng-click="comment(indihome.incidentId,indihome.incident_type,indihome.id)"  ng-if="indihome.countid==='count'">{{0 -- cmt}}</label>    
+                                    </a></li>
+                                    <li class="share"><a href="#"><i class="material-icons">share</i><label>30</label></a></li>
+                                 </ul>
+                              </li>
+                              <li class="recent_comment" ng-controller="Likectrl">
+                                 <div ng-repeat="mes in messages" class="PostComment">
+                                    <div class="postericon">
+                                       <img ng-src="http://creoyou.net/uploads/profileImages/{{indihome.image}}" class="update_logo" >  
+                                    </div>
+                                    <div class="poster_name">{{mes.fname}}{{mes.lname}}</div>
+                                    <div class="poster_name">{{mes.comment}}</div>
+                                 </div>
+                                <!-- <div class="reply"><i class="material-icons">chat_bubble</i> Reply</div>-->
+                                 <!--<div class="post_date">August 11th 2016 at 11:33am </div>  -->
+                                  <div class="clearfix"></div>
+                                 <div class="post_body">
+                                    <input class="CommentBox" type="text" ng-model="yourcomment" placeholder="Your comment">
+                                    <a class="PostSubmit" ng-click="postcomment(indihome.incidentId,indihome.incident_type,yourcomment,indihome.id,indihome.fname,indihome.lname)">   <i class="material-icons">near_me</i></a>
+                                 </div>
+                              </li>
+                           </ul>
+                           <!-- <i class="material-icons" ng-click="openPopover($event)">settings</i>-->
+                        </div>
+                        <div class="caed postcard" ng-if="indihome.incident_type==='You Tube'">
+                           <ul class="list">
+                              <li class="item post_heading">
+                                 <div class="postericon">
+                                    <img ng-src="http://creoyou.net/uploads/profileImages/{{indihome.image}}" class="update_logo" >  
+                                 </div>
+                                 <div class="poster_name">{{indihome.fname}}{{indihome.lname}}{{indihome.buisness_name}} <label class="status">has Updated a new Video</label></div>
+                                 <div class="post_date">{{indihome.creation_date | date:"dd MMMM yyyy 'at' h:mma"}} </div>
+                              </li>
+                              <li class="post_body">                                
+                                 <iframe width="100%" ng-src="{{getIframeSrc(indihome.video_name)}}" frameborder="0 " allowfullscreen></iframe>
+                              </li>
+                              with
+                              <a ng-repeat="i in rangeCreator(0,indihome.yyy)">
+                              {{indihome.yyy[i].fname}}</a>  <a href="#">{{moretag}}</a>
+                              <li class="item post_footer">
+                                 <ul ng-controller="Likectrl">
+                                    <li class="wishlist" ><a href="#"><i class="material-icons {{indihome.likeActive}} " ng-click="likecreate(indihome.incidentId,indihome.incident_type,indihome.likeActive,indihome.fname,indihome.lname)" ng-class="mainclass"  id="btn1">favorite</i><label  ng-click="like(indihome.incidentId,indihome.incident_type,indihome.id)" ng-if="values!==111" >{{indihome.likes -- lik}}</label>
+                                        <label  ng-click="like(indihome.incidentId,indihome.incident_type,indihome.id)" ng-if="values==111" >{{ lik}}</label>
+                                       </a>
+                                    </li> <li class="comment" ><a href="#"><i class="material-icons ">chat_bubble</i><label ng-click="comment(indihome.incidentId,indihome.incident_type,indihome.id)"  ng-if="indihome.countid!=='count'">{{indihome.countid}}</label>
+                                        
+                                    <label ng-click="comment(indihome.incidentId,indihome.incident_type,indihome.id)"  ng-if="indihome.countid==='count'">{{0 -- cmt}}</label>    
+                                    </a></li>
+                                    <li class="share"><a href="#"><i class="material-icons">share</i><label>30</label></a></li>
+                                 </ul>
+                              </li>
+                             <li class="recent_comment" ng-controller="Likectrl">
+                                 <div ng-repeat="mes in messages" class="PostComment">
+                                    <div class="postericon">
+                                       <img ng-src="http://creoyou.net/uploads/profileImages/{{indihome.image}}" class="update_logo" >  
+                                    </div>
+                                    <div class="poster_name">{{mes.fname}}{{mes.lname}}</div>
+                                    <div class="poster_name">{{mes.comment}}</div>
+                                 </div>
+                                <!-- <div class="reply"><i class="material-icons">chat_bubble</i> Reply</div>-->
+                                 <!--<div class="post_date">August 11th 2016 at 11:33am </div>  -->
+                                  <div class="clearfix"></div>
+                                 <div class="post_body">
+                                    <input class="CommentBox" type="text" ng-model="yourcomment" placeholder="Your comment">
+                                    <a class="PostSubmit" ng-click="postcomment(indihome.incidentId,indihome.incident_type,yourcomment,indihome.id,indihome.fname,indihome.lname)">   <i class="material-icons">near_me</i></a>
+                                 </div>
+                              </li>
+                           </ul>
+                           <!-- <i class="material-icons" ng-click="openPopover($event)">settings</i>-->
+                        </div>
+                        <div class="caed postcard" ng-if="indihome.incident_type==='Video'">
+                           <ul class="list">
+                              <li class="item post_heading">
+                                 <div class="postericon">
+                                    <img ng-src="http://creoyou.net/uploads/profileImages/{{indihome.image}}" class="update_logo">  
+                                 </div>
+                                 <div class="poster_name">{{indihome.fname}}{{indihome.lname}} {{indihome.buisness_name}} <label class="status">{{indihome.incident_name}}</label></div>
+                                 <div class="post_date">{{indihome.creation_date | date:"dd MMMM yyyy 'at' h:mma"}}  </div>
+                              </li>
+                              <li class="post_body">
+                                 <video id="{{video.id}}" controls style="width:100%;height:auto;" video-control control-play="{{play}}" oncontextmenu="return false"      loop controls="controls" class="composition-video" ng-src={{trustSrc(indihome.video_name)}}  type="video/mp4"></video>
+                              </li>
+                              with
+                              <a ng-repeat="i in rangeCreator(0,indihome.yyy)">
+                              {{indihome.yyy[i].fname}}</a>  <a href="#">{{moretag}}</a>
+                              <li class="item post_footer">
+                                  <ul ng-controller="Likectrl">
+                                    <li class="wishlist" ><a href="#"><i class="material-icons {{indihome.likeActive}} " ng-click="likecreate(indihome.incidentId,indihome.incident_type,indihome.likeActive,indihome.fname,indihome.lname)" ng-class="mainclass"  id="btn1">favorite</i><label  ng-click="like(indihome.incidentId,indihome.incident_type,indihome.id)" ng-if="values!==111" >{{indihome.likes -- lik}}</label>
+                                        <label  ng-click="like(indihome.incidentId,indihome.incident_type,indihome.id)" ng-if="values==111" >{{ lik}}</label>
+                                       </a>
+                                    </li>   <li class="comment" ><a href="#"><i class="material-icons ">chat_bubble</i><label ng-click="comment(indihome.incidentId,indihome.incident_type,indihome.id)"  ng-if="indihome.countid!=='count'">{{indihome.countid}}</label>
+                                        
+                                    <label ng-click="comment(indihome.incidentId,indihome.incident_type,indihome.id)"  ng-if="indihome.countid==='count'">{{0 -- cmt}}</label>    
+                                    </a></li>
+                                    <li class="share"><a href="#"><i class="material-icons">share</i><label>30</label></a></li>
+                                 </ul>
+                              </li>
+                             <li class="recent_comment" ng-controller="Likectrl">
+                                 <div ng-repeat="mes in messages" class="PostComment">
+                                    <div class="postericon">
+                                       <img ng-src="http://creoyou.net/uploads/profileImages/{{indihome.image}}" class="update_logo" >  
+                                    </div>
+                                    <div class="poster_name">{{mes.fname}}{{mes.lname}}</div>
+                                    <div class="poster_name">{{mes.comment}}</div>
+                                 </div>
+                                <!-- <div class="reply"><i class="material-icons">chat_bubble</i> Reply</div>-->
+                                 <!--<div class="post_date">August 11th 2016 at 11:33am </div>  -->
+                                  <div class="clearfix"></div>
+                                 <div class="post_body">
+                                    <input class="CommentBox" type="text" ng-model="yourcomment" placeholder="Your comment">
+                                    <a class="PostSubmit" ng-click="postcomment(indihome.incidentId,indihome.incident_type,yourcomment,indihome.id,indihome.fname,indihome.lname)">   <i class="material-icons">near_me</i></a>
+                                 </div>
+                              </li>
+                           </ul>
+                        </div>
+                   
+                        <div class="caed postcard" ng-if="indihome.incident_type==='Event'">
+                           <ul class="list" >
+                               <div data-ng-init="tagto123(indihome.incident_id,indihome.incident_type)">
+                        </div>
+                              <li class="item post_heading">
+                                 <div class="postericon">
+                                    <img ng-src="http://creoyou.net/uploads/profileImages/{{indihome.image}}" class="update_logo" >  
+                                 </div>
+                                 <div class="poster_name">{{indihome.fname}}{{indihome.lname}}{{indihome.buisness_name}} <label class="status">{{indihome.incident_name}}</label></div>
+                                 <div class="post_date">{{indihome.creation_date | date:"dd MMMM yyyy 'at' h:mma"}} </div>
+                              </li>
+                              <li class="post_body">
+                                 <img ng-src="http://creoyou.net/uploads/eventsImages/{{indihome.media_name}}" class="pist_image" > 
+                              </li>
+                               <h4 ng-controller="Eventdectrl"ng-click="seedetails(indihome.id)">See Details</h4>
+                              <li class="item post_footer">
+                                  <ul ng-controller="Likectrl">
+                                    <li class="wishlist" ><a href="#"><i class="material-icons {{indihome.likeActive}} " ng-click="likecreate(indihome.incidentId,indihome.incident_type,indihome.likeActive,indihome.fname,indihome.lname)" ng-class="mainclass"  id="btn1">favorite</i><label  ng-click="like(indihome.incidentId,indihome.incident_type,indihome.id)" ng-if="values!==111" >{{indihome.likes -- lik}}</label>
+                                        <label  ng-click="like(indihome.incidentId,indihome.incident_type,indihome.id)" ng-if="values==111" >{{lik}}</label>
+                                        <label  ng-click="like(indihome.incidentId,indihome.incident_type,indihome.id)" ng-if="lik==''" >0</label>
+                                       </a>
+                                    </li>   <li class="comment" ><a href="#"><i class="material-icons ">chat_bubble</i><label ng-click="comment(indihome.incidentId,indihome.incident_type,indihome.id)"  ng-if="indihome.countid!=='count'">{{indihome.countid}}</label>
+                                        
+                                    <label ng-click="comment(indihome.incidentId,indihome.incident_type,indihome.id)"  ng-if="indihome.countid==='count'">{{0 -- cmt}}</label>    
+                                    </a></li>
+                                    <li class="share"><a href="#"><i class="material-icons">share</i><label>30</label></a></li>
+                                 </ul>
+                              </li>
+                              <li class="recent_comment" ng-controller="Likectrl">
+                                 <div ng-repeat="mes in messages" class="PostComment">
+                                    <div class="postericon">
+                                       <img ng-src="http://creoyou.net/uploads/profileImages/{{indihome.image}}" class="update_logo" >  
+                                    </div>
+                                    <div class="poster_name">{{mes.fname}}{{mes.lname}}</div>
+                                    <div class="poster_name">{{mes.comment}}</div>
+                                 </div>
+                                <!-- <div class="reply"><i class="material-icons">chat_bubble</i> Reply</div>-->
+                                 <!--<div class="post_date">August 11th 2016 at 11:33am </div>  -->
+                                  <div class="clearfix"></div>
+                                 <div class="post_body">
+                                    <input class="CommentBox" type="text" ng-model="yourcomment" placeholder="Your comment">
+                                    <a class="PostSubmit" ng-click="postcomment(indihome.incidentId,indihome.incident_type,yourcomment,indihome.id,indihome.fname,indihome.lname)">   <i class="material-icons">near_me</i></a>
+                                 </div>
+                              </li>
+                           </ul>
+                           <!-- <i class="material-icons" ng-click="openPopover($event)">settings</i>-->
+                        </div>
+                     </div>
+                     <!--<ion-infinite-scroll distance="2"
+                        on-infinite="loadMoreData()"
+                        ng-if="!moredata"
+                        ></ion-infinite-scroll>-->
+                
+                  </div>
+                 <ion-infinite-scroll distance="2"
+                        on-infinite="loadMoreData()"
+                        ng-if="!moredata"
+                        ></ion-infinite-scroll>
+               <div  ><img id="mySpinner3"  src="img/loder_home.gif" /></div>
+<!--              <div class="or loder" ><img id="mySpinner" src="img/loder_home.gif" /></div>-->
+               </md-content>
+            </md-tab>
+
+      
+     <md-tab label="About" md-on-select="about()"><!--
+        <md-content class="" scroll="y" layout="column">                    
+            <div class="tab_body">
+                <div class="caed about_card about_top_card">
+                    <div class="row">
+                        <div class="col col-33 Pubsilh_for"><a href="#"><i class="material-icons">https</i>Public</a></div>
+                        <div class="col "></div>
+                        <div class="col col-33" ui-sref="common.about_me _accordian"><a href=""><i class="material-icons">border_color</i>Edit</a></div>
+                    </div>
+                    
+                </div>                    
+                
+                 <div class="caed about_card listing">
+                     <label class="item">Location</label>
+                     India,West Bengal,Kolkata 700736                                        
+                </div>                    
+                
+                 <div class="caed about_card listing">
+                     <label class="item">Creative Field</label>
+                     Photographer                                        
+                 </div>
+                
+                 <div class="caed about_card listing">
+                     <label class="item">Specialization / Skill</label>
+                     PHP, Javascript , Ajax , Jquery, JavaScript                                        
+                 </div>
+                
+                 <div class="caed about_card listing">
+                     <label class="item">Occupation</label>
+                     Introduction to Project Management Principles and Practices                                        
+                 </div>
+                
+                 <div class="caed about_card listing">
+                     <label class="item">Experience/Work</label>
+                     Accredited Asset Management Specialist (AAMS)                                        
+                 </div>
+                
+                 <div class="caed about_card listing">
+                     <label class="item">Education</label>
+                     <span class="listing_head">BA, Fine Arts</span><br>
+                     UC Irvine (Uci.edu), Irvine, USA<br>
+                     June, 2008 – March, 2010<br>
+                     Senior design project included a large scale sculpture of the lady in black. The work was representational of the medieval era in art. Work was enhanced by the use of light                                         
+                 </div>
+                
+                 <div class="caed about_card listing">
+                     <label class="item">Courses</label>
+                     <span class="listing_head">Photography through the ages,</span>
+                     CC Multimedia Tech Ltd. , 2006                                        
+                 </div>
+                
+                 <div class="caed about_card listing">
+                     <label class="item">Certifications</label>
+                     Certificate Name, Organization, Year                                        
+                 </div>
+                
+                 <div class="caed about_card listing">
+                     <label class="item">Achievement/Awards</label>
+                     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+Ipsum has been the industry's standard dummy text ever since the 1500s,                                         
+                 </div>
+                 
+                 <div class="caed about_card listing">
+                     <label class="item">Exhibitions/Concert/Events</label>
+                     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+Ipsum has been the industry's standard dummy text ever since the 1500s,                                         
+                 </div>
+                
+                 <div class="caed about_card listing">
+                     <label class="item">Languages</label>
+                     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+Ipsum has been the industry's standard dummy text ever since the 1500s,                                         
+                 </div>
+                
+                 <div class="caed about_card listing">
+                     <label class="item">Interests</label>
+                     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+Ipsum has been the industry's standard dummy text ever since the 1500s,                                         
+                 </div>
+                
+                 <div class="caed about_card listing">
+                     <label class="item">Personal Statement</label>
+                     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+Ipsum has been the industry's standard dummy text ever since the 1500s,                                         
+                 </div>
+                
+            </div>                        
+        </md-content>-->
+          
+        <md-content class="" scroll="y" layout="column">                    
+            <div class="tab_body">
+                <div class="caed about_card about_top_card">
+                    <!--<div class="row">
+                        <div class="col col-33 Pubsilh_for"><a href="#"><i class="material-icons">https</i>Public</a></div>
+                        <div class="col "></div>
+                        <div class="col col-33"><a ui-sref="common.about_me _accordian"><i class="material-icons">border_color</i>Edit</a></div>
+                    </div>-->
+                    
+                </div>                    
+                
+                 <div class="caed about_card listing">
+                     <label class="item">Location</label>
+                     <!--India,West Bengal,Kolkata 700736  -->
+                     <p ng-repeat="location in locations">
+                         {{location.country}},
+                         {{location.state}},
+                         {{location.city}},
+                         {{location.zip_code}}
+                     
+                     </p>  
+                </div>                    
+                
+                 <div class="caed about_card listing">
+                     <label class="item">Creative Field</label>
+                    <p ng-repeat="cfield in locations">
+                         {{cfield.cat_name}}
+                     
+                     </p>                                        
+                 </div>
+                
+                 <div class="caed about_card listing">
+                     <label class="item">Specialization / Skill</label>
+                     <p ng-repeat="skil in skilss">
+                         {{skil.skillS}}
+                     
+                     </p>                                         
+                 </div>
+                
+                 <div class="caed about_card listing">
+                     <label class="item">Occupation</label>
+                     <p ng-repeat="occupation in locations">
+                         {{occupation.occupation}} at
+                         {{occupation.company_name}}
+                          {{occupation.designation}}
+                         
+                     
+                     </p>                                        
+                 </div>
+                
+                 <div class="caed about_card listing">
+                     <label class="item">Experience/Work</label>
+                     <p ng-repeat="experience in experiences">
+                         {{experience.position}}&nbsp;{{experience.company_name}}&nbsp;
+                         in {{experience.city}} on
+                         {{experience.starting_month}} to
+                         {{experience.ending_month}}  &nbsp; {{experience.website}}
+                     
+                     </p>                                       
+                 </div>
+                
+                 <div class="caed about_card listing">
+                     <label class="item">Education</label>
+                     <p ng-repeat="education in educations">
+                     <span class="listing_head">{{education.degree}},{{education.school_name}}</span><br>
+                     {{education.starting_month}} 
+                     {{education.starting_year}} to
+                        {{education.ending_month}} 
+                     {{education.ending_year}} <br>
+                    {{education.details}}<br>
+                     {{education.school_website}}
+                       </p>                                      
+                 </div>
+                
+                 <div class="caed about_card listing">
+                     <label class="item">Courses</label>
+                     <p ng-repeat="course in courses">
+                         {{course.course_name}}&nbsp;({{course.course_organisation}})&nbsp;
+                          {{course.year}} 
+                     
+                     </p>                                           
+                 </div>
+                
+                 <div class="caed about_card listing">
+                     <label class="item">Certifications</label>
+                     <p ng-repeat="certification in certifications">
+                         {{certification.certification_name}}&nbsp;({{certification.certification_organisation}})&nbsp;
+                          {{certification.year}} 
+                     
+                     </p>                                       
+                 </div>
+                
+                 <div class="caed about_card listing">
+                     <label class="item">Achievement/Awards</label>
+                     <p ng-repeat="award in awards">
+                         {{award.organisation_name}}&nbsp;{{award.organisation_website}}&nbsp;
+                          {{award.award_name}} 
+                     
+                     </p>                                       
+                 </div>
+                 
+                 <div class="caed about_card listing">
+                     <label class="item">Exhibitions/Concert/Events</label>
+                     <p ng-repeat="award in awards">
+                         {{course.course_name}}&nbsp;({{course.course_organisation}})&nbsp;
+                          {{course.year}} 
+                     
+                     </p>                                       
+                 </div>
+                
+                 <div class="caed about_card listing">
+                     <label class="item">Languages</label>
+                    <p ng-repeat="language in languages"> {{language.language}}-{{language.proficiency_level}}</p>                                        
+                 </div>
+                
+                 <div class="caed about_card listing">
+                     <label class="item">Interests</label>
+                     <p ng-repeat="interest in interests">
+                         {{interest.interests}}
+                     
+                     </p>                                     
+                 </div>
+                
+                 <div class="caed about_card listing">
+                     <label class="item">Personal Statement</label>
+                    <p ng-repeat="statement in statements">
+                         {{statement.personal_statement}}
+                     
+                     </p>                                      
+                 </div>
+                
+            </div>                        
+        </md-content>
+      </md-tab>
+            
+      
+       
+      <md-tab label="Portfolio" md-on-select="portfolio()">
+        <md-content class="" scroll="y" layout="column">
+           
+            
+                
+                <md-tabs md-dynamic-height md-border-bottom stretchTabs flex class="album_tab">
+                    
+                    <md-tab label="Photo" >      
+                        <md-content class="" scroll="y" layout="column">
+                            <div ng-controller="Photoctrl"
+                                 class="tab_body">    
+                                <a ng-click="create()" class="cr_nw_al"> <i class="material-icons">create_new_folder</i> Create new album</a>
+                
+                                <div class="row" style="flex-wrap: wrap;">
+                   
+                    <div class="col col-50"ng-repeat="folder in folders" >
+                        <a href="#">
+                        <div class="folder" ng-click="alshow(folder.id,folder.name)">
+                            <img ng-src="http://creoyou.net/uploads/portfolioImages/resizedimages/{{folder.image_name}}"  src="http://creoyou.net/uploads/portfolioImages/resizedimages/{{folder.image_name}}" class="album_image"/> 
+                            <div class="folder_desc">
+                                <div class="album_name"><i class="material-icons">photo_library</i> {{folder.name}}</div>
+                                <div class="file_count">{{folder.imgCount}}</div>
+                            </div>
+                        </div>    
+                        </a>                            
+                    </div>
+                </div>
+                           
+                                  
+                            </div>
+                        </md-content>
+                   
+                    
+                    </md-tab>
+                  
+                    <md-tab label="Videos" >      
+                        <md-content class="" scroll="y" layout="column">
+                            <div  class="tab_body">
+                                <a  class="cr_nw_al" ui-sref="common.video_upload"> <i class="material-icons">video_call</i> Upload New Video</a>
+                                <div class="card video_album" ng-repeat="video in videos" >
+ <div ng-if="video.video_source==='You Tube'">                                   
+<iframe id="{{video.video_id}}" width="100%" ng-src="{{getIframeSrc(video.video_name)}}" frameborder="0 " allowfullscreen></iframe></div>
+<div ng-if="video.video_source==='Local Machine'">                                   
+
+<video id="{{video.video_id}}" controls style="width:100%;height:auto;" video-control control-play="{{play}}" oncontextmenu="return false"      loop controls="controls" class="composition-video" ng-src="{{trustSrc(video.video_name)}}" poster="http://creoyou.net/uploads/portfolioVideoSnapshots/{{video.snapshot_name}}" type="video/mp4"></video></div> 
+    
+   <!--video.video_name -->                                 
+                                        <div class="col video_sha_like">
+                        <ul>
+                            <li class="wishlist"><a href="#"><i class="material-icons">favorite</i><label>{{video.video_viewed}}</label></a></li>
+                            <li class="comment"><a href="#"><i class="material-icons">chat_bubble</i><label>{{video.countComment}}</label></a></li>
+                            <li class="eyeview"><a href="#"><i class="material-icons">remove_red_eye</i><label>{{video.video_viewed}}</label></a></li>
+                            <li class="share"><a href="#"><i class="material-icons">share</i><label>30</label></a></li>
+                        </ul>
+                         <i class="material-icons" ng-click="video()">settings</i>
+                                         
+                                        </div>                                    
+                             <div class="col">
+                         <h4 class="video_title">Video Title</h4>
+                         <p class="video_desc">{{video.video_title}}</p>
+                         </div>
+                                </div>
+                                
+                                
+                             
+                            </div>    
+                        </md-content>
+                    </md-tab>                                                                                                           
+                    <md-tab label="Audios">                        
+                        <md-content class="" scroll="y" layout="column">
+                            <div class="tab_body" ng-controller="Audioctrl">
+            <a ng-click="filepathChooser()" class="cr_nw_al"> <i class="material-icons">queue_music</i> Upload Vew Audio</a>
+                                
+     <div class="card audio_album" ng-repeat="track in tracks" track="track">
+                                    
+     <ion-audio-track >
+    <div class="">
+    <div class="item item-thumbnail-left">
+    <img ng-src="img/audio_new.png">
+     </div>
+                                            
+    <div class="item progress-right">
+     <div class="col video_sha_like">
+     <ul>
+        <li class="wishlist"><a href="#"><i class="material-icons">favorite</i><label>{{track.audio_like}}</label></a></li>
+        <li class="comment"><a href="#"><i class="material-icons">chat_bubble</i><label>{{track.countComment}}</label></a></li>
+        <li class="eyeview"><a href="#"><i class="material-icons">remove_red_eye</i><label>{{track.audio_viewed}}</label></a></li>
+        <li class="share"><a href="#"><i class="material-icons">share</i><label>30</label></a></li>
+    </ul>
+     <i class="material-icons">settings</i>
+    </div>   
+                                              
+    <h2>{{track.audio_title}}</h2>                               
+  <audio controls ng-if="track.audio_source===null">
+  
+  <source ng-src="{{trustSrc2(track.audio_name)}}" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>                                      
+<audio controls ng-if="track.audio_source!==null">
+  
+  <source ng-src="{{trustSrc1(track.audio_name)}}" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
+         </div>
+     </div>
+ </ion-audio-track> 
+                                        
+</div>
+                               
+                                
+                               
+                            </div>    
+                        </md-content>
+                    </md-tab>
+                </md-tabs>    
+                
+                
+               <ion-infinite-scroll ng-if="!noMoreItemsAvailable" on-infinite="loadMore()" distance="10%"></ion-infinite-scroll>
+            
+        </md-content>
+      </md-tab>
+      
+      
+      <md-tab label="Connections" md-on-select="connection()">
+        
+           
+        <md-content class="" scroll="y" layout="column">
+          <md-tabs md-dynamic-height md-border-bottom stretchTabs flex class="album_tab">
+                    <md-tab label="Connections">      
+                        <md-content class="" scroll="y" layout="column">
+                            <div class="tab_body">    
+<a href="#" class="connec_top_button">Connected</a>                                                
+<ul class="list user_list">
+    
+    <li class="item" ng-repeat="conection in conections" >
+        <div class="row" id="sugghide1/{{conection.user_id}}">
+            <div class="col col-25">
+                <div class="user_img"><img ng-src="http://creoyou.net/uploads/profileImages/{{conection.image}}" class="user_img"></div>
+            </div>
+            <div class="col user_details">
+                <div class="user_name"  ng-click="other(conection.user_id)">{{conection.fname}} {{conection.lname}} {{conection.buisness_name}} </div>
+                <div class="user_desig" ng-if="conection.occupation!==null"><i class="material-icons">card_travel</i> {{conection.occupation}}</div>
+               <!-- <div class="user_address"><i class="material-icons">location_city</i> New York, USA</div>-->
+            </div>
+            <div class="col col-30 user_choice" >
+                <i class="material-icons"  ng-click="block(conection.user_id)" >settings</i>
+                <!-- <div id="myDropdown" class="dropdown-content">
+                
+                   <a class="privacy">
+                            <i class="material-icons">block</i> Block
+                         </a>
+    
+                </div>-->
+             <div class="card pop_card" id="sugghide/{{conection.user_id}} " >
+                      <div class="item item-text-wrap">
+                         <button class="privacy" ng-click="blockuser(conection.user_id)">
+                            <i class="material-icons">block</i> Block
+                         </button>
+
+                         <!--<button class="Delete">
+                            <i class="material-icons">remove_circle_outline</i> Disconnect
+                         </button>-->  
+
+                      </div>
+                </div>
+                
+                <button class="job_button" >Message <i class="material-icons">email</i></button>
+            </div>
+        </div>
+    </li>
+                                      
+</ul>
+                                
+                            </div>
+                          <!--  <ion-infinite-scroll ng-if="!noMoreItemsAvailable" on-infinite="loadMore()" distance="10%"></ion-infinite-scroll>-->
+                        </md-content>
+                    </md-tab>
+                    <md-tab label="Following" >      
+                        <md-content class="" scroll="y" layout="column">
+                            <div class="tab_body" ng-show="tabbody">
+<a href="#" class="connec_top_button">I am following</a>                                               
+                                                       
+<ul class="list user_list">
+    <li class="item" ng-repeat="conection in followings |limitTo:4" >
+        <div class="row" id="sugghide1/{{conection.id}}">
+            <div class="col col-25">
+                
+                <div class="user_img">
+                    <img ng-show="conection.image ===''" ng-src="img/management.png" class="user_img">
+                    <img ng-show="conection.image !==''" ng-src="http://creoyou.net/uploads/profileImages/{{conection.image}}" class="user_img">
+                
+                </div>
+            </div>
+            <div class="col user_details" ng-if="conection.buisness_name===null">
+                 <div class="user_name" ng-click="other(conection.id)">{{conection.fname}} {{conection.lname}}</div>
+                <div class="user_desig"><i class="material-icons">card_travel</i> {{conection.occupation}}</div>
+                <div class="user_address"><i class="material-icons">location_city</i> New York, USA</div>
+            </div>
+             <div class="col Businessuser_details" ng-if="conection.fname===null" >
+                <div class="Businessuser_name">{{conection.buisness_name}}</div>
+                <div class="Businessuser_desig">{{conection.occupation}}</div>
+                <div class="Businessuser_foollowing">1,12,3403 followers</div>
+            </div>
+          <div class="col col-30 user_choice" >
+                <i class="material-icons"  ng-click="block(conection.id)" >settings</i>
+                <!-- <div id="myDropdown" class="dropdown-content">
+                
+                   <a class="privacy">
+                            <i class="material-icons">block</i> Block
+                         </a>
+    
+                </div>-->
+             <div class="card pop_card" id="sugghide/{{conection.id}} " >
+                      <div class="item item-text-wrap">
+                         <button class="privacy" ng-click="unfollowpersone(conection.id)">
+                            <i class="material-icons">block</i> Unfollow
+                         </button>
+
+                         <!--<button class="Delete">
+                            <i class="material-icons">remove_circle_outline</i> Disconnect
+                         </button>-->  
+
+                      </div>
+                </div>
+                
+               
+            </div>
+                
+            <!--<button class="job_button">Unfollow <i class="material-icons">camera_rear</i></button>-->
+            </div>
+           
+        </div>
+    </li>
+                                      
+</ul>
+  <!--<ion-infinite-scroll ng-if="!noMoreItemsAvailable" on-infinite="loadMore()" distance="10%"></ion-infinite-scroll>   -->                   
+<ul class="list user_list" ng-if="value1==='null'">
+   
+       <li class="item BusinessList">
+        <div class="row">
+            
+            <div class="col Businessuser_details">
+                <div class="Businessuser_name">No Following Found</div>
+                <div class="Businessuser_desig"></div>
+                <div class="Businessuser_foollowing"></div>
+            </div>
+            
+        </div>
+    </li>                                              
+</ul>
+<div class="ion-item-divider">
+    <button class="view_more" ui-sref="common.following_followers">View More</button>
+</div>
+                                
+<a href="#" class="connec_top_button my_folowers">My Followers</a> 
+                         
+     <ul class="list user_list" >
+   <li class="item" ng-repeat="conection in followerss |limitTo:4" >
+        <div class="row">
+            <div class="col col-25">
+                
+                <div class="user_img">
+                    <img ng-show="conection.image ===''" ng-src="img/management.png" class="user_img">
+                    <img ng-show="conection.image !==''" ng-src="http://creoyou.net/uploads/profileImages/{{conection.image}}" class="user_img">
+                
+                </div>
+            </div>
+            <div class="col user_details" ng-if="conection.buisness_name===null">
+                <div class="user_name" ng-click="other(conection.id)">{{conection.fname}} {{conection.lname}}</div>
+                <div class="user_desig"><i class="material-icons">card_travel</i> {{conection.occupation}}</div>
+                <div class="user_address"><i class="material-icons">location_city</i> New York, USA</div>
+            </div>
+             <div class="col Businessuser_details" ng-if="conection.fname===null" >
+                <div class="Businessuser_name">{{conection.buisness_name}}</div>
+                <div class="Businessuser_desig">{{conection.occupation}}</div>
+                <div class="Businessuser_foollowing">1,12,3403 followers</div>
+            </div>
+            <div class="col col-30 user_choice">
+                <i class="material-icons">settings</i>
+               
+            </div>
+                
+            <!--<button class="job_button">Unfollow <i class="material-icons">camera_rear</i></button>-->
+            </div>
+           
+        </div>
+    </li> 
+    <div class="ion-item-divider">
+    <button class="view_more" ui-sref="common.following_followers">View More</button>
+</div>
+</ul>
+   <!--<ion-infinite-scroll ng-if="!noMoreItemsAvailable" on-infinite="loadMore()" distance="10%"></ion-infinite-scroll>   -->                  
+                        
+     <ul class="list user_list" ng-if="value==='null'">
+   
+       <li class="item BusinessList">
+        <div class="row">
+            
+            <div class="col Businessuser_details">
+                <div class="Businessuser_name">No Followers Found</div>
+                <div class="Businessuser_desig"></div>
+                <div class="Businessuser_foollowing"></div>
+            </div>
+            
+        </div>
+    </li>                                              
+</ul>
+                        
+                
+                            </div>    
+                        </md-content>
+                    </md-tab>                   
+          </md-tabs>
+    
+        </md-content>
+      </md-tab>
+     
+    </md-tabs>
+     
+ </md-content> 
+      
+
+	  
+
+ 
+  </ion-content>
+
+    
+<!--    
+  <ion-footer-bar class="bar-positive tabs tabs-stable already_sign">
+    	<a class="tab-item tab-item-active" ui-sref="common.login">Already have an acount?<span>Sign In</span></a>
+  </ion-footer-bar> -->    
+    
+</ion-view>

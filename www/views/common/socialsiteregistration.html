@@ -1,0 +1,77 @@
+<ion-view class="walkthrough-view multi-bg-outer" style="background-image: url('img/background.jpg')" cache-view="false">
+    <ion-content>
+   <form name="myForm" novalidate>
+    <div class="top-content row"> 
+        <div class="reg_block_fraim">
+            <div class="col register_logo_section">
+                <img ng-src="img/logo.png" class="app_logo">    
+            </div>
+            
+        
+            <div class="col col-center registration_field">                
+                <div class="list list-inset">
+                  <label class="tem item-input message_parrent">
+                    <input type="text" name="Username" ng-model="Username" id="user" ng-keyup='usercheck()' placeholder="Username" ng-pattern="/^[a-zA-Z0-9]*$/" required>
+                      
+                  </label>
+                    <p ng-show="myForm.Username.$error.pattern">Only letters and numbers are allowed </p>
+                    <p ng-show="myForm.Username.$error.required">* Username is required</p>
+                    <p >{{username}}</p>
+
+				  <div class="mobile_label item item-input">
+                   	<input type="text" ng-model="country.dial_code" class="country_code">
+                   	<select ng-model="country" ng-init="country=countries[0]" ng-options="country.name for country in countries" class="reg_select"></select>
+                    <input type="tel" name="mob" ng-model="mob"
+                           id="phone" ng-keyup='phonecheck()'ng-minlength="8" ng-maxlength="11"class="mobile_no" placeholder="Mobile Number" ng-pattern="/^[0-9]+$/"required>   
+                      
+                  </div>   
+                    <p  class="help-block">{{phone}}</p>
+                    <p ng-show="myForm.mob.$error.required && !myForm.mob.$pristine " >* Mobile number is required</p>
+                    <p ng-show="myForm.mob.$error.minlength" class="help-block">Your phone no must be 8 Number</p>
+                   <p ng-show="myForm.mob.$error.maxlength" class="help-block">Your Phoneno is invalid.</p>
+                    <p ng-show="myForm.mob.$error.pattern" class="help-block">Only Numbers are allowed.</p>
+                     
+                    <label  class="item item-input select_label">                    
+                  
+                      <select name="cfield" ng-model="cfield"   class="reg_select"ng-change="showSelectValue(cfield)" required>
+                       <option value="" disabled="disabled"                           selected="selected">Select Creative field</option>  
+                     <option  ng-repeat="group in listOfOptions" value="{{group.id}}"
+                       ng-disabled="group.disabled" >{{group.cat_name}}</option>
+                    <option ng-repeat="group1 in choi"value="-1" selected>{{group1.name}} </option>
+                    <option value="0">Other Category </option>
+                   <!--<option value="">{{catagory}}</option>-->
+                    
+                   
+                          
+                    </select>
+                     
+                  </label>                    
+                    <p class="ValError" ng-show="myForm.cfield.$error.required && !myForm.email.$pristine "   >* Creative Field is required</p>
+                  
+                  <div class="ion-item-divider login_divider">
+                        <span class="ter_pri" ui-sref="#">By clicking Sign Up, you agree with CreoYou's <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a>.</span> 
+                  </div>
+                  
+                  <button ng-click="valuestep1(Username,country,mob,cfield)" class="button button-block reg_sub"  ng-disabled="myForm.$invalid" >Sign Up</button> 
+
+                                      
+                 
+                </div>
+              
+                
+            </div> 
+        </div>    
+        
+    </div> 
+        </form>
+  </ion-content>
+
+    
+    
+  <!--<ion-footer-bar class="bar-positive tabs tabs-stable already_sign">
+    	<a class="tab-item tab-item-active" ui-sref="common.login">Already have an acount?<span>Sign In</span></a>
+  </ion-footer-bar>   -->  
+    
+    
+    
+</ion-view>
